@@ -1,0 +1,12 @@
+C:\Coding\Backend\DemoAPI\src\DemoAPI.Core\obj\Debug\net8.0\DemoAPI.Core.csproj.AssemblyReference.cache
+C:\Coding\Backend\DemoAPI\src\DemoAPI.Core\obj\Debug\net8.0\DemoAPI.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Coding\Backend\DemoAPI\src\DemoAPI.Core\obj\Debug\net8.0\DemoAPI.Core.AssemblyInfoInputs.cache
+C:\Coding\Backend\DemoAPI\src\DemoAPI.Core\obj\Debug\net8.0\DemoAPI.Core.AssemblyInfo.cs
+C:\Coding\Backend\DemoAPI\src\DemoAPI.Core\obj\Debug\net8.0\DemoAPI.Core.csproj.CoreCompileInputs.cache
+C:\Coding\Backend\DemoAPI\src\DemoAPI.Core\bin\Debug\net8.0\DemoAPI.Core.deps.json
+C:\Coding\Backend\DemoAPI\src\DemoAPI.Core\bin\Debug\net8.0\DemoAPI.Core.dll
+C:\Coding\Backend\DemoAPI\src\DemoAPI.Core\bin\Debug\net8.0\DemoAPI.Core.pdb
+C:\Coding\Backend\DemoAPI\src\DemoAPI.Core\obj\Debug\net8.0\DemoAPI.Core.dll
+C:\Coding\Backend\DemoAPI\src\DemoAPI.Core\obj\Debug\net8.0\refint\DemoAPI.Core.dll
+C:\Coding\Backend\DemoAPI\src\DemoAPI.Core\obj\Debug\net8.0\DemoAPI.Core.pdb
+C:\Coding\Backend\DemoAPI\src\DemoAPI.Core\obj\Debug\net8.0\ref\DemoAPI.Core.dll
