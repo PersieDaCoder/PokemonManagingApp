@@ -1,0 +1,16 @@
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\bin\Debug\net8.0\PokemonManagingApp.UseCases.deps.json
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\bin\Debug\net8.0\PokemonManagingApp.UseCases.dll
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\bin\Debug\net8.0\PokemonManagingApp.UseCases.pdb
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\bin\Debug\net8.0\PokemonManagingApp.Core.dll
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\bin\Debug\net8.0\PokemonManagingApp.Core.pdb
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.csproj.AssemblyReference.cache
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.GeneratedMSBuildEditorConfig.editorconfig
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.AssemblyInfoInputs.cache
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.AssemblyInfo.cs
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.csproj.CoreCompileInputs.cache
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.sourcelink.json
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonM.BC2D5BBC.Up2Date
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.dll
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\refint\PokemonManagingApp.UseCases.dll
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.pdb
+C:\Coding\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\ref\PokemonManagingApp.UseCases.dll

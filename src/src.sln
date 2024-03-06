@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoAPI.Core", "DemoAPI.Core\DemoAPI.Core.csproj", "{255448B0-F436-452F-9ECE-21699A40C209}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonManagingApp.Core", "PokemonManagingApp.Core\PokemonManagingApp.Core.csproj", "{255448B0-F436-452F-9ECE-21699A40C209}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoAPI.Infrastructure", "DemoAPI.Infrastructure\DemoAPI.Infrastructure.csproj", "{2A9D5117-F372-4E4C-99E8-7D20813550BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonManagingApp.Infrastructure", "PokemonManagingApp.Infrastructure\PokemonManagingApp.Infrastructure.csproj", "{2A9D5117-F372-4E4C-99E8-7D20813550BD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoAPI.UseCases", "DemoAPI.UseCases\DemoAPI.UseCases.csproj", "{A50A666F-CD4A-4ECE-ADF6-571D80DB5479}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonManagingApp.UseCases", "PokemonManagingApp.UseCases\PokemonManagingApp.UseCases.csproj", "{A50A666F-CD4A-4ECE-ADF6-571D80DB5479}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoAPI.Web", "DemoAPI.Web\DemoAPI.Web.csproj", "{711E21FB-1107-42E5-8A8B-C59A189960B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PokemonManagingApp.Web", "PokemonManagingApp.Web\PokemonManagingApp.Web.csproj", "{711E21FB-1107-42E5-8A8B-C59A189960B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
