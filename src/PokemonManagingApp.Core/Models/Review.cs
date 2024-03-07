@@ -19,6 +19,7 @@ public class Review
   public required Guid ReviewerId { get; set; }
   [ForeignKey(nameof(Pokemon))]
   public required Guid PokemonId { get; set; }
+  public bool Status { get; set; } = true;
 
   public Reviewer? Reviewer { get; set; }
   public Pokemon? Pokemon { get; set; }

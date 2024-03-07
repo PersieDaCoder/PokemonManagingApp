@@ -9,6 +9,7 @@ public class Country
     public Guid Id { get; set; } = Guid.NewGuid();
     [MaxLength(50)]
     public required string Name { get; set; }
+    public bool Status { get; set; } = true;
     
     public ICollection<Owner> Owners { get; set; } = new List<Owner>();
 }

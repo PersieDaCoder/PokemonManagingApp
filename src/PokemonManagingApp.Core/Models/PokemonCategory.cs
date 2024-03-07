@@ -12,6 +12,8 @@ public class PokemonCategory
     public required Guid PokemonId { get; set; }
     [ForeignKey(nameof(Category))]
     public required Guid CategoryId { get; set; }
+    public bool Status { get; set; } = true;
+    
 
     public Pokemon? Pokemon { get; set; }
     public Category? Category { get; set; }

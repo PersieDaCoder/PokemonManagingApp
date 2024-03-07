@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DemoAPI.Core.DTOs.Country;
-using DemoAPI.Core.DTOs.Pokemon;
+using PokemonManagingApp.Core.DTOs.Country;
+using PokemonManagingApp.Core.DTOs.Pokemon;
 
-namespace DemoAPI.Core.DTOs.Owner;
+namespace PokemonManagingApp.Core.DTOs.Owner;
 
 public record OwnerDTO
 {
@@ -13,6 +13,7 @@ public record OwnerDTO
     public required Guid CountryId { get; init; }
     public required string Name { get; init; }
     public required string Gym { get; init; }
+    public bool Status { get; init; }
     public CountryDTO? Country{ get; init;}
     public IEnumerable<PokemonDTO> Pokemon { get; set; } = new List<PokemonDTO>();
 }

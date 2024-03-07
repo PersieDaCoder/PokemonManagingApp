@@ -11,6 +11,7 @@ public class PokemonOwner
     [Key]
     [ForeignKey(nameof(Owner))]
     public required Guid OwnerId { get; set; }
+    public bool Status { get; set; } = true;
 
     public Pokemon? Pokemon { get; set; }
     public Owner? Owner { get; set; }

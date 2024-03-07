@@ -3609,8 +3609,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj": {
-              "projectPath": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj"
+            "c:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj": {
+              "projectPath": "c:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj"
             },
             "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.UseCases\\PokemonManagingApp.UseCases.csproj": {
               "projectPath": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.UseCases\\PokemonManagingApp.UseCases.csproj"

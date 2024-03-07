@@ -40,13 +40,13 @@ public class ApplicationDBContext : DbContext
                 new Pokemon
                 {
                     Id = Guid.Parse("099c7edc-4e2c-4e6d-bc04-141c1549399a"),
-                    Name = "Pikachu",
+                    Name = "Rayquaza",
                     BirthDate = new DateTime(1996, 1, 1)
                 },
                 new Pokemon
                 {
                     Id = Guid.Parse("799a8b34-c056-41fe-8ac2-ef4d906ad1dd"),
-                    Name = "Pikachu",
+                    Name = "Charmander",
                     BirthDate = new DateTime(1996, 1, 1)
                 });
 
@@ -76,34 +76,34 @@ public class ApplicationDBContext : DbContext
                 new Category
                 {
                     Id = Guid.Parse("a8ab46d3-27cd-4c68-bec2-f73471d653f8"),
-                    Name = "Electric",
+                    Name = "Dragon",
                 },
                 new Category
                 {
                     Id = Guid.Parse("361a29e0-ec56-411a-8753-4521f9088da3"),
-                    Name = "Electric",
+                    Name = "Fire",
                 });
 
             modelBuilder.Entity<Owner>().HasData(
                 new Owner
                 {
                     Id = Guid.Parse("225b113e-b7e2-4407-8e24-c995b46ac9f5"),
-                    Name = "Ash Ketchup",
+                    Name = "Ash",
                     Gym = "Pallet Town",
                     CountryId = Guid.Parse("4c29abc4-6a42-41b1-ac20-7c97f9d28868"),
                 },
                 new Owner
                 {
                     Id = Guid.Parse("4d26f80f-4732-441f-848e-801d8db25cfc"),
-                    Name = "Ash Ketchup",
-                    Gym = "Pallet Town",
+                    Name = "Ketchup",
+                    Gym = "Beginner Town",
                     CountryId = Guid.Parse("9a372b12-9da7-43a1-a880-c7e35556b8c4"),
                 },
                 new Owner
                 {
                     Id = Guid.Parse("b690f3c2-5502-4035-967f-a808a30e4727"),
-                    Name = "Ash Ketchup",
-                    Gym = "Pallet Town",
+                    Name = "Satoshi",
+                    Gym = "Boss Town",
                     CountryId = Guid.Parse("d181555a-73ec-4dd5-9c77-3db18671efbb"),
                 }
             );

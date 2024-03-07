@@ -25,7 +25,8 @@ public class CreatePokemonHandler(IUnitOfWork context) : IRequestHandler<CreateP
         {
             Id = pokemon.Id,
             Name = pokemon.Name,
-            BirthDate = pokemon.BirthDate
+            BirthDate = pokemon.BirthDate,
+            Status = pokemon.Status
         });
     }
 }

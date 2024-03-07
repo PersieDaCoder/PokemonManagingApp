@@ -13,6 +13,7 @@ public class Pokemon
     [MaxLength(50)]
     public required string Name { get; set; }
     public required DateTime BirthDate { get; set; }
+    public bool Status { get; set; } = true;
     
     public ICollection<Review> Reviews { get; set; } = new List<Review>();
     public ICollection<PokemonOwner> PokemonOwners { get; set; } = new List<PokemonOwner>();

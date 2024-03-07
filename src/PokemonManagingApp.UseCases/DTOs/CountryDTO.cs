@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DemoAPI.Core.DTOs.Owner;
+using PokemonManagingApp.Core.DTOs.Owner;
 
-namespace DemoAPI.Core.DTOs.Country;
+namespace PokemonManagingApp.Core.DTOs.Country;
 
   public record CountryDTO
   {
       public required Guid Id { get; init; }
       public required string Name { get; init; }
+      public bool Status { get; init; }
       public IEnumerable<OwnerDTO> Owners{ get; init;} = new List<OwnerDTO>();
   }

@@ -14,6 +14,7 @@ public class Reviewer
     public required string FirstName { get; set; }
     [MaxLength(50)]
     public required string LastName { get; set; }
-    
+    public bool Status { get; set; } = true;
+
     public ICollection<Review> Reviews { get; set; } = new List<Review>();
 }

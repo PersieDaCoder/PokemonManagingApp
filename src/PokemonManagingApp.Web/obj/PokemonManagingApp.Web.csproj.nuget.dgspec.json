@@ -149,18 +149,18 @@
         }
       }
     },
-    "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj": {
+    "c:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj",
+        "projectUniqueName": "c:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj",
         "projectName": "PokemonManagingApp.Infrastructure",
-        "projectPath": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj",
+        "projectPath": "c:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\thinh\\.nuget\\packages\\",
-        "outputPath": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\obj\\",
+        "outputPath": "c:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "centralPackageVersionsManagementEnabled": true,
         "configFilePaths": [
-          "C:\\Coding\\PokemonManagingApp\\NuGet.Config",
+          "c:\\Coding\\PokemonManagingApp\\NuGet.Config",
           "C:\\Users\\thinh\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
@@ -431,8 +431,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj": {
-                "projectPath": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj"
+              "c:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj": {
+                "projectPath": "c:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj"
               },
               "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.UseCases\\PokemonManagingApp.UseCases.csproj": {
                 "projectPath": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.UseCases\\PokemonManagingApp.UseCases.csproj"

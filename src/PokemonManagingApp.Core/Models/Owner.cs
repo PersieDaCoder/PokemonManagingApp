@@ -13,7 +13,8 @@ public class Owner
     public required string Gym { get; set; }
     [ForeignKey(nameof(Country))]
     public required Guid CountryId { get; set; }
+    public bool Status { get; set; } = true;
     
-    public Country? Country { get; set; }
+    public Country Country { get; set; } = null!;
     public ICollection<PokemonOwner> PokemonOwners { get; set; } = new List<PokemonOwner>();
 }
