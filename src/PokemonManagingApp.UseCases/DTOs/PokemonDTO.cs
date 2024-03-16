@@ -1,12 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PokemonManagingApp.Core.DTOs.Category;
-using PokemonManagingApp.Core.DTOs.Owner;
-using PokemonManagingApp.Core.DTOs.Review;
-
-namespace PokemonManagingApp.Core.DTOs.Pokemon;
+namespace PokemonManagingApp.UseCase.DTOs;
 
 public record PokemonDTO
 {

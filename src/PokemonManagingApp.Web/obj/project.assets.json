@@ -766,6 +766,22 @@
           "build/Swashbuckle.AspNetCore.props": {}
         }
       },
+      "Swashbuckle.AspNetCore.Annotations/6.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0"
+        },
+        "compile": {
+          "lib/net7.0/Swashbuckle.AspNetCore.Annotations.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Swashbuckle.AspNetCore.Annotations.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore.Swagger/6.5.0": {
         "type": "package",
         "dependencies": {
@@ -2609,6 +2625,32 @@
         "swashbuckle.aspnetcore.nuspec"
       ]
     },
+    "Swashbuckle.AspNetCore.Annotations/6.5.0": {
+      "sha512": "EcHd1z2pEdnpaBMTI9qjVxk6mFVGVMZ1n0ySC3fjrkXCQQ8O9fMdt9TxPJRKyjiTiTjvO9700jKjmyl+hPBinQ==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore.annotations/6.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/Swashbuckle.AspNetCore.Annotations.dll",
+        "lib/net5.0/Swashbuckle.AspNetCore.Annotations.pdb",
+        "lib/net5.0/Swashbuckle.AspNetCore.Annotations.xml",
+        "lib/net6.0/Swashbuckle.AspNetCore.Annotations.dll",
+        "lib/net6.0/Swashbuckle.AspNetCore.Annotations.pdb",
+        "lib/net6.0/Swashbuckle.AspNetCore.Annotations.xml",
+        "lib/net7.0/Swashbuckle.AspNetCore.Annotations.dll",
+        "lib/net7.0/Swashbuckle.AspNetCore.Annotations.pdb",
+        "lib/net7.0/Swashbuckle.AspNetCore.Annotations.xml",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Annotations.dll",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Annotations.pdb",
+        "lib/netcoreapp3.0/Swashbuckle.AspNetCore.Annotations.xml",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Annotations.dll",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Annotations.pdb",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Annotations.xml",
+        "swashbuckle.aspnetcore.annotations.6.5.0.nupkg.sha512",
+        "swashbuckle.aspnetcore.annotations.nuspec"
+      ]
+    },
     "Swashbuckle.AspNetCore.Swagger/6.5.0": {
       "sha512": "XWmCmqyFmoItXKFsQSwQbEAsjDKcxlNf1l+/Ki42hcb6LjKL8m5Db69OTvz5vLonMSRntYO1XLqz0OP+n3vKnA==",
       "type": "package",
@@ -3579,41 +3621,49 @@
       "Microsoft.AspNetCore.OpenApi >= 8.0.2",
       "PokemonManagingApp.Infrastructure >= 1.0.0",
       "PokemonManagingApp.UseCases >= 1.0.0",
-      "Swashbuckle.AspNetCore >= 6.5.0"
+      "Swashbuckle.AspNetCore >= 6.5.0",
+      "Swashbuckle.AspNetCore.Annotations >= 6.5.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\thinh\\.nuget\\packages\\": {}
+    "C:\\Users\\ADMIN\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Web\\PokemonManagingApp.Web.csproj",
+      "projectUniqueName": "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.Web\\PokemonManagingApp.Web.csproj",
       "projectName": "PokemonManagingApp.Web",
-      "projectPath": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Web\\PokemonManagingApp.Web.csproj",
-      "packagesPath": "C:\\Users\\thinh\\.nuget\\packages\\",
-      "outputPath": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Web\\obj\\",
+      "projectPath": "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.Web\\PokemonManagingApp.Web.csproj",
+      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+      "outputPath": "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.Web\\obj\\",
       "projectStyle": "PackageReference",
       "centralPackageVersionsManagementEnabled": true,
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Coding\\PokemonManagingApp\\NuGet.Config",
-        "C:\\Users\\thinh\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\NuGet.Config",
+        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "c:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj": {
-              "projectPath": "c:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj"
+            "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj": {
+              "projectPath": "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj"
             },
-            "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.UseCases\\PokemonManagingApp.UseCases.csproj": {
-              "projectPath": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.UseCases\\PokemonManagingApp.UseCases.csproj"
+            "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.UseCases\\PokemonManagingApp.UseCases.csproj": {
+              "projectPath": "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.UseCases\\PokemonManagingApp.UseCases.csproj"
             }
           }
         }
@@ -3623,11 +3673,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -3648,10 +3693,16 @@
             "target": "Package",
             "version": "[6.5.0, )",
             "versionCentrallyManaged": true
+          },
+          "Swashbuckle.AspNetCore.Annotations": {
+            "target": "Package",
+            "version": "[6.5.0, )",
+            "versionCentrallyManaged": true
           }
         },
         "centralPackageVersions": {
           "Ardalis.ApiEndpoints": "[4.1.0, )",
+          "Ardalis.Extensions": "[0.9.4, )",
           "Ardalis.GuardClauses": "[4.2.0, )",
           "Ardalis.HttpClientTestExtensions": "[4.2.0, )",
           "Ardalis.ListStartupServices": "[1.1.4, )",
@@ -3711,7 +3762,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

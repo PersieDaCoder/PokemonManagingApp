@@ -8,5 +8,5 @@ namespace PokemonManagingApp.Core.Interfaces.Data.Repositories;
 
 public interface ICategoryRepository : IBaseRepository<Category>
 {
-
+    Task<IEnumerable<Category>> GetAllCategoriesAsync();
 }

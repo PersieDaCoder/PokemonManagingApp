@@ -12,7 +12,13 @@ internal partial class Program
         builder.Services.AddSwaggerGen();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddControllers();
+        
+
         builder.Services.AddUseCases();
+        builder.Services.AddSwaggerGen(c => {
+            c.SwaggerDoc("v1", new() { Title = "PokemonManagingApp.Web", Version = "v1" });
+            c.EnableAnnotations();
+        });
 
         builder.Services.AddInfrastructure(builder.Configuration);
 

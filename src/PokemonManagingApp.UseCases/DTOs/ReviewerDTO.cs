@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PokemonManagingApp.Core.DTOs.Review;
+using PokemonManagingApp.UseCase.DTOs;
 
-namespace PokemonManagingApp.Core.DTOs.Reviewer;
+namespace PokemonManagingApp.UseCase.DTOs;
 
 public record ReviewerDTO
 {

@@ -10,4 +10,8 @@
     <ProjectReference Include="..\PokemonManagingApp.Core\PokemonManagingApp.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Category_UseCase\Commands\" />
+  </ItemGroup>
+
 </Project>

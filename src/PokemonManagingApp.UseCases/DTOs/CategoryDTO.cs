@@ -1,6 +1,4 @@
-using PokemonManagingApp.Core.DTOs.Pokemon;
-
-namespace PokemonManagingApp.Core.DTOs.Category;
+namespace PokemonManagingApp.UseCase.DTOs;
 
 public record CategoryDTO
 {

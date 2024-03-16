@@ -1,0 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Ardalis.Result;
+using MediatR;
+using PokemonManagingApp.UseCase.DTOs;
+
+namespace PokemonManagingApp.UseCases.UseCase_Categories.Commands.UpdateCategory;
+
+public record UpdateCategoryCommand : IRequest<Result>
+{
+    public Guid Id { get; init; }
+    public string Name { get; init;} = null!;
+}

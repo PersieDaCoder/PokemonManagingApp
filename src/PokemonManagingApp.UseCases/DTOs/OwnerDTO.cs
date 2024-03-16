@@ -2,10 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PokemonManagingApp.Core.DTOs.Country;
-using PokemonManagingApp.Core.DTOs.Pokemon;
+using PokemonManagingApp.UseCase.DTOs;
 
-namespace PokemonManagingApp.Core.DTOs.Owner;
+namespace PokemonManagingApp.UseCase.DTOs;
 
 public record OwnerDTO
 {

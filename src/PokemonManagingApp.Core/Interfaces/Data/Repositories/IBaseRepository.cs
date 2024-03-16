@@ -10,6 +10,7 @@ public interface IBaseRepository<T> where T : class
 {
     void Add(T entity);
     void Remove(T entity);
+    IQueryable<T> DBSet();
     // Task SaveChangesAsync();
     Task<IEnumerable<T>> GetAllAsync(bool trackChanges);
     Task<T?> GetEntityByConditionAsync(Expression<Func<T, bool>> expression, bool trackChanges);

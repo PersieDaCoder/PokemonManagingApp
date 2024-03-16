@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PokemonManagingApp.Core.DTOs.Pokemon;
-
-namespace PokemonManagingApp.Core.DTOs.Review;
+namespace PokemonManagingApp.UseCase.DTOs;
 
 public record ReviewDTO
 {
@@ -15,5 +9,5 @@ public record ReviewDTO
     public required Guid ReviewerId { get; init; }
     public required Guid PokemonId { get; init; }
     public PokemonDTO? Pokemon { get; set; }
-    public ReviewDTO? Reviewer { get; set; }
+    public ReviewerDTO? Reviewer { get; set; }
 }

@@ -1,12 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PokemonManagingApp.Core.DTOs.Category;
-using PokemonManagingApp.Core.DTOs.Country;
-using PokemonManagingApp.Core.DTOs.Owner;
-using PokemonManagingApp.Core.DTOs.Pokemon;
-using PokemonManagingApp.Core.DTOs.Review;
+
 using PokemonManagingApp.Core.Interfaces.Data.Repositories;
 using PokemonManagingApp.Core.Models;
 using Microsoft.EntityFrameworkCore;

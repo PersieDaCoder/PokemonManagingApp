@@ -6,7 +6,6 @@ using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Interfaces.Data.Repositories;
 using PokemonManagingApp.Infrastructure.Data;
 using PokemonManagingApp.Infrastructure.Data.Repository;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
