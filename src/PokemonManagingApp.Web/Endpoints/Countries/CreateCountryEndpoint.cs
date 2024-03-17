@@ -26,7 +26,7 @@ public class CreateCountryEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
         Summary = "Create a new country",
         Description = "Create a new country",
         OperationId = "Country.Create",
-        Tags = new[] { "Countries" }
+        Tags = ["Countries"]
     )]
     public override async Task<ActionResult> HandleAsync(CreateCountryRequest request, CancellationToken cancellationToken = default)
     {

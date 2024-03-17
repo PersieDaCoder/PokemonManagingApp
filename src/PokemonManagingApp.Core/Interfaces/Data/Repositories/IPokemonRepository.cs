@@ -4,5 +4,6 @@ namespace PokemonManagingApp.Core.Interfaces.Data.Repositories;
 
 public interface IPokemonRepository : IBaseRepository<Pokemon>
 {
-    Task<IEnumerable<Pokemon>> GetAll();
+    Task<Pokemon?> GetPokemonByIdAsync(Guid id, bool checkTraces);
+    Task<IEnumerable<Pokemon>> GetAllPokemonsAsync(bool checkTraces);
 }

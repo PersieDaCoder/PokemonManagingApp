@@ -11,9 +11,24 @@ public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
   }
 
 
-  public async Task<IEnumerable<Category>> GetAllCategoriesAsync()
-    => await _dbSet.AsNoTracking()
+  public async Task<IEnumerable<Category>> GetAllCategoriesAsync(bool checkTraces)
+  {
+    IQueryable<Category> query = _dbSet.AsQueryable();
+    query = checkTraces ? query : query.AsNoTracking();
+    return await query
       .Include(c => c.PokemonCategories).ThenInclude(pc => pc.Pokemon)
-      .Where(c => c.Status == true)
+      .Where(c => c.Status)
       .ToListAsync();
+  }
+
+  public async Task<Category?> GetCategoryByIdAsync(Guid id, bool checkTraces)
+  {
+    IQueryable<Category> query = _dbSet.AsQueryable();
+    query = checkTraces ? query : query.AsNoTracking();
+    return await query
+      .Include(c => c.PokemonCategories).ThenInclude(pc => pc.Pokemon)
+      .Where(c => c.Status)
+      .Where(c => c.Id.Equals(id))
+      .SingleOrDefaultAsync();
+  }
 }

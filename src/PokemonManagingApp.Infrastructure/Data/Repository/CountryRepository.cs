@@ -12,4 +12,14 @@ public class CountryRepository : BaseRepository<Country>, ICountryRepository
   public CountryRepository(ApplicationDBContext context) : base(context)
   {
   }
+
+  public Task<IEnumerable<Country>> GetAllCountries(bool trackChanges)
+  {
+    throw new NotImplementedException();
+  }
+
+  public Task<Country?> GetCountryById(Guid id, bool trackChanges)
+  {
+    throw new NotImplementedException();
+  }
 }

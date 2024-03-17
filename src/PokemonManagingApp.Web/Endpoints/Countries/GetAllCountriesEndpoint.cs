@@ -23,7 +23,7 @@ public class GetAllCountriesEndpoint(IMediator mediator) : EndpointBaseAsync.Wit
         Summary = "Get all countries",
         Description = "Get all countries",
         OperationId = "Country.GetAll",
-        Tags = new[] { "Countries" }
+        Tags = ["Countries"]
     )]
     public override async Task<ActionResult> HandleAsync(CancellationToken cancellationToken = default)
     {

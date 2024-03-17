@@ -7,7 +7,7 @@ namespace PokemonManagingApp.UseCases;
 
 public static class PokemonMapper
 {
-    public static PokemonDTO MapToPokemonDTO(this Pokemon pokemon)
+    public static PokemonDTO MapToDTO(this Pokemon pokemon)
         => new PokemonDTO
         {
             Id = pokemon.Id,
@@ -41,15 +41,20 @@ public static class PokemonMapper
                             Status = owner.Country is not null ? owner.Country.Status : default
                         }
                     }).ToList(),
-            Reviews = pokemon.Reviews is not null ?
+            Reviews = pokemon.Reviews is null ? [] :
                 pokemon.Reviews.Select(review => new ReviewDTO
                 {
                     Id = review.Id,
                     Title = review.Title,
-                    PokemonId = pokemon.Id,
-                    ReviewerId = review.ReviewerId,
                     Text = review.Text,
                     Status = review.Status,
-                }).ToList() : [],
+                    Reviewer = review.Reviewer is null ? null! : new ReviewerDTO
+                    {
+                        Id = review.Reviewer.Id,
+                        FirstName = review.Reviewer.FirstName,
+                        LastName = review.Reviewer.LastName,
+                        Status = review.Reviewer.Status,
+                    },
+                }).ToList(),
         };
 }

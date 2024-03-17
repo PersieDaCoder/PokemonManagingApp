@@ -19,7 +19,7 @@ public class CreatePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
     [Route("/api/Pokemons")]
     [SwaggerOperation(
         Summary = "Create a new Pokemon",
-        Tags = new[] { "Pokemons" }
+        Tags = ["Pokemons"]
     )]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
     public override async Task<ActionResult<Result<PokemonDTO>>> HandleAsync([FromBody]CreatePokemonRequest request, CancellationToken cancellationToken = default)

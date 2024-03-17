@@ -14,5 +14,5 @@ public record OwnerDTO
     public required string Gym { get; init; }
     public bool Status { get; init; }
     public CountryDTO? Country{ get; init;}
-    public IEnumerable<PokemonDTO> Pokemon { get; set; } = new List<PokemonDTO>();
+    public IEnumerable<PokemonDTO> Pokemons { get; set; } = new List<PokemonDTO>();
 }

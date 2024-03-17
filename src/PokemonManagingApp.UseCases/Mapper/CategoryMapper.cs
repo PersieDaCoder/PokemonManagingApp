@@ -12,7 +12,7 @@ public static class CategoryMapper
             Id = category.Id,
             Name = category.Name,
             Status = category.Status,
-            Pokemons = category.PokemonCategories is null ? new List<PokemonDTO>() :
+            Pokemons = category.PokemonCategories is null ? [] :
                 category.PokemonCategories
                     .Select(pc => pc.Pokemon)
                     .Select(p => p == null ? null! : new PokemonDTO
@@ -44,12 +44,17 @@ public static class CategoryMapper
                             {
                                 Id = review.Id,
                                 Title = review.Title,
-                                PokemonId = p.Id,
-                                ReviewerId = review.ReviewerId,
                                 Text = review.Text,
                                 Status = review.Status,
+                                Reviewer = review.Reviewer is null ? null! : new ReviewerDTO
+                                {
+                                    Id = review.Reviewer.Id,
+                                    FirstName = review.Reviewer.FirstName,
+                                    LastName = review.Reviewer.LastName,
+                                    Status = review.Reviewer.Status,
+                                },
                             }).ToList() : [],
-                            }).ToList(),
+                    }).ToList(),
         };
     }
 }

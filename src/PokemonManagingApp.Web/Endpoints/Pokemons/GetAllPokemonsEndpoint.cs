@@ -13,7 +13,7 @@ public class GetAllPokemonsEndpoint(IMediator mediator) : EndpointBaseAsync.With
   [Route("/api/Pokemons")]
   [SwaggerOperation(
         Summary = "Get All Pokemons",
-        Tags = new[] { "Pokemons" }
+        Tags = ["Pokemons"]
   )]
   [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
   public override async Task<ActionResult<IEnumerable<PokemonDTO>>> HandleAsync(CancellationToken cancellationToken = default)

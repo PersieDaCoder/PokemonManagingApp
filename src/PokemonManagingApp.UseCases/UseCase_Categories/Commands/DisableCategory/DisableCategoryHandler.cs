@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Ardalis.Result;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
 
@@ -16,10 +11,8 @@ public class DisableCategoryHandler(IUnitOfWork unitOfWork) : IRequestHandler<Di
 
     public async Task<Result> Handle(DisableCategoryCommand request, CancellationToken cancellationToken)
     {
-        Category? checkedCategory = await _unitOfWork.CategoryRepository
-                .DBSet()
-                .SingleOrDefaultAsync(category => category.Id == request.Id);
-        if(checkedCategory is null) return Result.NotFound();
+        Category? checkedCategory = await _unitOfWork.CategoryRepository.GetEntityByConditionAsync(c => c.Id.Equals(request.Id), true);
+        if (checkedCategory is null) return Result.NotFound();
         checkedCategory.Status = false;
         await _unitOfWork.SaveChangesAsync();
         return Result.Success();

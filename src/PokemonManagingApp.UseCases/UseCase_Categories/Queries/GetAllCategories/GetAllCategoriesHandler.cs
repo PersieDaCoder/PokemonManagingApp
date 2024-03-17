@@ -1,6 +1,5 @@
 ﻿using Ardalis.Result;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
 using PokemonManagingApp.UseCase.DTOs;
@@ -15,13 +14,8 @@ public class GetAllCategoriesHandler(IUnitOfWork unitOfWork) : IRequestHandler<G
 
     public async Task<Result<IEnumerable<CategoryDTO>>> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
     {
-        IEnumerable<CategoryDTO> categories = await _unitOfWork.CategoryRepository.DBSet()
-            .AsNoTracking()
-            .Include(c => c.PokemonCategories).ThenInclude(pc => pc.Pokemon)
-            .Where(c => c.Status == true)
-            .Select(c => CategoryMapper.MapToDTO(c))
-            .ToListAsync();
+        IEnumerable<Category> categories = await _unitOfWork.CategoryRepository.GetAllCategoriesAsync(false);
         if (!categories.Any()) return Result<IEnumerable<CategoryDTO>>.NotFound();
-        return Result<IEnumerable<CategoryDTO>>.Success(categories);
+        return Result<IEnumerable<CategoryDTO>>.Success(categories.Select(c => CategoryMapper.MapToDTO(c)));
     }
 }

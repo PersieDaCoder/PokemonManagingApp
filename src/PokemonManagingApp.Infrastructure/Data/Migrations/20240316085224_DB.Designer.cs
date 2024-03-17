@@ -12,7 +12,7 @@ using PokemonManagingApp.Infrastructure.Data;
 namespace PokemonManagingApp.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240307112248_DB")]
+    [Migration("20240316085224_DB")]
     partial class DB
     {
         /// <inheritdoc />

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using PokemonManagingApp.Core.Models;
 using PokemonManagingApp.UseCase.DTOs;
 
@@ -16,7 +12,7 @@ public static class CountryMapper
             Id = country.Id,
             Name = country.Name,
             Status = country.Status,
-            Owners = country.Owners is null ? new List<OwnerDTO>() :
+            Owners = country.Owners is null ? [] :
                   country.Owners.Select(owner => owner == null ? null! : new OwnerDTO
                   {
                       Id = owner.Id,
@@ -24,16 +20,16 @@ public static class CountryMapper
                       Status = owner.Status,
                       CountryId = owner.CountryId,
                       Gym = owner.Gym,
-                      Pokemon = owner.PokemonOwners is null ? new List<PokemonDTO>() :
-                          owner.PokemonOwners
-                          .Select(po => po.Pokemon)
-                          .Select(pokemon => pokemon == null ? null! : new PokemonDTO
-                          {
-                              Id = pokemon.Id,
-                              Name = pokemon.Name,
-                              Status = pokemon.Status,
-                              BirthDate = pokemon.BirthDate,
-                              Categories = pokemon.PokemonCategories is null ? new List<CategoryDTO>() :
+                      Pokemons = owner.PokemonOwners is null ? [] :
+                            owner.PokemonOwners
+                            .Select(po => po.Pokemon)
+                            .Select(pokemon => pokemon == null ? null! : new PokemonDTO
+                            {
+                                Id = pokemon.Id,
+                                Name = pokemon.Name,
+                                Status = pokemon.Status,
+                                BirthDate = pokemon.BirthDate,
+                                Categories = pokemon.PokemonCategories is null ? [] :
                                   pokemon.PokemonCategories
                                   .Select(pc => pc.Category)
                                   .Select(category => category == null ? null! : new CategoryDTO
@@ -42,7 +38,7 @@ public static class CountryMapper
                                       Name = category.Name,
                                       Status = category.Status
                                   }).ToList(),
-                              Owners = pokemon.PokemonOwners is null ? new List<OwnerDTO>() :
+                                Owners = pokemon.PokemonOwners is null ? [] :
                                   pokemon.PokemonOwners
                                   .Select(po => po.Owner)
                                   .Select(owner => owner == null ? null! : new OwnerDTO
@@ -53,17 +49,23 @@ public static class CountryMapper
                                       CountryId = owner.CountryId,
                                       Gym = owner.Gym,
                                   }).ToList(),
-                              Reviews = pokemon.Reviews is null ? new List<ReviewDTO>() :
+                                Reviews = pokemon.Reviews is null ? [] :
                                     pokemon.Reviews.Select(review => review == null ? null! : new ReviewDTO
                                     {
                                         Id = review.Id,
-                                        ReviewerId = review.ReviewerId,
-                                        Text = review.Text,
                                         Title = review.Title,
-                                        PokemonId = review.PokemonId,
-                                        Status = review.Status
+                                        Text = review.Text,
+                                        Status = review.Status,
+                                        Reviewer = review.Reviewer is null ? null! : new ReviewerDTO
+                                        {
+                                            Id = review.Reviewer.Id,
+                                            FirstName = review.Reviewer.FirstName,
+                                            LastName = review.Reviewer.LastName,
+                                            Status = review.Reviewer.Status,
+                                        },
                                     }).ToList()
-                          }).ToList()
+
+                            }).ToList()
                   }),
         };
 }

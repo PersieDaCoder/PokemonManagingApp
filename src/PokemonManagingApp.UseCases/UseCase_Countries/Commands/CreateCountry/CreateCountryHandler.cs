@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ardalis.Result;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
 using PokemonManagingApp.UseCase.DTOs;
@@ -18,10 +17,8 @@ public class CreateCountryHandler(IUnitOfWork unitOfWork) : IRequestHandler<Crea
 
     public async Task<Result<CountryDTO>> Handle(CreateCountryCommand request, CancellationToken cancellationToken)
     {
-        Country? checkedCountry = await _unitOfWork.CountryRepository
-            .DBSet()
-            .FirstOrDefaultAsync(c => c.Name.Equals(request.Name));
-        if(checkedCountry is not null) return Result<CountryDTO>.Error("Country already exists");
+        Country? checkedCountry = await _unitOfWork.CountryRepository.GetEntityByConditionAsync(c => c.Name.Equals(request.Name), false);
+        if (checkedCountry is not null) return Result<CountryDTO>.Error("Country already exists");
         Country addingCountry = new Country
         {
             Name = request.Name,

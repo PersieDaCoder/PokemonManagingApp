@@ -20,7 +20,7 @@ public class UpdatePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
     [HttpPut]
     [SwaggerOperation(
         Summary = "Update selected Pokemon",
-        Tags = new[] { "Pokemons" }
+        Tags = ["Pokemons"]
     )]
     [Route("/api/Pokemons/{Id:guid}")]
     public override async Task<ActionResult> HandleAsync(UpdatePokemonRequest request, CancellationToken cancellationToken = default)

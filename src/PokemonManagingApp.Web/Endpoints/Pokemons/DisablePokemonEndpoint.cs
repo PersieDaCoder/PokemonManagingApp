@@ -15,10 +15,10 @@ public class DisablePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.With
     private readonly IMediator _mediator = mediator;
 
     [HttpDelete]
-    [Route("pokemons/{Id:Guid}/disable")]
+    [Route("api/Pokemons/{Id:Guid}/disable")]
     [SwaggerOperation(
         Summary = "Disable selected Pokemon",
-        Tags = new[] { "Pokemons" }
+        Tags = ["Pokemons"]
     )]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
     public override async Task<ActionResult> HandleAsync(DisablePokemonRequest request, CancellationToken cancellationToken = default)

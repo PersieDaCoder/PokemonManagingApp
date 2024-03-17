@@ -25,9 +25,7 @@ public class GetCountryByIdEndpoint(IMediator mediator) : EndpointBaseAsync.With
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
     [SwaggerOperation(
         Summary = "Get a country by Id",
-        Description = "Get a country by Id",
-        OperationId = "Country.GetById",
-        Tags = new[] { "Countries" }
+        Tags = ["Countries"]
     )]
     public override async Task<ActionResult> HandleAsync(GetCountryByIdRequest request, CancellationToken cancellationToken = default)
     {

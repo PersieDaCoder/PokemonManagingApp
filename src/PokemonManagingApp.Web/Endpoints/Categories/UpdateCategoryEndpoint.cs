@@ -35,6 +35,11 @@ public class UpdateCategoryEndpoint(IMediator mediator) : EndpointBaseAsync.With
             Id = request.Id,
             Name = request.Name
         });
-        return result.IsSuccess ? StatusCode(204,result) : BadRequest(result);
+        if (!result.IsSuccess)
+        {
+            if (result.Errors.Any(err => err.ToLower().Contains("not found"))) return NotFound(result);
+            return BadRequest(result);
+        }
+        return NoContent();
     }
 }
