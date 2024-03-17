@@ -20,11 +20,11 @@ public class CreateCategoryEndpoint(IMediator mediator) : EndpointBaseAsync.With
   private readonly IMediator _mediator = mediator;
 
   [HttpPost]
-  [Route("/api/Categories/{Id}")]
-  [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
+  [Route("/api/Categories")]
+  [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
   [SwaggerOperation(
-        Summary = "Update selected Category",
-        Tags = new[] { "Categories" }
+        Summary = "Create a new Category",
+        Tags = ["Categories"]
     )]
   public override async Task<ActionResult> HandleAsync(CreateCategoryRequest request, CancellationToken cancellationToken = default)
   {

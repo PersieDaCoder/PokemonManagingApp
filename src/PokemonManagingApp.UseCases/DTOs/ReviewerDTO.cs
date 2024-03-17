@@ -9,8 +9,7 @@ namespace PokemonManagingApp.UseCase.DTOs;
 public record ReviewerDTO
 {
     public required Guid Id { get; init; } 
-    public required string FirstName { get; init; }
-    public required string LastName { get; init; }
+    public string FullName {get;init;} = null!;
     public bool Status { get; init; }
     public IEnumerable<ReviewDTO> Reviews { get; set; } = new List<ReviewDTO>();
 }

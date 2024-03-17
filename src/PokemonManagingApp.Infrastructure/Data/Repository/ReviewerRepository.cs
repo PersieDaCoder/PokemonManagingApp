@@ -19,7 +19,8 @@ public class ReviewerRepository : BaseRepository<Reviewer>, IReviewerRepository
     IQueryable<Reviewer> query = _dbSet.AsQueryable();
     query = checkTraces ? query : query.AsNoTracking();
     return await query
-      .Include(r => r.Reviews)
+      .Include(r => r.Reviews).ThenInclude(r => r.Pokemon).ThenInclude(p => p == null ? null! : p.PokemonCategories).ThenInclude(pc => pc.Category)
+      .Include(r => r.Reviews).ThenInclude(r => r.Pokemon).ThenInclude(p => p == null ? null! : p.PokemonOwners).ThenInclude(pc => pc.Owner)
       .Where(r => r.Status)
       .ToListAsync();
   }
@@ -29,7 +30,8 @@ public class ReviewerRepository : BaseRepository<Reviewer>, IReviewerRepository
     IQueryable<Reviewer> query = _dbSet.AsQueryable();
     query = checkTraces ? query : query.AsNoTracking();
     return await query
-      .Include(r => r.Reviews)
+      .Include(r => r.Reviews).ThenInclude(r => r.Pokemon).ThenInclude(p => p == null ? null! : p.PokemonCategories).ThenInclude(pc => pc.Category)
+      .Include(r => r.Reviews).ThenInclude(r => r.Pokemon).ThenInclude(p => p == null ? null! : p.PokemonOwners).ThenInclude(pc => pc.Owner)
       .Where(r => r.Id.Equals(id))
       .Where(r => r.Status)
       .SingleOrDefaultAsync();

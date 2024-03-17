@@ -39,7 +39,7 @@ public static class CategoryMapper
                                     Status = owner.Country is not null ? owner.Country.Status : default
                                 }
                             }).ToList(),
-                        Reviews = p.Reviews is not null ?
+                        Reviews = p.Reviews is null ? [] :
                             p.Reviews.Select(review => new ReviewDTO
                             {
                                 Id = review.Id,
@@ -49,11 +49,10 @@ public static class CategoryMapper
                                 Reviewer = review.Reviewer is null ? null! : new ReviewerDTO
                                 {
                                     Id = review.Reviewer.Id,
-                                    FirstName = review.Reviewer.FirstName,
-                                    LastName = review.Reviewer.LastName,
+                                    FullName = $"{review.Reviewer.FirstName} {review.Reviewer.LastName}",
                                     Status = review.Reviewer.Status,
                                 },
-                            }).ToList() : [],
+                            }).ToList(),
                     }).ToList(),
         };
     }

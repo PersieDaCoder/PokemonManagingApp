@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using PokemonManagingApp.Core.Interfaces.Data.Repositories;
 using PokemonManagingApp.Core.Models;
 
@@ -13,13 +14,23 @@ public class CountryRepository : BaseRepository<Country>, ICountryRepository
   {
   }
 
-  public Task<IEnumerable<Country>> GetAllCountries(bool trackChanges)
+  public async Task<IEnumerable<Country>> GetAllCountries(bool trackChanges)
   {
-    throw new NotImplementedException();
+    IQueryable<Country> query = _dbSet.AsQueryable();
+    query = trackChanges ? query : query.AsNoTracking();
+    return await query
+      .Include(c => c.Owners)
+      .Where(c => c.Status)
+      .ToListAsync();
   }
 
-  public Task<Country?> GetCountryById(Guid id, bool trackChanges)
+  public async Task<Country?> GetCountryById(Guid id, bool trackChanges)
   {
-    throw new NotImplementedException();
+    IQueryable<Country> query = _dbSet.AsQueryable();
+    query = trackChanges ? query : query.AsNoTracking();
+    return await query
+      .Include(c => c.Owners)
+      .Where(c => c.Status)
+      .SingleOrDefaultAsync();
   }
 }

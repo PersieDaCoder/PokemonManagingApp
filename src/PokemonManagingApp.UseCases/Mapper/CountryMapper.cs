@@ -59,12 +59,10 @@ public static class CountryMapper
                                         Reviewer = review.Reviewer is null ? null! : new ReviewerDTO
                                         {
                                             Id = review.Reviewer.Id,
-                                            FirstName = review.Reviewer.FirstName,
-                                            LastName = review.Reviewer.LastName,
+                                            FullName = $"{review.Reviewer.FirstName} {review.Reviewer.LastName}",
                                             Status = review.Reviewer.Status,
                                         },
                                     }).ToList()
-
                             }).ToList()
                   }),
         };

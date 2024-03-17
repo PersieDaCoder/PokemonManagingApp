@@ -36,9 +36,9 @@ public static class PokemonMapper
                         Status = owner.Status,
                         Country = owner.Country is null ? null! : new CountryDTO
                         {
-                            Id = owner.Country is not null ? owner.Country.Id : default,
-                            Name = owner.Country is not null ? owner.Country.Name : string.Empty,
-                            Status = owner.Country is not null ? owner.Country.Status : default
+                            Id = owner.Country.Id,
+                            Name = owner.Country.Name,
+                            Status = owner.Country.Status,
                         }
                     }).ToList(),
             Reviews = pokemon.Reviews is null ? [] :
@@ -51,8 +51,7 @@ public static class PokemonMapper
                     Reviewer = review.Reviewer is null ? null! : new ReviewerDTO
                     {
                         Id = review.Reviewer.Id,
-                        FirstName = review.Reviewer.FirstName,
-                        LastName = review.Reviewer.LastName,
+                        FullName = $"{review.Reviewer.FirstName} {review.Reviewer.LastName}",
                         Status = review.Reviewer.Status,
                     },
                 }).ToList(),
