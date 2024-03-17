@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Ardalis.Result;
 using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data;
@@ -19,6 +15,6 @@ public class GetAllOwnersHandler(IUnitOfWork unitOfWork) : IRequestHandler<GetAl
   {
     IEnumerable<Owner> owners = await _unitOfWork.OwnerRepository.GetAllOwners(false);
     if (!owners.Any()) return Result<IEnumerable<OwnerDTO>>.NotFound();
-    return Result<IEnumerable<OwnerDTO>>.Success(owners.Select(o => OwnerMapper.MapToDTO(o)));
+    return Result<IEnumerable<OwnerDTO>>.Success(owners.Select(o => o.MapToDTO()));
   }
 }

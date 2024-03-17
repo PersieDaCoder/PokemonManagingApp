@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "lyjNwp6RUqjERnTPvfmUdjPOt4IapDez5uFAktjkgsE=",
+  "Source": "PokemonManagingApp.Web",
+  "BasePath": "_content/PokemonManagingApp.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

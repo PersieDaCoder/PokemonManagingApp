@@ -1,0 +1,16 @@
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\bin\Debug\net8.0\PokemonManagingApp.UseCases.deps.json
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\bin\Debug\net8.0\PokemonManagingApp.UseCases.dll
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\bin\Debug\net8.0\PokemonManagingApp.UseCases.pdb
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\bin\Debug\net8.0\PokemonManagingApp.Core.dll
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\bin\Debug\net8.0\PokemonManagingApp.Core.pdb
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.csproj.AssemblyReference.cache
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.GeneratedMSBuildEditorConfig.editorconfig
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.AssemblyInfoInputs.cache
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.AssemblyInfo.cs
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.csproj.CoreCompileInputs.cache
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.sourcelink.json
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.csproj.CopyComplete
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.dll
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\refint\PokemonManagingApp.UseCases.dll
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\PokemonManagingApp.UseCases.pdb
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.UseCases\obj\Debug\net8.0\ref\PokemonManagingApp.UseCases.dll

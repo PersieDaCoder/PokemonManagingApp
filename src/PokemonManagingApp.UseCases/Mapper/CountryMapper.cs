@@ -62,8 +62,8 @@ public static class CountryMapper
                                             FullName = $"{review.Reviewer.FirstName} {review.Reviewer.LastName}",
                                             Status = review.Reviewer.Status,
                                         },
-                                    }).ToList()
-                            }).ToList()
+                                    }).ToList(),
+                            }).ToList(),
                   }),
         };
 }

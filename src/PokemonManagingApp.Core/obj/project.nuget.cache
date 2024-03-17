@@ -1,22 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "AtOfJSQcCG+Hkg1LHZc+azpZbdYM1mqUgGmX2qhP7CVEd6BcQMscXuYxitkJQ/MXmZBfbRMShZtyRZWIv3xAJA==",
+  "dgSpecHash": "F1jzN9xWTRmb02OG5EauDENvtzJJUECFxxMBoaPqGhrDtLhQLtyrnY0URcoTJTJEaDXXAVJoTLgZbkwqWgcjyA==",
   "success": true,
-  "projectFilePath": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Core\\PokemonManagingApp.Core.csproj",
+  "projectFilePath": "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.Core\\PokemonManagingApp.Core.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\thinh\\.nuget\\packages\\ardalis.guardclauses\\4.2.0\\ardalis.guardclauses.4.2.0.nupkg.sha512",
-    "C:\\Users\\thinh\\.nuget\\packages\\ardalis.result\\7.2.0\\ardalis.result.7.2.0.nupkg.sha512",
-    "C:\\Users\\thinh\\.nuget\\packages\\ardalis.sharedkernel\\1.4.0\\ardalis.sharedkernel.1.4.0.nupkg.sha512",
-    "C:\\Users\\thinh\\.nuget\\packages\\ardalis.smartenum\\7.0.0\\ardalis.smartenum.7.0.0.nupkg.sha512",
-    "C:\\Users\\thinh\\.nuget\\packages\\ardalis.specification\\8.0.0\\ardalis.specification.8.0.0.nupkg.sha512",
-    "C:\\Users\\thinh\\.nuget\\packages\\autofac\\7.1.0\\autofac.7.1.0.nupkg.sha512",
-    "C:\\Users\\thinh\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
-    "C:\\Users\\thinh\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
-    "C:\\Users\\thinh\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
-    "C:\\Users\\thinh\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
-    "C:\\Users\\thinh\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
-    "C:\\Users\\thinh\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
-    "C:\\Users\\thinh\\.nuget\\packages\\system.text.json\\7.0.3\\system.text.json.7.0.3.nupkg.sha512"
+    "C:\\Users\\ADMIN\\.nuget\\packages\\ardalis.guardclauses\\4.2.0\\ardalis.guardclauses.4.2.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\ardalis.result\\7.2.0\\ardalis.result.7.2.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\ardalis.sharedkernel\\1.4.0\\ardalis.sharedkernel.1.4.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\ardalis.smartenum\\7.0.0\\ardalis.smartenum.7.0.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\ardalis.specification\\8.0.0\\ardalis.specification.8.0.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\autofac\\7.1.0\\autofac.7.1.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\system.text.json\\7.0.3\\system.text.json.7.0.3.nupkg.sha512"
   ],
   "logs": []
 }

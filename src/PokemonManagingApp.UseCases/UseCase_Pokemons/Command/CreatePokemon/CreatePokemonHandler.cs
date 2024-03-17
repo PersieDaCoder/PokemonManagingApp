@@ -20,12 +20,6 @@ public class CreatePokemonHandler(IUnitOfWork context) : IRequestHandler<CreateP
         };
         _context.PokemonRepository.Add(pokemon);
         await _context.SaveChangesAsync();
-        return Result<PokemonDTO>.Success(new PokemonDTO
-        {
-            Id = pokemon.Id,
-            Name = pokemon.Name,
-            BirthDate = pokemon.BirthDate,
-            Status = pokemon.Status
-        });
+        return Result<PokemonDTO>.Success(pokemon.MapToDTO());
     }
 }

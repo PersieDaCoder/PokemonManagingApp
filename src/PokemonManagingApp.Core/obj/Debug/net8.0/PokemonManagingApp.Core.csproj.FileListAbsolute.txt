@@ -1,0 +1,13 @@
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.Core\bin\Debug\net8.0\PokemonManagingApp.Core.deps.json
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.Core\bin\Debug\net8.0\PokemonManagingApp.Core.dll
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.Core\bin\Debug\net8.0\PokemonManagingApp.Core.pdb
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.Core\obj\Debug\net8.0\PokemonManagingApp.Core.csproj.AssemblyReference.cache
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.Core\obj\Debug\net8.0\PokemonManagingApp.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.Core\obj\Debug\net8.0\PokemonManagingApp.Core.AssemblyInfoInputs.cache
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.Core\obj\Debug\net8.0\PokemonManagingApp.Core.AssemblyInfo.cs
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.Core\obj\Debug\net8.0\PokemonManagingApp.Core.csproj.CoreCompileInputs.cache
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.Core\obj\Debug\net8.0\PokemonManagingApp.Core.sourcelink.json
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.Core\obj\Debug\net8.0\PokemonManagingApp.Core.dll
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.Core\obj\Debug\net8.0\refint\PokemonManagingApp.Core.dll
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.Core\obj\Debug\net8.0\PokemonManagingApp.Core.pdb
+C:\FPT\OJT\Coding\BackEnd\PokemonManagingApp\src\PokemonManagingApp.Core\obj\Debug\net8.0\ref\PokemonManagingApp.Core.dll
