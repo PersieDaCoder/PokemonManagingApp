@@ -3625,44 +3625,37 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ADMIN\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\thinh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.Web\\PokemonManagingApp.Web.csproj",
+      "projectUniqueName": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Web\\PokemonManagingApp.Web.csproj",
       "projectName": "PokemonManagingApp.Web",
-      "projectPath": "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.Web\\PokemonManagingApp.Web.csproj",
-      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.Web\\obj\\",
+      "projectPath": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Web\\PokemonManagingApp.Web.csproj",
+      "packagesPath": "C:\\Users\\thinh\\.nuget\\packages\\",
+      "outputPath": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Web\\obj\\",
       "projectStyle": "PackageReference",
       "centralPackageVersionsManagementEnabled": true,
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\NuGet.Config",
-        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Coding\\PokemonManagingApp\\NuGet.Config",
+        "C:\\Users\\thinh\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj": {
-              "projectPath": "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj"
+            "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj": {
+              "projectPath": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure\\PokemonManagingApp.Infrastructure.csproj"
             },
-            "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.UseCases\\PokemonManagingApp.UseCases.csproj": {
-              "projectPath": "C:\\FPT\\OJT\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.UseCases\\PokemonManagingApp.UseCases.csproj"
+            "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.UseCases\\PokemonManagingApp.UseCases.csproj": {
+              "projectPath": "C:\\Coding\\PokemonManagingApp\\src\\PokemonManagingApp.UseCases\\PokemonManagingApp.UseCases.csproj"
             }
           }
         }
@@ -3672,6 +3665,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -3761,7 +3759,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

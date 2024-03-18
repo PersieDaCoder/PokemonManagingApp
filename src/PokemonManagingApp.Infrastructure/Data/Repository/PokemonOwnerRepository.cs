@@ -7,9 +7,6 @@ using PokemonManagingApp.Core.Models;
 
 namespace PokemonManagingApp.Infrastructure.Data.Repository;
 
-public class PokemonOwnerRepository : BaseRepository<PokemonOwner>, IPokemonOwnerRepository
+public class PokemonOwnerRepository(ApplicationDBContext context) : BaseRepository<PokemonOwner>(context), IPokemonOwnerRepository
 {
-  public PokemonOwnerRepository(ApplicationDBContext context) : base(context)
-  {
-  }
 }

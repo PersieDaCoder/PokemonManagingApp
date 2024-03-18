@@ -2,14 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Interfaces.Data.Repositories;
 
 namespace PokemonManagingApp.Infrastructure.Data.Repository;
 
-public class UnitOfWork(ApplicationDBContext context) : IUnitOfWork
+public class UnitOfWork(ApplicationDBContext context, IMemoryCache memoryCache) : IUnitOfWork
 {
     private readonly ApplicationDBContext _context = context;
+    private readonly IMemoryCache _memoryCache = memoryCache;
     private ICategoryRepository? _categoryRepository;
     private ICountryRepository? _countryRepository;
 
@@ -27,7 +29,7 @@ public class UnitOfWork(ApplicationDBContext context) : IUnitOfWork
         {
             if (_categoryRepository == null)
             {
-                _categoryRepository = new CategoryRepository(_context);
+                _categoryRepository = new CategoryRepository(_context, _memoryCache);
             }
             return _categoryRepository;
         }
@@ -39,7 +41,7 @@ public class UnitOfWork(ApplicationDBContext context) : IUnitOfWork
         {
             if (_countryRepository == null)
             {
-                _countryRepository = new CountryRepository(_context);
+                _countryRepository = new CountryRepository(_context, _memoryCache);
             }
             return _countryRepository;
         }
@@ -51,7 +53,7 @@ public class UnitOfWork(ApplicationDBContext context) : IUnitOfWork
         {
             if (_ownerRepository == null)
             {
-                _ownerRepository = new OwnerRepository(_context);
+                _ownerRepository = new OwnerRepository(_context, _memoryCache);
             }
             return _ownerRepository;
         }
@@ -87,7 +89,7 @@ public class UnitOfWork(ApplicationDBContext context) : IUnitOfWork
         {
             if (_pokemonRepository == null)
             {
-                _pokemonRepository = new PokemonRepository(_context);
+                _pokemonRepository = new PokemonRepository(_context, _memoryCache);
             }
             return _pokemonRepository;
         }
@@ -111,7 +113,7 @@ public class UnitOfWork(ApplicationDBContext context) : IUnitOfWork
         {
             if (_reviewerRepository == null)
             {
-                _reviewerRepository = new ReviewerRepository(_context);
+                _reviewerRepository = new ReviewerRepository(_context, _memoryCache);
             }
             return _reviewerRepository;
         }

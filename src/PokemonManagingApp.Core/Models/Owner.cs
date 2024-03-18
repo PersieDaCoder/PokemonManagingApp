@@ -14,7 +14,7 @@ public class Owner
     [ForeignKey(nameof(Country))]
     public required Guid CountryId { get; set; }
     public bool Status { get; set; } = true;
-    
+
     public Country Country { get; set; } = null!;
     public ICollection<PokemonOwner> PokemonOwners { get; set; } = new List<PokemonOwner>();
 }
