@@ -3,20 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PokemonManagingApp.Infrastructure.Data;
 
 #nullable disable
 
-namespace PokemonManagingApp.Infrastructure.Migrations
+namespace PokemonManagingApp.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240317121010_DB")]
-    partial class DB
+    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

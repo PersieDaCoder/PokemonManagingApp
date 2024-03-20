@@ -13,7 +13,7 @@ public class GetReviewerByIdHandler(IUnitOfWork unitOfWork) : IRequestHandler<Ge
 
     public async Task<Result<ReviewerDTO>> Handle(GetReviewerByIdQuery request, CancellationToken cancellationToken)
     {
-        Reviewer? reviewer = await _unitOfWork.ReviewerRepository.GetReviewerByIdAsync(request.Id, false);
+        Reviewer? reviewer = await _unitOfWork.ReviewerRepository.GetReviewerByIdAsync(request.Id,cancellationToken);
         if (reviewer == null) return Result<ReviewerDTO>.NotFound();
         return Result<ReviewerDTO>.Success(ReviewerMapper.MapToDTO(reviewer));
     }

@@ -8,6 +8,6 @@ namespace PokemonManagingApp.Core.Interfaces.Data.Repositories;
 
 public interface IReviewerRepository : IBaseRepository<Reviewer>
 {
-    Task<Reviewer?> GetReviewerByIdAsync(Guid id, bool checkTraces);
-    Task<IEnumerable<Reviewer>> GetAllReviewersAsync(bool checkTraces);
+    Task<Reviewer?> GetReviewerByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<IEnumerable<Reviewer>> GetAllReviewersAsync(CancellationToken cancellationToken = default);
 }

@@ -1,38 +1,48 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
+using PokemonManagingApp.Core.Interfaces.Caching;
 using PokemonManagingApp.Core.Interfaces.Data.Repositories;
 using PokemonManagingApp.Core.Models;
 
 namespace PokemonManagingApp.Infrastructure.Data.Repository;
 
-public class CategoryRepository(ApplicationDBContext context, IMemoryCache memoryCache) : BaseRepository<Category>(context), ICategoryRepository
+public class CategoryRepository(ApplicationDBContext context, ICacheService cacheService) : BaseRepository<Category>(context, cacheService), ICategoryRepository
 {
-  private readonly IMemoryCache _memoryCache = memoryCache;
-
-  public async Task<IEnumerable<Category>> GetAllCategoriesAsync(bool checkTraces)
+  public async Task<IEnumerable<Category>> GetAllCategoriesAsync(CancellationToken cancellationToken = default)
   {
+    //get categories from cache
     string key = "categories-all";
-    return await _memoryCache.GetOrCreateAsync(key, async entry =>
-    {
-      entry.SetAbsoluteExpiration(TimeSpan.FromMinutes(2));
-      IQueryable<Category> query = _dbSet.AsQueryable();
-      query = checkTraces ? query : query.AsNoTracking();
-      return await query
+    IEnumerable<Category>? cacheCategories = _cacheService.GetData<IEnumerable<Category>>(key);
+    if (cacheCategories is not null) return cacheCategories;
+    // get categories from db
+    IEnumerable<Category> categories = await _context
+        .Categories.AsNoTracking()
         .Include(c => c.PokemonCategories).ThenInclude(pc => pc.Pokemon)
         .Where(c => c.Status)
-        .ToListAsync();
-    }) ?? [];
+        .ToListAsync(cancellationToken);
+    // set categories to cache
+    var expirationTime = TimeSpan.FromMinutes(2);
+    _cacheService.SetData(key, categories, expirationTime);
+    return categories;
   }
 
-  public async Task<Category?> GetCategoryByIdAsync(Guid id, bool checkTraces)
+  public async Task<Category> GetCategoryByIdAsync(Guid id, CancellationToken cancellationToken = default)
   {
-    string key = $"categories-{id}";
-    IQueryable<Category> query = _dbSet.AsQueryable();
-    query = checkTraces ? query : query.AsNoTracking();
-    return await query
+    //get category from cache
+    string key = $"category-{id}";
+    Category? cacheCategory = _cacheService.GetData<Category>(key);
+    if (cacheCategory is not null) return cacheCategory;
+    // get category from db
+    Category? category = await _context
+      .Categories.AsNoTracking()
       .Include(c => c.PokemonCategories).ThenInclude(pc => pc.Pokemon)
       .Where(c => c.Status)
       .Where(c => c.Id.Equals(id))
-      .SingleOrDefaultAsync();
+      .SingleOrDefaultAsync(cancellationToken);
+    if (category is null) return null!;
+    // set category to cache
+    var expirationTime = TimeSpan.FromMinutes(2);
+    _cacheService.SetData(key, category, expirationTime);
+    return category;
   }
 }

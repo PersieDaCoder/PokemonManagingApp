@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace PokemonManagingApp.Infrastructure.Migrations
+namespace PokemonManagingApp.Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
     public partial class DB : Migration

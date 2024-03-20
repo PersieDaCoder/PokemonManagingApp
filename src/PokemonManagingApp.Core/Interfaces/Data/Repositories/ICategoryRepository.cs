@@ -8,6 +8,6 @@ namespace PokemonManagingApp.Core.Interfaces.Data.Repositories;
 
 public interface ICategoryRepository : IBaseRepository<Category>
 {
-    Task<IEnumerable<Category>> GetAllCategoriesAsync(bool checkTraces);
-    Task<Category?> GetCategoryByIdAsync(Guid id, bool checkTraces);
+    Task<Category> GetCategoryByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<IEnumerable<Category>> GetAllCategoriesAsync(CancellationToken cancellationToken = default);
 }

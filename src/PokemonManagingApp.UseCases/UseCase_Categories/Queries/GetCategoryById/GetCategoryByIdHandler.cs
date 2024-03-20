@@ -12,7 +12,7 @@ public class GetAllCategoryByIdHandler(IUnitOfWork unitOfWork) : IRequestHandler
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     public async Task<Result<CategoryDTO>> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
     {
-        Category? category = await _unitOfWork.CategoryRepository.GetCategoryByIdAsync(request.Id, false);
+        Category? category = await _unitOfWork.CategoryRepository.GetCategoryByIdAsync(request.Id, cancellationToken);
         if (category is null) return Result<CategoryDTO>.NotFound();
         return Result<CategoryDTO>.Success(CategoryMapper.MapToDTO(category));
     }

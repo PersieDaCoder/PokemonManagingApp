@@ -17,7 +17,7 @@ public class GetOwnerByIdHandler(IUnitOfWork unitOfWork) : IRequestHandler<GetOw
 
     public async Task<Result<OwnerDTO>> Handle(GetOwnerByIdQuery request, CancellationToken cancellationToken)
     {
-        Owner? owner = await _unitOfWork.OwnerRepository.GetOwnerById(request.Id, false);
+        Owner? owner = await _unitOfWork.OwnerRepository.GetOwnerById(request.Id, cancellationToken);
         if (owner is null) return Result<OwnerDTO>.NotFound();
         return Result<OwnerDTO>.Success(OwnerMapper.MapToDTO(owner));
     }

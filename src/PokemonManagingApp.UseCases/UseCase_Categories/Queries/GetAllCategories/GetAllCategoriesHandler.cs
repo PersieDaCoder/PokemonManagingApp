@@ -14,7 +14,7 @@ public class GetAllCategoriesHandler(IUnitOfWork unitOfWork) : IRequestHandler<G
 
     public async Task<Result<IEnumerable<CategoryDTO>>> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
     {
-        IEnumerable<Category> categories = await _unitOfWork.CategoryRepository.GetAllCategoriesAsync(false);
+        IEnumerable<Category> categories = await _unitOfWork.CategoryRepository.GetAllCategoriesAsync(cancellationToken);
         if (!categories.Any()) return Result<IEnumerable<CategoryDTO>>.NotFound();
         return Result<IEnumerable<CategoryDTO>>.Success(categories.Select(c => CategoryMapper.MapToDTO(c)));
     }

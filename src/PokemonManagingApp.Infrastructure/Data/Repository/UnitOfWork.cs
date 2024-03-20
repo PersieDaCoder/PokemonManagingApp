@@ -1,18 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
+using PokemonManagingApp.Core.Interfaces.Caching;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Interfaces.Data.Repositories;
 
 namespace PokemonManagingApp.Infrastructure.Data.Repository;
 
-public class UnitOfWork(ApplicationDBContext context, IMemoryCache memoryCache) : IUnitOfWork
+public class UnitOfWork(ApplicationDBContext context, ICacheService cacheService) : IUnitOfWork
 {
     private readonly ApplicationDBContext _context = context;
-    private readonly IMemoryCache _memoryCache = memoryCache;
-    private ICategoryRepository? _categoryRepository;
+  private readonly ICacheService _cacheService = cacheService;
+  private ICategoryRepository? _categoryRepository;
     private ICountryRepository? _countryRepository;
 
     private IOwnerRepository? _ownerRepository;
@@ -29,7 +26,7 @@ public class UnitOfWork(ApplicationDBContext context, IMemoryCache memoryCache) 
         {
             if (_categoryRepository == null)
             {
-                _categoryRepository = new CategoryRepository(_context, _memoryCache);
+                _categoryRepository = new CategoryRepository(_context, _cacheService);
             }
             return _categoryRepository;
         }
@@ -41,7 +38,7 @@ public class UnitOfWork(ApplicationDBContext context, IMemoryCache memoryCache) 
         {
             if (_countryRepository == null)
             {
-                _countryRepository = new CountryRepository(_context, _memoryCache);
+                _countryRepository = new CountryRepository(_context, _cacheService);
             }
             return _countryRepository;
         }
@@ -53,7 +50,7 @@ public class UnitOfWork(ApplicationDBContext context, IMemoryCache memoryCache) 
         {
             if (_ownerRepository == null)
             {
-                _ownerRepository = new OwnerRepository(_context, _memoryCache);
+                _ownerRepository = new OwnerRepository(_context, _cacheService);
             }
             return _ownerRepository;
         }
@@ -65,7 +62,7 @@ public class UnitOfWork(ApplicationDBContext context, IMemoryCache memoryCache) 
         {
             if (_pokemonCategoryRepository == null)
             {
-                _pokemonCategoryRepository = new PokemonCategoryRepository(_context);
+                _pokemonCategoryRepository = new PokemonCategoryRepository(_context, _cacheService);
             }
             return _pokemonCategoryRepository;
         }
@@ -77,7 +74,7 @@ public class UnitOfWork(ApplicationDBContext context, IMemoryCache memoryCache) 
         {
             if (_pokemonOwnerRepository == null)
             {
-                _pokemonOwnerRepository = new PokemonOwnerRepository(_context);
+                _pokemonOwnerRepository = new PokemonOwnerRepository(_context, _cacheService);
             }
             return _pokemonOwnerRepository;
         }
@@ -89,7 +86,7 @@ public class UnitOfWork(ApplicationDBContext context, IMemoryCache memoryCache) 
         {
             if (_pokemonRepository == null)
             {
-                _pokemonRepository = new PokemonRepository(_context, _memoryCache);
+                _pokemonRepository = new PokemonRepository(_context, _cacheService);
             }
             return _pokemonRepository;
         }
@@ -101,7 +98,7 @@ public class UnitOfWork(ApplicationDBContext context, IMemoryCache memoryCache) 
         {
             if (_reviewRepository == null)
             {
-                _reviewRepository = new ReviewRepository(_context);
+                _reviewRepository = new ReviewRepository(_context, _cacheService);
             }
             return _reviewRepository;
         }
@@ -113,7 +110,7 @@ public class UnitOfWork(ApplicationDBContext context, IMemoryCache memoryCache) 
         {
             if (_reviewerRepository == null)
             {
-                _reviewerRepository = new ReviewerRepository(_context, _memoryCache);
+                _reviewerRepository = new ReviewerRepository(_context, _cacheService);
             }
             return _reviewerRepository;
         }

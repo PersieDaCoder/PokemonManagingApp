@@ -4,41 +4,48 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
+using PokemonManagingApp.Core.Interfaces.Caching;
 using PokemonManagingApp.Core.Interfaces.Data.Repositories;
 using PokemonManagingApp.Core.Models;
 
 namespace PokemonManagingApp.Infrastructure.Data.Repository;
 
-public class CountryRepository(ApplicationDBContext context, IMemoryCache memoryCache) : BaseRepository<Country>(context), ICountryRepository
+public class CountryRepository(ApplicationDBContext context, ICacheService cacheService) : BaseRepository<Country>(context, cacheService), ICountryRepository
 {
-  private readonly IMemoryCache _memoryCache = memoryCache;
-
-  public async Task<IEnumerable<Country>> GetAllCountries(bool trackChanges)
+  public async Task<IEnumerable<Country>> GetAllCountries(CancellationToken cancellationToken = default)
   {
+    //get countries from cache
     string key = $"countries-all";
-    return await _memoryCache.GetOrCreateAsync(key, async entry =>
-    {
-      entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(2);
-      IQueryable<Country> query = _dbSet.AsQueryable();
-      query = trackChanges ? query : query.AsNoTracking();
-      return await query
-        .Include(c => c.Owners)
+    IEnumerable<Country>? cacheCountries = _cacheService.GetData<IEnumerable<Country>>(key);
+    if (cacheCountries is not null) return cacheCountries;
+    // get countries from db
+    IEnumerable<Country> countries = await _context
+        .Countries.AsNoTracking()
+        .Include(c => c.Owners).ThenInclude(o => o.PokemonOwners).ThenInclude(po => po.Pokemon)
         .Where(c => c.Status)
-        .ToListAsync();
-    }) ?? [];
+        .ToListAsync(cancellationToken);
+    // set countries to cache
+    var expirationTime = TimeSpan.FromMinutes(2);
+    _cacheService.SetData(key, countries, expirationTime);
+    return countries;
   }
 
-  public async Task<Country?> GetCountryById(Guid id, bool trackChanges)
+  public async Task<Country> GetCountryById(Guid id, CancellationToken cancellationToken = default)
   {
+    // get country from cache
     string key = $"countries-{id}";
-    return await _memoryCache.GetOrCreateAsync(key, async entry =>
-    {
-      IQueryable<Country> query = _dbSet.AsQueryable();
-      query = trackChanges ? query : query.AsNoTracking();
-      return await query
-        .Include(c => c.Owners)
-        .Where(c => c.Status)
-        .SingleOrDefaultAsync();
-    });
+    Country? cachedCountry = _cacheService.GetData<Country>(key);
+    if (cachedCountry is not null) return cachedCountry;
+    // get country from db
+    Country? country = await _context
+      .Countries.AsNoTracking()
+      .Include(c => c.Owners).ThenInclude(o => o.PokemonOwners).ThenInclude(po => po.Pokemon)
+      .Where(c => c.Status)
+      .SingleOrDefaultAsync(cancellationToken);
+    if (country is null) return null!;
+    // set country to cache
+    var expirationTime = TimeSpan.FromMinutes(2);
+    _cacheService.SetData(key, country, expirationTime);
+    return country;
   }
 }

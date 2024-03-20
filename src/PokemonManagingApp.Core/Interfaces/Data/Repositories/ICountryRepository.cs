@@ -8,6 +8,6 @@ namespace PokemonManagingApp.Core.Interfaces.Data.Repositories;
 
 public interface ICountryRepository : IBaseRepository<Country>
 {
-    Task<IEnumerable<Country>> GetAllCountries(bool trackChanges);  
-    Task<Country?> GetCountryById(Guid id, bool trackChanges);
+    Task<IEnumerable<Country>> GetAllCountries(CancellationToken cancellationToken = default);
+    Task<Country> GetCountryById(Guid id, CancellationToken cancellationToken = default);
 }

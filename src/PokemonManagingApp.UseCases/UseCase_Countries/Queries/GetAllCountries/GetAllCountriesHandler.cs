@@ -13,7 +13,7 @@ public class GetAllCountriesHandler(IUnitOfWork unitOfWork) : IRequestHandler<Ge
 
     public async Task<Result<IEnumerable<CountryDTO>>> Handle(GetAllCountriesQuery request, CancellationToken cancellationToken)
     {
-        IEnumerable<Country> countries = await _unitOfWork.CountryRepository.GetAllCountries(false);
+        IEnumerable<Country> countries = await _unitOfWork.CountryRepository.GetAllCountries(cancellationToken);
         if (!countries.Any()) return Result<IEnumerable<CountryDTO>>.NotFound();
         return Result<IEnumerable<CountryDTO>>.Success(countries.Select(c => CountryMapper.MapToDTO(c)));
     }

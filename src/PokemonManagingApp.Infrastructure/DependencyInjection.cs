@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Interfaces.Data.Repositories;
 using PokemonManagingApp.Infrastructure.Data;
 using PokemonManagingApp.Infrastructure.Data.Repository;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Caching.Memory;
+using PokemonManagingApp.Core.Interfaces.Caching;
+using PokemonManagingApp.Infrastructure.Data.Caching;
 
 namespace PokemonManagingApp.Infrastructure;
 
@@ -23,6 +20,7 @@ public static class DependencyInjection
 
         // Add other dependencies
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<ICacheService,CacheService>();
         services.AddScoped<IPokemonRepository, PokemonRepository>();
         services.AddScoped<IOwnerRepository, OwnerRepository>();
         services.AddScoped<IPokemonOwnerRepository, PokemonOwnerRepository>();

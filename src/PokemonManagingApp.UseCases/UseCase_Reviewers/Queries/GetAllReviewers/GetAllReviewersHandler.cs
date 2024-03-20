@@ -13,7 +13,7 @@ public class GetAllReviewersHandler(IUnitOfWork unitOfWork) : IRequestHandler<Ge
 
     public async Task<Result<IEnumerable<ReviewerDTO>>> Handle(GetAllReviewersQuery request, CancellationToken cancellationToken)
     {
-        IEnumerable<Reviewer> reviewers = await _unitOfWork.ReviewerRepository.GetAllReviewersAsync(false);
+        IEnumerable<Reviewer> reviewers = await _unitOfWork.ReviewerRepository.GetAllReviewersAsync(cancellationToken);
         if (!reviewers.Any()) return Result<IEnumerable<ReviewerDTO>>.NotFound();
         return Result<IEnumerable<ReviewerDTO>>.Success(reviewers.Select(r => ReviewerMapper.MapToDTO(r)));
     }

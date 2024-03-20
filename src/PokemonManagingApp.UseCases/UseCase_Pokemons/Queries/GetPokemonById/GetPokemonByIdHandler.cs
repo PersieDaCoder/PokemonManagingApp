@@ -16,7 +16,7 @@ public class GetPokemonByIdHandler(IUnitOfWork unitOfWork) : IRequestHandler<Get
 
     public async Task<Result<PokemonDTO>> Handle(GetPokemonByIdQuery request, CancellationToken cancellationToken)
     {
-        Pokemon? pokemon = await _unitOfWork.PokemonRepository.GetPokemonByIdAsync(request.Id, false);
+        Pokemon? pokemon = await _unitOfWork.PokemonRepository.GetPokemonByIdAsync(request.Id,cancellationToken);
         if (pokemon is null) return Result<PokemonDTO>.NotFound();
         return Result<PokemonDTO>.Success(PokemonMapper.MapToDTO(pokemon));
     }

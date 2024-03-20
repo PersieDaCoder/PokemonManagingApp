@@ -8,8 +8,8 @@ using PokemonManagingApp.UseCase.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Owners.Commands.AddPokemonToCollection;
 
-public class AddPokemonCommand : IRequest<Result<PokemonDTO>>
+public record AddPokemonCommand : IRequest<Result<PokemonDTO>>
 {
-    public Guid OwnerId { get; set; }
-    public Guid PokemonId { get; set; }
+    public Guid OwnerId { get; init; }
+    public Guid PokemonId { get; init; }
 }
