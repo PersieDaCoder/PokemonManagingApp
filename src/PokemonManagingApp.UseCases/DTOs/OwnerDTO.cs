@@ -8,7 +8,7 @@ namespace PokemonManagingApp.UseCase.DTOs;
 
 public record OwnerDTO
 {
-    public required Guid Id { get; init; }
+    public required string Id { get; init; }
     public required Guid CountryId { get; init; }
     public required string Name { get; init; }
     public required string Gym { get; init; }

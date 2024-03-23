@@ -10,7 +10,7 @@ public class PokemonOwner
     public required Guid PokemonId { get; set; }
     [Key]
     [ForeignKey(nameof(Owner))]
-    public required Guid OwnerId { get; set; }
+    public required string OwnerId { get; set; }
     public bool Status { get; set; } = true;
 
     public Pokemon? Pokemon { get; set; }

@@ -12,7 +12,7 @@ namespace PokemonManagingApp.Web.Endpoints.Owners;
 public record AddPokemonToCollectionRequest
 {
     [Required(ErrorMessage = "Owner Id is required")]
-    [FromRoute] public Guid OwnerId { get; set; }
+    [FromRoute] public string OwnerId { get; set; } = null!;
     [Required(ErrorMessage = "Pokemon Id is required")]
     [FromRoute] public Guid PokemonId { get; set; }
 };

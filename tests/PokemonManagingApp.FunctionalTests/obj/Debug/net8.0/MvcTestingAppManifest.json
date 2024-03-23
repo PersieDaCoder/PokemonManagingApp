@@ -1,0 +1,6 @@
+{
+  "PokemonManagingApp.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.Core",
+  "PokemonManagingApp.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.Infrastructure",
+  "PokemonManagingApp.UseCases, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.UseCases",
+  "PokemonManagingApp.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Coding\\BackEnd\\PokemonManagingApp\\src\\PokemonManagingApp.Web"
+}

@@ -17,11 +17,122 @@ namespace PokemonManagingApp.Infrastructure.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("PokemonDB")
-                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("ProductVersion", "8.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProviderKey")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("UserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("UserTokens");
+                });
 
             modelBuilder.Entity("PokemonManagingApp.Core.Models.Category", b =>
                 {
@@ -39,27 +150,7 @@ namespace PokemonManagingApp.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", "PokemonDB");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("8c684719-e0cb-4b00-9d42-f6fe961900f8"),
-                            Name = "Electric",
-                            Status = true
-                        },
-                        new
-                        {
-                            Id = new Guid("a8ab46d3-27cd-4c68-bec2-f73471d653f8"),
-                            Name = "Dragon",
-                            Status = true
-                        },
-                        new
-                        {
-                            Id = new Guid("361a29e0-ec56-411a-8753-4521f9088da3"),
-                            Name = "Fire",
-                            Status = true
-                        });
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("PokemonManagingApp.Core.Models.Country", b =>
@@ -78,82 +169,77 @@ namespace PokemonManagingApp.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Countries", "PokemonDB");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("4c29abc4-6a42-41b1-ac20-7c97f9d28868"),
-                            Name = "Japan",
-                            Status = true
-                        },
-                        new
-                        {
-                            Id = new Guid("9a372b12-9da7-43a1-a880-c7e35556b8c4"),
-                            Name = "America",
-                            Status = true
-                        },
-                        new
-                        {
-                            Id = new Guid("d181555a-73ec-4dd5-9c77-3db18671efbb"),
-                            Name = "Korea",
-                            Status = true
-                        });
+                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("PokemonManagingApp.Core.Models.Owner", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("CountryId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Gym")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Owners", "PokemonDB");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("225b113e-b7e2-4407-8e24-c995b46ac9f5"),
-                            CountryId = new Guid("4c29abc4-6a42-41b1-ac20-7c97f9d28868"),
-                            Gym = "Pallet Town",
-                            Name = "Ash",
-                            Status = true
-                        },
-                        new
-                        {
-                            Id = new Guid("4d26f80f-4732-441f-848e-801d8db25cfc"),
-                            CountryId = new Guid("9a372b12-9da7-43a1-a880-c7e35556b8c4"),
-                            Gym = "Beginner Town",
-                            Name = "Ketchup",
-                            Status = true
-                        },
-                        new
-                        {
-                            Id = new Guid("b690f3c2-5502-4035-967f-a808a30e4727"),
-                            CountryId = new Guid("d181555a-73ec-4dd5-9c77-3db18671efbb"),
-                            Gym = "Boss Town",
-                            Name = "Satoshi",
-                            Status = true
-                        });
+                    b.ToTable("Owner");
                 });
 
             modelBuilder.Entity("PokemonManagingApp.Core.Models.Pokemon", b =>
@@ -175,30 +261,7 @@ namespace PokemonManagingApp.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pokemons", "PokemonDB");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("c0387583-aead-4460-a86b-0bf82c2bd518"),
-                            BirthDate = new DateTime(1996, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Pikachu",
-                            Status = true
-                        },
-                        new
-                        {
-                            Id = new Guid("099c7edc-4e2c-4e6d-bc04-141c1549399a"),
-                            BirthDate = new DateTime(1996, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Rayquaza",
-                            Status = true
-                        },
-                        new
-                        {
-                            Id = new Guid("799a8b34-c056-41fe-8ac2-ef4d906ad1dd"),
-                            BirthDate = new DateTime(1996, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Charmander",
-                            Status = true
-                        });
+                    b.ToTable("Pokemons");
                 });
 
             modelBuilder.Entity("PokemonManagingApp.Core.Models.PokemonCategory", b =>
@@ -216,27 +279,7 @@ namespace PokemonManagingApp.Infrastructure.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("PokemonCategories", "PokemonDB");
-
-                    b.HasData(
-                        new
-                        {
-                            PokemonId = new Guid("c0387583-aead-4460-a86b-0bf82c2bd518"),
-                            CategoryId = new Guid("8c684719-e0cb-4b00-9d42-f6fe961900f8"),
-                            Status = true
-                        },
-                        new
-                        {
-                            PokemonId = new Guid("099c7edc-4e2c-4e6d-bc04-141c1549399a"),
-                            CategoryId = new Guid("a8ab46d3-27cd-4c68-bec2-f73471d653f8"),
-                            Status = true
-                        },
-                        new
-                        {
-                            PokemonId = new Guid("799a8b34-c056-41fe-8ac2-ef4d906ad1dd"),
-                            CategoryId = new Guid("361a29e0-ec56-411a-8753-4521f9088da3"),
-                            Status = true
-                        });
+                    b.ToTable("PokemonCategories");
                 });
 
             modelBuilder.Entity("PokemonManagingApp.Core.Models.PokemonOwner", b =>
@@ -244,8 +287,8 @@ namespace PokemonManagingApp.Infrastructure.Data.Migrations
                     b.Property<Guid>("PokemonId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("OwnerId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -254,27 +297,7 @@ namespace PokemonManagingApp.Infrastructure.Data.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("PokemonOwners", "PokemonDB");
-
-                    b.HasData(
-                        new
-                        {
-                            PokemonId = new Guid("c0387583-aead-4460-a86b-0bf82c2bd518"),
-                            OwnerId = new Guid("225b113e-b7e2-4407-8e24-c995b46ac9f5"),
-                            Status = true
-                        },
-                        new
-                        {
-                            PokemonId = new Guid("099c7edc-4e2c-4e6d-bc04-141c1549399a"),
-                            OwnerId = new Guid("4d26f80f-4732-441f-848e-801d8db25cfc"),
-                            Status = true
-                        },
-                        new
-                        {
-                            PokemonId = new Guid("799a8b34-c056-41fe-8ac2-ef4d906ad1dd"),
-                            OwnerId = new Guid("b690f3c2-5502-4035-967f-a808a30e4727"),
-                            Status = true
-                        });
+                    b.ToTable("PokemonOwners");
                 });
 
             modelBuilder.Entity("PokemonManagingApp.Core.Models.Review", b =>
@@ -308,36 +331,7 @@ namespace PokemonManagingApp.Infrastructure.Data.Migrations
 
                     b.HasIndex("ReviewerId");
 
-                    b.ToTable("Reviews", "PokemonDB");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("beb8539c-6cef-48b7-94a1-e52ab0c9968f"),
-                            PokemonId = new Guid("c0387583-aead-4460-a86b-0bf82c2bd518"),
-                            ReviewerId = new Guid("348597e8-7342-420f-be37-1e3154e4547a"),
-                            Status = true,
-                            Text = "Not good at all",
-                            Title = "Nothing is good about this game"
-                        },
-                        new
-                        {
-                            Id = new Guid("f3154f60-9c51-4f21-a166-5ff27b910e70"),
-                            PokemonId = new Guid("099c7edc-4e2c-4e6d-bc04-141c1549399a"),
-                            ReviewerId = new Guid("0219db36-6f9b-42d0-b8f6-e1b05a7d8d09"),
-                            Status = true,
-                            Text = "Great Game",
-                            Title = "Big Hit"
-                        },
-                        new
-                        {
-                            Id = new Guid("871b10c5-f75d-4c44-ad48-a073ada97850"),
-                            PokemonId = new Guid("799a8b34-c056-41fe-8ac2-ef4d906ad1dd"),
-                            ReviewerId = new Guid("de791aa3-7df5-4c18-9f6c-c6b57132c80c"),
-                            Status = true,
-                            Text = "This game is really bad !",
-                            Title = "Bad Game"
-                        });
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("PokemonManagingApp.Core.Models.Reviewer", b =>
@@ -361,30 +355,7 @@ namespace PokemonManagingApp.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Reviewers", "PokemonDB");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("348597e8-7342-420f-be37-1e3154e4547a"),
-                            FirstName = "Master",
-                            LastName = "Pikachu",
-                            Status = true
-                        },
-                        new
-                        {
-                            Id = new Guid("0219db36-6f9b-42d0-b8f6-e1b05a7d8d09"),
-                            FirstName = "Master",
-                            LastName = "Rayquaza",
-                            Status = true
-                        },
-                        new
-                        {
-                            Id = new Guid("de791aa3-7df5-4c18-9f6c-c6b57132c80c"),
-                            FirstName = "Master",
-                            LastName = "Charmander",
-                            Status = true
-                        });
+                    b.ToTable("Reviewers");
                 });
 
             modelBuilder.Entity("PokemonManagingApp.Core.Models.Owner", b =>

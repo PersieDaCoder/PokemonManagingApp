@@ -12,7 +12,7 @@ public class AddPokemonHandler(IUnitOfWork unitOfWork) : IRequestHandler<AddPoke
 
     public async Task<Result<PokemonDTO>> Handle(AddPokemonCommand request, CancellationToken cancellationToken)
     {
-        Owner? checkingOwner = await _unitOfWork.OwnerRepository.GetEntityByConditionAsync(o => o.Id == request.OwnerId, false);
+        Owner? checkingOwner = await _unitOfWork.OwnerRepository.GetEntityByConditionAsync(o => o.Id.Equals(request.OwnerId), false);
         if (checkingOwner is null) return Result<PokemonDTO>.NotFound("Owner is not found");
         Pokemon? checkingPokemon = await _unitOfWork.PokemonRepository.GetEntityByConditionAsync(p => p.Id == request.PokemonId, false);
         if (checkingPokemon is null) return Result<PokemonDTO>.NotFound("Pokemon is not found");
