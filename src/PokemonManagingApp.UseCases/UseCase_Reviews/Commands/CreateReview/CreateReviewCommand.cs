@@ -11,6 +11,5 @@ public class CreateReviewCommand : IRequest<Result>
 {
     public string Title { get; set; } = null!;
     public string Text { get; set; } = null!;
-    public Guid ReviewerId { get; set; }
     public Guid PokemonId { get; set; }
 }

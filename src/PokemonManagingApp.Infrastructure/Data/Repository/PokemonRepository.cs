@@ -21,7 +21,7 @@ public class PokemonRepository(ApplicationDBContext context, ICacheService cache
       .AsNoTracking()
       .Include(p => p.PokemonCategories).ThenInclude(pc => pc.Category)
       .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner)
-      .Include(p => p.Reviews).ThenInclude(r => r.Reviewer)
+      .Include(p => p.Reviews)
       .ToListAsync(cancellationToken);
     // set pokemons to cache
     var expireTime = TimeSpan.FromMinutes(2);
@@ -41,7 +41,7 @@ public class PokemonRepository(ApplicationDBContext context, ICacheService cache
       .AsNoTracking()
       .Include(p => p.PokemonCategories).ThenInclude(pc => pc.Category)
       .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner)
-      .Include(p => p.Reviews).ThenInclude(r => r.Reviewer)
+      .Include(p => p.Reviews)
       .FirstOrDefaultAsync(p => p.Id.Equals(id), cancellationToken);
     if (pokemon is null) return null!;
     // set pokemon to cache

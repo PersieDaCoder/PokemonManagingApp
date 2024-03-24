@@ -2,7 +2,7 @@ using Ardalis.ApiEndpoints;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Pokemons;
 using Swashbuckle.AspNetCore.Annotations;
 

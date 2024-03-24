@@ -1,5 +1,7 @@
 using PokemonManagingApp.Core.Models;
 using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.UseCases.Helpers;
 
 namespace PokemonManagingApp.UseCases.Mapper;
 
@@ -10,11 +12,27 @@ public static class OwnerMapper
       {
           Id = owner.Id,
           UserName = owner.UserName ?? string.Empty,
-          CountryId = owner.CountryId,
-          Gym = owner.Gym,
           Status = owner.Status,
           Email = owner.Email,
-          Password = owner.Password,
+          CreatedAt = owner.CreatedAt,
+          Role = owner.Role.ConvertIntToString(),
+          Gym = owner.Gym is null ? null! : new GymDTO
+          {
+              Id = owner.Gym.Id,
+              Name = owner.Gym.Name,
+              Status = owner.Gym.Status,
+              CreatedAt = owner.Gym.CreatedAt,
+          },
+          Reviews = owner.OwnerReviews is null ? [] :
+              owner.OwnerReviews.Select(ownerReview => ownerReview == null ? null! : ownerReview.Review)
+              .Select(review => review == null ? null! : new ReviewDTO
+              {
+                  Id = review.Id,
+                  Title = review.Title,
+                  Text = review.Text,
+                  Status = review.Status,
+                  CreatedAt = review.CreatedAt,
+              }).ToList(),
           Country = owner.Country is null ? null! : new CountryDTO
           {
               Id = owner.Country.Id,
@@ -54,12 +72,6 @@ public static class OwnerMapper
                                             Title = review.Title,
                                             Text = review.Text,
                                             Status = review.Status,
-                                            Reviewer = review.Reviewer is null ? null! : new ReviewerDTO
-                                            {
-                                                Id = review.Reviewer.Id,
-                                                FullName = $"{review.Reviewer.FirstName} {review.Reviewer.LastName}",
-                                                Status = review.Reviewer.Status,
-                                            },
                                         }).ToList(),
                                 }),
                         }),
@@ -70,12 +82,6 @@ public static class OwnerMapper
                             Title = review.Title,
                             Text = review.Text,
                             Status = review.Status,
-                            Reviewer = review.Reviewer is null ? null! : new ReviewerDTO
-                            {
-                                Id = review.Reviewer.Id,
-                                FullName = $"{review.Reviewer.FirstName} {review.Reviewer.LastName}",
-                                Status = review.Reviewer.Status,
-                            },
                             Pokemon = review.Pokemon is null ? null! : new PokemonDTO
                             {
                                 Id = review.Pokemon.Id,

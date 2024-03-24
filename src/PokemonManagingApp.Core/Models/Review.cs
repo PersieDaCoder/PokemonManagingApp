@@ -9,18 +9,18 @@ namespace PokemonManagingApp.Core.Models;
 
 public class Review
 {
+  // Properties
   [Key]
   public Guid Id { get; set; } = Guid.NewGuid();
   [MaxLength(50)]
   public required string Title { get; set; }
   [MaxLength(50)]
   public string Text { get; set; } = string.Empty;
-  [ForeignKey(nameof(Reviewer))]
-  public required Guid ReviewerId { get; set; }
-  [ForeignKey(nameof(Pokemon))]
   public required Guid PokemonId { get; set; }
   public bool Status { get; set; } = true;
-
-  public Reviewer? Reviewer { get; set; }
+  public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+  // Navigation properties
+  [ForeignKey(nameof(PokemonId))]
   public Pokemon? Pokemon { get; set; }
+  public ICollection<OwnerReview> OwnerReviews { get; set; } = new List<OwnerReview>();
 }

@@ -1,20 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PokemonManagingApp.UseCase.DTOs;
-
-namespace PokemonManagingApp.UseCase.DTOs;
+namespace PokemonManagingApp.UseCases.DTOs;
 
 public record OwnerDTO
 {
     public Guid Id { get; init; }
-    public Guid CountryId { get; init; }
-    public string UserName { get; init; } = null!;
     public string Email { get; init; } = null!;
-    public string Password { get; init; } = null!;
-    public string Gym { get; init; } = null!;
+    public string UserName { get; init; } = null!;
+    public string Role { get; init; } = null!;
     public bool Status { get; init; }
-    public CountryDTO? Country{ get; init;}
-    public IEnumerable<PokemonDTO> Pokemons { get; set; } = new List<PokemonDTO>();
+    public DateTime CreatedAt { get; init; }
+
+    public GymDTO? Gym { get; init; }
+    public CountryDTO? Country { get; init; }
+    public IEnumerable<PokemonDTO> Pokemons { get; init; } = new List<PokemonDTO>();
+    public IEnumerable<ReviewDTO> Reviews { get; init; } = new List<ReviewDTO>();
 }

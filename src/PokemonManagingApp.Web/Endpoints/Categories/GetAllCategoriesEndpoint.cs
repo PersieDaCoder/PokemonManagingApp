@@ -2,7 +2,7 @@
 using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Categories;
 using Swashbuckle.AspNetCore.Annotations;
 

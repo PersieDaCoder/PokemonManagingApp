@@ -2,9 +2,8 @@ using System.ComponentModel.DataAnnotations;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Categories.Commands.CreateCategory;
 using Swashbuckle.AspNetCore.Annotations;
 

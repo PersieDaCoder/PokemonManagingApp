@@ -7,6 +7,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Owners.Commands.Login;
 using Swashbuckle.AspNetCore.Annotations;
 

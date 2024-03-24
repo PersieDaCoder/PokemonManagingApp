@@ -21,7 +21,7 @@ public class UpdateOwnerHandler(IUnitOfWork unitOfWork) : IRequestHandler<Update
         if (checkingCountry is null) return Result.NotFound("Country is not found");
         {
             checkingOwner.UserName = request.Name;
-            checkingOwner.Gym = request.Gym;
+            checkingOwner.GymId = request.GymId;
             checkingOwner.CountryId = request.CountryId;
         }
         await _unitOfWork.SaveChangesAsync();

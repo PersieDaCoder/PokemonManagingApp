@@ -13,12 +13,10 @@ public class CreateReviewHandler(IUnitOfWork unitOfWork) : IRequestHandler<Creat
     {
         Pokemon? checkingPokemon = await _unitOfWork.PokemonRepository.GetEntityByConditionAsync(p => p.Id.Equals(request.PokemonId), false);
         if (checkingPokemon is null) return Result.NotFound();
-        Reviewer? checkingReviewer = await _unitOfWork.ReviewerRepository.GetEntityByConditionAsync(r => r.Id.Equals(request.ReviewerId), false);
-        var review = new Review
+        Review review = new()
         {
             Title = request.Title,
             Text = request.Text,
-            ReviewerId = request.ReviewerId,
             PokemonId = request.PokemonId,
         };
         _unitOfWork.ReviewRepository.Add(review);

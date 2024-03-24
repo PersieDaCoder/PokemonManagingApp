@@ -7,6 +7,7 @@ using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Categories.Queries.GetCategoryById;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -23,7 +24,7 @@ public class GetCategoryByIdEndpoint(IMediator mediator) : EndpointBaseAsync.Wit
     [Route("api/Categories/{Id}")]
     [SwaggerOperation(
         Summary = "Get Category By Its Id",
-        Tags = new[] {"Categories"}
+        Tags = new[] { "Categories" }
     )]
     public override async Task<ActionResult<Result<CategoryDTO>>> HandleAsync(GetCategoryByIdRequest request, CancellationToken cancellationToken = default)
     {

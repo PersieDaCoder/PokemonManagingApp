@@ -11,6 +11,6 @@ public record UpdateOwnerCommand : IRequest<Result>
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = null!;
-    public string Gym { get; set; } = null!;
+    public Guid GymId { get; set; }
     public required Guid CountryId { get; set; }
 }

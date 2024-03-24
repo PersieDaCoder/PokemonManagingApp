@@ -1,10 +1,8 @@
 using PokemonManagingApp.Core.Interfaces.Data;
 using MediatR;
-using PokemonManagingApp.UseCase.DTOs;
-using PokemonManagingApp.UseCases;
-using PokemonManagingApp.Pokemon_UseCase;
 using PokemonManagingApp.Core.Models;
 using Ardalis.Result;
+using PokemonManagingApp.UseCases.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Pokemons;
 

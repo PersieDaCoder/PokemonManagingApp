@@ -18,8 +18,6 @@ public record CreateReviewRequest
     public string Text { get; set; } = null!;
     [Required(ErrorMessage = "Title is required")]
     public string Title { get; set; } = null!;
-    [Required(ErrorMessage = "ReviewerId is required")]
-    public Guid ReviewerId { get; set; }
     [Required(ErrorMessage = "PokemonId is required")]
     public Guid PokemonId { get; set; }
 }
@@ -41,7 +39,6 @@ public class CreateReviewEndpoint(IMediator mediator) : EndpointBaseAsync.WithRe
         {
             Text = request.Text,
             Title = request.Title,
-            ReviewerId = request.ReviewerId,
             PokemonId = request.PokemonId
         });
         if (!result.IsSuccess) return BadRequest(result.Errors);

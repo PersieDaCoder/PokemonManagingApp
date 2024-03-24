@@ -7,6 +7,7 @@ using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data.Repositories;
 using PokemonManagingApp.Core.Models;
 using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.Mapper;
 
 namespace PokemonManagingApp.UseCases.UseCase_Owners.Commands.Login;
@@ -22,24 +23,5 @@ public class LoginHandler(IOwnerRepository ownerRepository) : IRequestHandler<Lo
     if (owner.Password != request.Password) return Result<OwnerDTO>.Error("Password is incorrect");
 
     return Result<OwnerDTO>.Success(owner.MapToDTO());
-
-    // var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SVjmMJe8OQVInwKTrcOGZQxhblWYXHXm7xVLMzYnKXY"));
-    // var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-    // Claim[] claims = {
-    //    new Claim(JwtRegisteredClaimNames.Sub, owner.UserName),
-    //     new Claim(JwtRegisteredClaimNames.Email, owner.Email),
-    //     new Claim(JwtRegisteredClaimNames.Sid, owner.Id.ToString())
-    //     };
-
-    // JwtSecurityToken Sectoken = new()
-    // {
-      
-    // };
-    // SecurityToken token = new JwtSecurityTokenHandler().CreateToken(Sectoken);
-    // return Result<TokenDTO>.Success(new TokenDTO
-    // {
-    //   AccessToken = token
-    // });
   }
 }

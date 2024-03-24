@@ -12,6 +12,5 @@ public class UpdateReviewCommand : IRequest<Result>
     public Guid Id { get; set; }
     public string Text { get; set; } = null!;
     public string Title { get; set; } = null!;
-    public Guid ReviewerId { get; set; }
     public Guid PokemonId { get; set; }
 }

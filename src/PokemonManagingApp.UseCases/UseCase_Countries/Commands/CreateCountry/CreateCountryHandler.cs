@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Ardalis.Result;
 using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.Mapper;
 
 namespace PokemonManagingApp.UseCases.UseCase_Countries.Commands.CreateCountry;

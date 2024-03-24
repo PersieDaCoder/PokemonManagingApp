@@ -1,5 +1,7 @@
 using PokemonManagingApp.Core.Models;
 using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.UseCases.Helpers;
 
 namespace PokemonManagingApp.UseCases.Mapper;
 
@@ -28,10 +30,17 @@ public static class CategoryMapper
                             .Select(owner => owner == null ? null! : new OwnerDTO
                             {
                                 Id = owner.Id,
-                                Gym = owner.Gym,
                                 UserName = owner.UserName ?? string.Empty,
-                                CountryId = owner.CountryId,
                                 Status = owner.Status,
+                                CreatedAt = owner.CreatedAt,
+                                Email = owner.Email,
+                                Role = owner.Role.ConvertIntToString(),
+                                Gym = owner.Gym is null ? null! : new GymDTO
+                                {
+                                    Id = owner.Gym.Id,
+                                    Name = owner.Gym.Name,
+                                    Status = owner.Gym.Status,
+                                },
                                 Country = owner.Country is null ? null! : new CountryDTO
                                 {
                                     Id = owner.Country is not null ? owner.Country.Id : default,
@@ -46,12 +55,6 @@ public static class CategoryMapper
                                 Title = review.Title,
                                 Text = review.Text,
                                 Status = review.Status,
-                                Reviewer = review.Reviewer is null ? null! : new ReviewerDTO
-                                {
-                                    Id = review.Reviewer.Id,
-                                    FullName = $"{review.Reviewer.FirstName} {review.Reviewer.LastName}",
-                                    Status = review.Reviewer.Status,
-                                },
                             }).ToList(),
                     }).ToList(),
         };

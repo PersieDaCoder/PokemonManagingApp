@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PokemonManagingApp.Core.Interfaces.Data;
-using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Owners.Commands.CreateOwner;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -15,11 +10,11 @@ namespace PokemonManagingApp.Web.Endpoints.Owners;
 
 public record CreateOwnerRequest
 {
-    public string Email {get;init;} = null!;
+    public string Email { get; init; } = null!;
     public string Password { get; init; } = null!;
     public string PhoneNumber { get; set; } = null!;
     public string UserName { get; init; } = null!;
-    public string Gym { get; init; } = null!;
+    public Guid GymId { get; init; }
     public Guid CountryId { get; init; }
 }
 public class CreateOwnerEndpoint(IMediator mediator) : EndpointBaseAsync.WithRequest<CreateOwnerRequest>.WithActionResult
@@ -44,7 +39,7 @@ public class CreateOwnerEndpoint(IMediator mediator) : EndpointBaseAsync.WithReq
             Gmail = request.Email,
             Password = request.Password,
             PhoneNumber = request.PhoneNumber,
-            Gym = request.Gym
+            GymId = request.GymId
         }, cancellationToken);
         if (!result.IsSuccess) return BadRequest(result);
         return Created("", result);

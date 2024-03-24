@@ -3,6 +3,7 @@ using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
 using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Owners.Commands.AddPokemonToCollection;
 

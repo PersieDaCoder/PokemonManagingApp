@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ardalis.Result;
 using MediatR;
-using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Categories.Commands.CreateCategory;
 

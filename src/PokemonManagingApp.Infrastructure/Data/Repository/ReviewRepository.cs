@@ -17,7 +17,6 @@ public class ReviewRepository(ApplicationDBContext context, ICacheService cacheS
     IEnumerable<Review> reviews = await _context
       .Reviews.AsNoTracking()
       .Include(r => r.Pokemon).ThenInclude(p => p == null ? null! : p.PokemonCategories).ThenInclude(pc => pc.Category)
-      .Include(r => r.Reviewer).ThenInclude(r => r == null ? null! : r.Reviews)
       .Where(r => r.Status)
       .ToListAsync(cancellationToken);
     // set reviews to cache
@@ -36,7 +35,6 @@ public class ReviewRepository(ApplicationDBContext context, ICacheService cacheS
     Review? review = await _context
       .Reviews.AsNoTracking()
       .Include(r => r.Pokemon).ThenInclude(p => p == null ? null! : p.PokemonCategories).ThenInclude(pc => pc.Category)
-      .Include(r => r.Reviewer).ThenInclude(r => r == null ? null! : r.Reviews)
       .Where(r => r.Id.Equals(id))
       .Where(r => r.Status)
       .SingleOrDefaultAsync(cancellationToken);

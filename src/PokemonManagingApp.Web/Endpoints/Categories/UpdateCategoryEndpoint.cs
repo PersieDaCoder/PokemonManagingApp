@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Categories.Commands.UpdateCategory;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -26,7 +22,7 @@ public class UpdateCategoryEndpoint(IMediator mediator) : EndpointBaseAsync.With
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
     [SwaggerOperation(
         Summary = "Update selected Category",
-        Tags = new[] { "Categories" }
+        Tags = ["Categories"]
     )]
     public override async Task<ActionResult> HandleAsync(UpdateCategoryRequest request, CancellationToken cancellationToken = default)
     {

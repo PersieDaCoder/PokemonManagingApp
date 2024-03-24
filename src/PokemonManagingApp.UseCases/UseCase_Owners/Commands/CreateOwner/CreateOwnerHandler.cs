@@ -2,7 +2,7 @@ using Ardalis.Result;
 using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Owners.Commands.CreateOwner;
 
@@ -20,7 +20,7 @@ public class CreateOwnerHandler(IUnitOfWork unitOfWork) : IRequestHandler<Create
             Password = request.Password,
             CountryId = request.CountryId,
             UserName = request.UserName,
-            Gym = request.Gym,
+            GymId = request.GymId,
         };
         _unitOfWork.OwnerRepository.Add(addingOwner);
         await _unitOfWork.SaveChangesAsync();
@@ -28,8 +28,6 @@ public class CreateOwnerHandler(IUnitOfWork unitOfWork) : IRequestHandler<Create
         {
             Id = addingOwner.Id,
             UserName = addingOwner.UserName,
-            Gym = addingOwner.Gym,
-            CountryId = addingOwner.CountryId
         });
     }
 }

@@ -2,8 +2,7 @@
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
 using MediatR;
-using PokemonManagingApp.UseCase.DTOs;
-using PokemonManagingApp.UseCases.UseCase_Pokemons;
+using PokemonManagingApp.UseCases.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Pokemons;
 

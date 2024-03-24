@@ -3,7 +3,7 @@ using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Owners.Commands.AddPokemonToCollection;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -12,7 +12,7 @@ namespace PokemonManagingApp.Web.Endpoints.Owners;
 public record AddPokemonToCollectionRequest
 {
     [Required(ErrorMessage = "Owner Id is required")]
-    [FromRoute] public Guid OwnerId { get; set; } 
+    [FromRoute] public Guid OwnerId { get; set; }
     [Required(ErrorMessage = "Pokemon Id is required")]
     [FromRoute] public Guid PokemonId { get; set; }
 };

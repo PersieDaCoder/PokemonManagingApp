@@ -20,17 +20,22 @@ builder.Services.AddAuthorizationBuilder();
 var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
 var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+builder.Services.AddAuthentication(option =>
+{
+  option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+  option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+  option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
  .AddJwtBearer(options =>
  {
-     options.TokenValidationParameters = new TokenValidationParameters
-     {
-         ValidateIssuer = false,
-         ValidateAudience = false,
-         ValidateLifetime = true,
-         ValidateIssuerSigningKey = true,
-         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey ?? throw new ArgumentNullException("jwtKey")))
-     };
+   options.TokenValidationParameters = new TokenValidationParameters
+   {
+     ValidateIssuer = false,
+     ValidateAudience = false,
+     ValidateLifetime = true,
+     ValidateIssuerSigningKey = true,
+     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey ?? throw new ArgumentNullException("jwtKey")))
+   };
  });
 
 builder.Services.AddSwaggerGen(c =>
@@ -38,13 +43,14 @@ builder.Services.AddSwaggerGen(c =>
   c.SwaggerDoc("v1", new() { Title = "PokemonManagingApp.Web", Version = "v1" });
   c.EnableAnnotations();
   c.AddSecurityDefinition(name: "Bearer", securityScheme: new OpenApiSecurityScheme
-{
+  {
     Name = "Authorization",
     Description = "Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`",
     In = ParameterLocation.Header,
-    Type = SecuritySchemeType.ApiKey,
+    Type = SecuritySchemeType.Http,
+    BearerFormat = "JWT",
     Scheme = "Bearer"
-});
+  });
 
   c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
@@ -56,9 +62,6 @@ builder.Services.AddSwaggerGen(c =>
             Type = ReferenceType.SecurityScheme,
             Id = "Bearer"
           },
-          Scheme = "oauth2",
-          Name = "Bearer",
-          In = ParameterLocation.Header
         },
         new string[] {}
       }

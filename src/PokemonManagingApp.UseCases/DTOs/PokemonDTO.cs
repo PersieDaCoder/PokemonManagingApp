@@ -1,4 +1,4 @@
-namespace PokemonManagingApp.UseCase.DTOs;
+namespace PokemonManagingApp.UseCases.DTOs;
 
 public record PokemonDTO
 {

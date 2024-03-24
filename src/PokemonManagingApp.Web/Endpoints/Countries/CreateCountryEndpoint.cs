@@ -4,7 +4,7 @@ using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PokemonManagingApp.UseCase.DTOs;
+using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Countries.Commands.CreateCountry;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -34,6 +34,6 @@ public class CreateCountryEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
         {
             Name = request.Name,
         }, cancellationToken);
-        return result.IsSuccess ? Created("",result) : BadRequest(result);
+        return result.IsSuccess ? Created("", result) : BadRequest(result);
     }
 }

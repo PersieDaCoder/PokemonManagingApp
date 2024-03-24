@@ -16,8 +16,8 @@ public record UpdateOwnerRequest
     [FromRoute] public Guid Id { get; set; }
     [Required(ErrorMessage = "Name is required")]
     [FromBody] public string Name { get; set; } = null!;
-    [Required(ErrorMessage = "Gym is required")]
-    [FromBody] public string Gym { get; set; } = null!;
+    [Required(ErrorMessage = "GymId is required")]
+    [FromBody] public Guid GymId { get; set; }
     [Required(ErrorMessage = "CountryId is required")]
     [FromBody] public required Guid CountryId { get; set; }
 }
@@ -40,7 +40,7 @@ public class UpdateOwnerEndpoint(IMediator mediator) : EndpointBaseAsync.WithReq
         {
             Id = request.Id,
             Name = request.Name,
-            Gym = request.Gym,
+            GymId = request.GymId,
             CountryId = request.CountryId
         });
         if (!result.IsSuccess)
