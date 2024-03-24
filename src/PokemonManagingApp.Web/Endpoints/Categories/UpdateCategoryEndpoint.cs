@@ -1,9 +1,11 @@
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Categories.Commands.UpdateCategory;
+using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PokemonManagingApp.Web.Endpoints.Categories;
@@ -19,6 +21,7 @@ public class UpdateCategoryEndpoint(IMediator mediator) : EndpointBaseAsync.With
 
     [HttpPut]
     [Route("/api/Categories/{Id}")]
+    [Authorize(Roles = "Admin")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
     [SwaggerOperation(
         Summary = "Update selected Category",
@@ -31,11 +34,7 @@ public class UpdateCategoryEndpoint(IMediator mediator) : EndpointBaseAsync.With
             Id = request.Id,
             Name = request.Name
         });
-        if (!result.IsSuccess)
-        {
-            if (result.Errors.Any(err => err.ToLower().Contains("not found"))) return NotFound(result);
-            return BadRequest(result);
-        }
+        if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
         return NoContent();
     }
 }

@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PokemonManagingApp.UseCase.DTOs;
 using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Owners.Queries.GetOwnerById;
+using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PokemonManagingApp.Web.Endpoints.Owners;
@@ -34,7 +30,7 @@ public class GetOwnerByIdEndpoint(IMediator mediator) : EndpointBaseAsync.WithRe
         {
             Id = request.Id
         }, cancellationToken);
-        if (!result.IsSuccess) return NotFound(result);
+        if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
         return Ok(result);
     }
 }

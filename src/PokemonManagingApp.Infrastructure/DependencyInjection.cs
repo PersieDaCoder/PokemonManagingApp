@@ -28,8 +28,8 @@ public static class DependencyInjection
         services.AddScoped<ICountryRepository, CountryRepository>();
         services.AddScoped<IPokemonCategoryRepository, PokemonCategoryRepository>();
         services.AddScoped<IReviewRepository, ReviewRepository>();
-        services.AddScoped<IReviewerRepository, ReviewerRepository>();
 
+        // return services
         return services;
     }
 }

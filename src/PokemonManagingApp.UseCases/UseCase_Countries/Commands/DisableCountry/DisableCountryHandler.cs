@@ -17,7 +17,9 @@ public class DisableCountryHandler(IUnitOfWork unitOfWork) : IRequestHandler<Dis
     {
         Country? checkingCountry = await _unitOfWork.CountryRepository.GetEntityByConditionAsync(c => c.Id.Equals(request.Id), true);
         if (checkingCountry is null) return Result.NotFound("Country is not found");
-        checkingCountry.Status = false;
+        {
+            checkingCountry.Status = false;
+        }
         await _unitOfWork.SaveChangesAsync();
         return Result.Success();
     }

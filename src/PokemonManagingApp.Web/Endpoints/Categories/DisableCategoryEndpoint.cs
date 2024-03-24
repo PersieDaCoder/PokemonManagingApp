@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCases.UseCase_Categories.Commands.DisableCategory;
+using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PokemonManagingApp.Web.Endpoints.Categories;
@@ -20,6 +22,7 @@ public class DisableCategoryEndpoint(IMediator mediator) : EndpointBaseAsync.Wit
     private readonly IMediator _mediator = mediator;
 
     [HttpDelete]
+    [Authorize(Roles = "Admin")]
     [Route("/api/Categories/{Id}")]
     [SwaggerOperation(
         Summary = "Disable selected Category",
@@ -31,11 +34,7 @@ public class DisableCategoryEndpoint(IMediator mediator) : EndpointBaseAsync.Wit
         {
             Id = request.Id
         });
-        if (!result.IsSuccess)
-        {
-            if (result.Errors.Any(err => err.ToLower().Contains("not found"))) return NotFound(result);
-            return BadRequest(result);
-        }
+        if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
         return NoContent();
     }
 }

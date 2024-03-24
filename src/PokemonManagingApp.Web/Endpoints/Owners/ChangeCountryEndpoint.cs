@@ -1,18 +1,20 @@
 using System.ComponentModel.DataAnnotations;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCases.UseCase_Owners.Commands.ChangeCountry;
+using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PokemonManagingApp.Web.Endpoints.Owners;
 
 public record ChangeCountryRequest
 {
-    [Required(ErrorMessage = "Owner Id is required")]
-    [FromRoute] public Guid OwnerId { get; init; }
     [Required(ErrorMessage = "Country Id is required")]
     [FromRoute] public Guid CountryId { get; init; }
 }
@@ -21,7 +23,8 @@ public class ChangeCountryEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
     private readonly IMediator _mediator = mediator;
 
 [HttpPut]
-[Route("owners/{OwnerId:guid}/country/{CountryId:guid}")]
+[Authorize]
+[Route("api/Owners/country/{CountryId:guid}")]
 [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
 [SwaggerOperation(
     Summary = "Change country of owner",
@@ -29,17 +32,13 @@ public class ChangeCountryEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
 )]
     public override async Task<ActionResult> HandleAsync(ChangeCountryRequest request, CancellationToken cancellationToken = default)
     {
+        Guid currentOwnerId = Guid.Parse(HttpContext.User.FindFirstValue(JwtRegisteredClaimNames.Sid) ?? throw new ValidationException("Owner ID not found in token"));
         Result result = await _mediator.Send(new ChangeCountryCommand
         {
-            OwnerId = request.OwnerId,
+            OwnerId = currentOwnerId,
             CountryId = request.CountryId
         }, cancellationToken);
-        if (!result.IsSuccess)
-        {
-            if (result.Errors.Any(error => error.Contains("not found", StringComparison.OrdinalIgnoreCase)))
-                return NotFound(result);
-            return BadRequest(result);
-        }
+        if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
         return NoContent();
     }
 }

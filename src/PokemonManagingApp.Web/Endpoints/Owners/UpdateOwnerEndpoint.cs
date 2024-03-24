@@ -4,8 +4,10 @@ using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCases.UseCase_Owners.Commands.UpdateOwner;
+using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PokemonManagingApp.Web.Endpoints.Owners;
@@ -26,6 +28,7 @@ public class UpdateOwnerEndpoint(IMediator mediator) : EndpointBaseAsync.WithReq
     private readonly IMediator _mediator = mediator;
 
     [HttpPut]
+    [Authorize(Roles = "Admin")]
     [Route("api/Owners/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
     [SwaggerOperation(
@@ -43,11 +46,7 @@ public class UpdateOwnerEndpoint(IMediator mediator) : EndpointBaseAsync.WithReq
             GymId = request.GymId,
             CountryId = request.CountryId
         });
-        if (!result.IsSuccess)
-        {
-            if (result.Errors.Any(err => err.Contains("not found"))) return NotFound(result);
-            return BadRequest(result);
-        }
+        if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
         return NoContent();
     }
 }

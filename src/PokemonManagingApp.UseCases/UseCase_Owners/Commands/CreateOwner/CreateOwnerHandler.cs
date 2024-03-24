@@ -3,6 +3,8 @@ using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
 using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.UseCases.Enums;
+using PokemonManagingApp.UseCases.Mapper;
 
 namespace PokemonManagingApp.UseCases.UseCase_Owners.Commands.CreateOwner;
 
@@ -21,13 +23,10 @@ public class CreateOwnerHandler(IUnitOfWork unitOfWork) : IRequestHandler<Create
             CountryId = request.CountryId,
             UserName = request.UserName,
             GymId = request.GymId,
+            Role = (int)RoleEnum.User,
         };
         _unitOfWork.OwnerRepository.Add(addingOwner);
         await _unitOfWork.SaveChangesAsync();
-        return Result<OwnerDTO>.Success(new OwnerDTO
-        {
-            Id = addingOwner.Id,
-            UserName = addingOwner.UserName,
-        });
+        return Result<OwnerDTO>.Success(addingOwner.MapToDTO());
     }
 }

@@ -1,6 +1,4 @@
-using Ardalis.SharedKernel;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
 using PokemonManagingApp.Core.Interfaces.Caching;
 using PokemonManagingApp.Core.Interfaces.Data.Repositories;
 using PokemonManagingApp.Core.Models;
@@ -24,8 +22,7 @@ public class PokemonRepository(ApplicationDBContext context, ICacheService cache
       .Include(p => p.Reviews)
       .ToListAsync(cancellationToken);
     // set pokemons to cache
-    var expireTime = TimeSpan.FromMinutes(2);
-    _cacheService.SetData(key, pokemons, expireTime);
+    _cacheService.SetData(key, pokemons);
     return pokemons;
   }
 
@@ -45,8 +42,27 @@ public class PokemonRepository(ApplicationDBContext context, ICacheService cache
       .FirstOrDefaultAsync(p => p.Id.Equals(id), cancellationToken);
     if (pokemon is null) return null!;
     // set pokemon to cache
-    var expireTime = TimeSpan.FromMinutes(2);
-    _cacheService.SetData(key, pokemon, expireTime);
+    _cacheService.SetData(key, pokemon);
     return pokemon;
+  }
+
+  public async Task<IEnumerable<Pokemon>> GetPokemonsByOwnerIdAsync(Guid userId, CancellationToken cancellationToken = default)
+  {
+    string key = $"pokemons-collection-{userId}";
+    // get pokemons from cache
+    IEnumerable<Pokemon>? cachedPokemons = _cacheService.GetData<IEnumerable<Pokemon>>(key);
+    if (cachedPokemons is not null) return cachedPokemons;
+    // get pokemons from database
+    IEnumerable<Pokemon> pokemons = await _context
+      .Pokemons
+      .AsNoTracking()
+      .Include(p => p.PokemonCategories).ThenInclude(pc => pc.Category)
+      .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner)
+      .Include(p => p.Reviews)
+      .Where(p => p.PokemonOwners.Any(po => po.OwnerId.Equals(userId)))
+      .ToListAsync(cancellationToken);
+    // set pokemons to cache
+    _cacheService.SetData(key, pokemons);
+    return pokemons;
   }
 }

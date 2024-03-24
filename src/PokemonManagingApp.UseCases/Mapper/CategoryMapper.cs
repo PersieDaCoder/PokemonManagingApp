@@ -1,5 +1,4 @@
 using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCase.DTOs;
 using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.Helpers;
 
@@ -14,6 +13,7 @@ public static class CategoryMapper
             Id = category.Id,
             Name = category.Name,
             Status = category.Status,
+            CreatedAt = category.CreatedAt,
             Pokemons = category.PokemonCategories is null ? [] :
                 category.PokemonCategories
                     .Select(pc => pc.Pokemon)
@@ -40,12 +40,39 @@ public static class CategoryMapper
                                     Id = owner.Gym.Id,
                                     Name = owner.Gym.Name,
                                     Status = owner.Gym.Status,
+                                    CreatedAt = owner.Gym.CreatedAt,
                                 },
                                 Country = owner.Country is null ? null! : new CountryDTO
                                 {
-                                    Id = owner.Country is not null ? owner.Country.Id : default,
-                                    Name = owner.Country is not null ? owner.Country.Name : string.Empty,
-                                    Status = owner.Country is not null ? owner.Country.Status : default
+                                    Id = owner.Country.Id,
+                                    Name = owner.Country.Name,
+                                    Status = owner.Country.Status,
+                                    CreatedAt = owner.Country.CreatedAt,
+                                    Owners = owner.Country.Owners is null ? [] : owner.Country.Owners.Select(owner => owner == null ? null! : new OwnerDTO
+                                    {
+                                        Id = owner.Id,
+                                        UserName = owner.UserName,
+                                        Status = owner.Status,
+                                        CreatedAt = owner.CreatedAt,
+                                        Email = owner.Email,
+                                        Role = owner.Role.ConvertIntToString(),
+                                        Gym = owner.Gym is null ? null! : new GymDTO
+                                        {
+                                            Id = owner.Gym.Id,
+                                            Name = owner.Gym.Name,
+                                            Status = owner.Gym.Status,
+                                            CreatedAt = owner.Gym.CreatedAt,
+                                        },
+                                        Reviews = owner.OwnerReviews is null ? [] : owner.OwnerReviews.Select(ownerReview => ownerReview == null ? null! : ownerReview.Review)
+                                        .Select(review => review == null ? null! : new ReviewDTO
+                                        {
+                                            Id = review.Id,
+                                            Title = review.Title,
+                                            Text = review.Text,
+                                            Status = review.Status,
+                                            CreatedAt = review.CreatedAt,
+                                        }).ToList(),
+                                    })
                                 }
                             }).ToList(),
                         Reviews = p.Reviews is null ? [] :
@@ -55,6 +82,7 @@ public static class CategoryMapper
                                 Title = review.Title,
                                 Text = review.Text,
                                 Status = review.Status,
+                                CreatedAt = review.CreatedAt,
                             }).ToList(),
                     }).ToList(),
         };

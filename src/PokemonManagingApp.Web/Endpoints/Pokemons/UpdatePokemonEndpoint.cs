@@ -1,8 +1,10 @@
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.Pokemon_UseCase;
+using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PokemonManagingApp.Web.Endpoints.Pokemons;
@@ -18,6 +20,7 @@ public class UpdatePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
     private readonly IMediator _mediator = mediator;
 
     [HttpPut]
+    [Authorize(Roles = "Admin")]
     [SwaggerOperation(
         Summary = "Update selected Pokemon",
         Tags = ["Pokemons"]
@@ -31,6 +34,7 @@ public class UpdatePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
             Name = request.Name,
             BirthDate = request.BirthDate
         });
-        return result.IsSuccess ? NoContent() : BadRequest(result.Errors);
+        if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
+        return NoContent();
     }
 }

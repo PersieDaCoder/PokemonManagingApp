@@ -2,16 +2,15 @@ using Ardalis.Result;
 using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCase.DTOs;
 using PokemonManagingApp.UseCases.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Owners.Commands.AddPokemonToCollection;
 
-public class AddPokemonHandler(IUnitOfWork unitOfWork) : IRequestHandler<AddPokemonCommand, Result<PokemonDTO>>
+public class AddPokemonToCollectionHandler(IUnitOfWork unitOfWork) : IRequestHandler<AddPokemonToCollectionCommand, Result<PokemonDTO>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-    public async Task<Result<PokemonDTO>> Handle(AddPokemonCommand request, CancellationToken cancellationToken)
+    public async Task<Result<PokemonDTO>> Handle(AddPokemonToCollectionCommand request, CancellationToken cancellationToken)
     {
         Owner? checkingOwner = await _unitOfWork.OwnerRepository.GetEntityByConditionAsync(o => o.Id.Equals(request.OwnerId), false);
         if (checkingOwner is null) return Result<PokemonDTO>.NotFound("Owner is not found");

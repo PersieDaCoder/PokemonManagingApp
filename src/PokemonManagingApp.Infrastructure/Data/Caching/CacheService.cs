@@ -20,9 +20,10 @@ public class CacheService(IMemoryCache memoryCache) : ICacheService
         _memoryCache.Remove(key);
     }
 
-    public void SetData<T>(string key, T value, TimeSpan expirationTime)
+    public void SetData<T>(string key, T value)
     {
         if(key.IsNullOrEmpty()) return;
+        TimeSpan expirationTime = TimeSpan.FromSeconds(30);
         _memoryCache.Set<T>(key, value, expirationTime);
     }
 }

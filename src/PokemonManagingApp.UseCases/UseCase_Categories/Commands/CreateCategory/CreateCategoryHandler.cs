@@ -13,16 +13,12 @@ public class CreateCategoryHandler(IUnitOfWork unitOfWork) : IRequestHandler<Cre
 
     public async Task<Result<CategoryDTO>> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
     {
-        try
+        Category addingCategory = new()
         {
-            Category addingCategory = new() { Name = request.Name };
-            _unitOfWork.CategoryRepository.Add(addingCategory);
-            await _unitOfWork.SaveChangesAsync();
-            return Result<CategoryDTO>.Success(CategoryMapper.MapToDTO(addingCategory));
-        }
-        catch (Exception e)
-        {
-            return Result<CategoryDTO>.Error(e.Message);
-        }
+            Name = request.Name,
+        };
+        _unitOfWork.CategoryRepository.Add(addingCategory);
+        await _unitOfWork.SaveChangesAsync();
+        return Result<CategoryDTO>.Success(CategoryMapper.MapToDTO(addingCategory));
     }
 }

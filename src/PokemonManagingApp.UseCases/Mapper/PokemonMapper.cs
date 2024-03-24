@@ -1,7 +1,6 @@
 ﻿
 using System.Runtime.Intrinsics.X86;
 using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCase.DTOs;
 using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.Helpers;
 
@@ -24,6 +23,7 @@ public static class PokemonMapper
                     Id = c.Id,
                     Name = c.Name,
                     Status = c.Status,
+                    CreatedAt = c.CreatedAt,
                 }),
             Owners = pokemon.PokemonOwners is null ? [] :
                 pokemon.PokemonOwners
@@ -84,6 +84,7 @@ public static class PokemonMapper
                                 Id = c.Id,
                                 Name = c.Name,
                                 Status = c.Status,
+                                CreatedAt = c.CreatedAt,
                             }),
                     },
                 }).ToList(),

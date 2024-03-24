@@ -13,7 +13,9 @@ public class UpdateCategoryHandler(IUnitOfWork unitOfWork) : IRequestHandler<Upd
   {
     Category? selectedCategory = await _unitOfWork.CategoryRepository.GetEntityByConditionAsync(c => c.Id.Equals(request.Id), true);
     if (selectedCategory is null) return Result.NotFound();
-    selectedCategory.Name = request.Name;
+    {
+      selectedCategory.Name = request.Name;
+    }
     await _unitOfWork.SaveChangesAsync();
     return Result.Success();
   }

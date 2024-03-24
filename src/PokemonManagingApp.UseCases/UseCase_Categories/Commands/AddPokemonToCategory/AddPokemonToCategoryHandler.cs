@@ -2,7 +2,6 @@ using Ardalis.Result;
 using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCase.DTOs;
 using PokemonManagingApp.UseCases.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Categories.Commands.AddPokemonToCategory;
@@ -17,8 +16,8 @@ public class AddPokemonToCategoryHandler(IUnitOfWork unitOfWork) : IRequestHandl
         if (pokemon is null) return Result<PokemonDTO>.NotFound("Pokemon is not found");
         Category? category = await _unitOfWork.CategoryRepository.GetEntityByConditionAsync(c => c.Id.Equals(request.CategoryId), false);
         if (category is null) return Result<PokemonDTO>.NotFound("Category is not found");
-        if (pokemon.PokemonCategories.Any(p => p.CategoryId.Equals(request.CategoryId)
-        && p.PokemonId.Equals(request.PokemonId))) return Result<PokemonDTO>.Error("Pokemon is already in the category");
+        if (pokemon.PokemonCategories.Any(pokemonCategory => pokemonCategory.CategoryId.Equals(request.CategoryId)
+        && pokemonCategory.PokemonId.Equals(request.PokemonId))) return Result<PokemonDTO>.Error("Pokemon is already in the category");
         pokemon.PokemonCategories.Add(new PokemonCategory
         {
             CategoryId = request.CategoryId,

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCases.UseCase_Countries.Commands.UpdateCountry;
+using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PokemonManagingApp.Web.Endpoints.Countries;
@@ -24,6 +26,7 @@ public class UpdateCountryEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
     private readonly IMediator _mediator = mediator;
 
     [HttpPut]
+    [Authorize(Roles = "Admin")]
     [Route("/api/Countries/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
     [SwaggerOperation(
@@ -37,6 +40,7 @@ public class UpdateCountryEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
             Id = request.Id,
             Name = request.Name
         }, cancellationToken);
-        return result.IsSuccess ? NoContent() : BadRequest(result);
+        if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
+        return NoContent();
     }
 }

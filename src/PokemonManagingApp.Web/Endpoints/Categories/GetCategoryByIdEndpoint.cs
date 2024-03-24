@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PokemonManagingApp.UseCase.DTOs;
 using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Categories.Queries.GetCategoryById;
+using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PokemonManagingApp.Web.Endpoints.Categories;
@@ -21,6 +18,7 @@ public class GetCategoryByIdEndpoint(IMediator mediator) : EndpointBaseAsync.Wit
 {
     private readonly IMediator _mediator = mediator;
     [HttpGet]
+    [Authorize]
     [Route("api/Categories/{Id}")]
     [SwaggerOperation(
         Summary = "Get Category By Its Id",
@@ -32,6 +30,7 @@ public class GetCategoryByIdEndpoint(IMediator mediator) : EndpointBaseAsync.Wit
         {
             Id = request.Id,
         });
-        return result.IsSuccess ? Ok(result) : NotFound(result);
+        if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
+        return Ok(result);
     }
 }

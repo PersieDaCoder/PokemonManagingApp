@@ -62,7 +62,8 @@ public static class CountryMapper
                                   {
                                       Id = category.Id,
                                       Name = category.Name,
-                                      Status = category.Status
+                                      Status = category.Status,
+                                      CreatedAt = category.CreatedAt,
                                   }).ToList(),
                                 Reviews = pokemon.Reviews is null ? [] :
                                   pokemon.Reviews.Select(review => review == null ? null! : new ReviewDTO

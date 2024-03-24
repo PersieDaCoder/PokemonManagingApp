@@ -6,7 +6,6 @@ using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using PokemonManagingApp.UseCase.DTOs;
 using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Owners.Commands.Login;
 using Swashbuckle.AspNetCore.Annotations;
@@ -38,9 +37,10 @@ public class LoginEndpoint(IMediator mediator, IConfiguration configuration) : E
     OwnerDTO owner = result.Value;
 
     Claim[] claims = {
+        new Claim(JwtRegisteredClaimNames.Sid, owner.Id.ToString()),
        new Claim(JwtRegisteredClaimNames.Sub, owner.UserName),
         new Claim(JwtRegisteredClaimNames.Email, owner.Email),
-        new Claim(JwtRegisteredClaimNames.Sid, owner.Id.ToString())
+        new Claim(ClaimTypes.Role, owner.Role)
         };
 
     JwtSecurityToken Sectoken = new JwtSecurityToken(

@@ -8,6 +8,7 @@ using PokemonManagingApp.UseCases.DTOs;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
+using PokemonManagingApp.Web.Helpers;
 
 namespace PokemonManagingApp.Web.Endpoints.Pokemons;
 public record CreatePokemonRequest
@@ -19,6 +20,7 @@ public class CreatePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
 {
     private readonly IMediator _mediator = mediator;
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     [Route("/api/Pokemons")]
     [SwaggerOperation(
         Summary = "Create a new Pokemon",
@@ -32,6 +34,7 @@ public class CreatePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
             Name = request.Name,
             BirthDate = request.BirthDate
         }, cancellationToken);
-        return result.IsSuccess ? Ok(result) : BadRequest(result);
+        if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
+        return Created("", result);
     }
 }

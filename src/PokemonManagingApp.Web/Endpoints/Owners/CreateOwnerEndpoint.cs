@@ -1,9 +1,11 @@
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Owners.Commands.CreateOwner;
+using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PokemonManagingApp.Web.Endpoints.Owners;
@@ -22,6 +24,7 @@ public class CreateOwnerEndpoint(IMediator mediator) : EndpointBaseAsync.WithReq
     private readonly IMediator _mediator = mediator;
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     [Route("api/Owners")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
     [SwaggerOperation(
@@ -41,7 +44,7 @@ public class CreateOwnerEndpoint(IMediator mediator) : EndpointBaseAsync.WithReq
             PhoneNumber = request.PhoneNumber,
             GymId = request.GymId
         }, cancellationToken);
-        if (!result.IsSuccess) return BadRequest(result);
+        if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
         return Created("", result);
     }
 }

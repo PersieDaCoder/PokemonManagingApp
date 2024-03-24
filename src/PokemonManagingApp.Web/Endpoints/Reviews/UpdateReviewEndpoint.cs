@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCases.UseCase_Reviews.Commands.UpdateReview;
 using Swashbuckle.AspNetCore.Annotations;
@@ -27,6 +28,7 @@ public class UpdateReviewEndpoint(IMediator mediator) : EndpointBaseAsync.WithRe
 {
     private readonly IMediator _mediator = mediator;
     [HttpPut]
+    [Authorize]
     [Route("api/Reviews/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
     [SwaggerOperation(

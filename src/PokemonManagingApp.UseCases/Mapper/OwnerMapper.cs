@@ -1,5 +1,4 @@
 using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCase.DTOs;
 using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.Helpers;
 
@@ -56,6 +55,7 @@ public static class OwnerMapper
                             Id = c.Id,
                             Name = c.Name,
                             Status = c.Status,
+                            CreatedAt = c.CreatedAt,
                             Pokemons = c.PokemonCategories is null ? [] :
                                 c.PokemonCategories
                                 .Select(pc => pc.Pokemon)
@@ -82,6 +82,7 @@ public static class OwnerMapper
                             Title = review.Title,
                             Text = review.Text,
                             Status = review.Status,
+                            CreatedAt = review.CreatedAt,
                             Pokemon = review.Pokemon is null ? null! : new PokemonDTO
                             {
                                 Id = review.Pokemon.Id,
@@ -96,6 +97,7 @@ public static class OwnerMapper
                                         Id = c.Id,
                                         Name = c.Name,
                                         Status = c.Status,
+                                        CreatedAt = c.CreatedAt,
                                     }),
                             },
                         }).ToList(),

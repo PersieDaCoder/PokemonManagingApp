@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCases.UseCase_Owners.Commands.DisableOwner;
+using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PokemonManagingApp.Web.Endpoints.Owners;
@@ -22,6 +24,7 @@ public class DisableOwnerEndpoint(IMediator mediator) : EndpointBaseAsync.WithRe
 
 
   [HttpDelete]
+  [Authorize(Roles = "Admin")]
   [Route("api/Owners/{Id}")]
   [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
   [SwaggerOperation(
@@ -34,11 +37,7 @@ public class DisableOwnerEndpoint(IMediator mediator) : EndpointBaseAsync.WithRe
     {
       Id = request.Id
     }, cancellationToken);
-    if (!result.IsSuccess)
-    {
-      if (result.Errors.Any(err => err.Contains("not found"))) return NotFound(result);
-      return BadRequest(result);
-    }
+    if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
     return NoContent();
   }
 }

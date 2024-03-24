@@ -8,23 +8,21 @@ namespace PokemonManagingApp.Infrastructure.Data.Repository;
 public class UnitOfWork(ApplicationDBContext context, ICacheService cacheService) : IUnitOfWork
 {
     private readonly ApplicationDBContext _context = context;
-  private readonly ICacheService _cacheService = cacheService;
-  private ICategoryRepository? _categoryRepository;
-    private ICountryRepository? _countryRepository;
-
-    private IOwnerRepository? _ownerRepository;
-    private IPokemonCategoryRepository? _pokemonCategoryRepository;
-    private IPokemonOwnerRepository? _pokemonOwnerRepository;
-    private IPokemonRepository? _pokemonRepository;
-    private IReviewRepository? _reviewRepository;
-    private IReviewerRepository? _reviewerRepository;
-
+    private readonly ICacheService _cacheService = cacheService;
+    private ICategoryRepository _categoryRepository = null!;
+    private ICountryRepository _countryRepository = null!;
+    private IOwnerRepository _ownerRepository = null!;
+    private IPokemonCategoryRepository _pokemonCategoryRepository = null!;
+    private IPokemonOwnerRepository _pokemonOwnerRepository = null!;
+    private IPokemonRepository _pokemonRepository = null!;
+    private IReviewRepository _reviewRepository = null!;
+    private IGymRepository _gymRepository = null!;
 
     public ICategoryRepository CategoryRepository
     {
         get
         {
-            if (_categoryRepository == null)
+            if (_categoryRepository is null)
             {
                 _categoryRepository = new CategoryRepository(_context, _cacheService);
             }
@@ -36,7 +34,7 @@ public class UnitOfWork(ApplicationDBContext context, ICacheService cacheService
     {
         get
         {
-            if (_countryRepository == null)
+            if (_countryRepository is null)
             {
                 _countryRepository = new CountryRepository(_context, _cacheService);
             }
@@ -48,7 +46,7 @@ public class UnitOfWork(ApplicationDBContext context, ICacheService cacheService
     {
         get
         {
-            if (_ownerRepository == null)
+            if (_ownerRepository is null)
             {
                 _ownerRepository = new OwnerRepository(_context, _cacheService);
             }
@@ -60,7 +58,7 @@ public class UnitOfWork(ApplicationDBContext context, ICacheService cacheService
     {
         get
         {
-            if (_pokemonCategoryRepository == null)
+            if (_pokemonCategoryRepository is null)
             {
                 _pokemonCategoryRepository = new PokemonCategoryRepository(_context, _cacheService);
             }
@@ -72,7 +70,7 @@ public class UnitOfWork(ApplicationDBContext context, ICacheService cacheService
     {
         get
         {
-            if (_pokemonOwnerRepository == null)
+            if (_pokemonOwnerRepository is null)
             {
                 _pokemonOwnerRepository = new PokemonOwnerRepository(_context, _cacheService);
             }
@@ -84,7 +82,7 @@ public class UnitOfWork(ApplicationDBContext context, ICacheService cacheService
     {
         get
         {
-            if (_pokemonRepository == null)
+            if (_pokemonRepository is null)
             {
                 _pokemonRepository = new PokemonRepository(_context, _cacheService);
             }
@@ -96,7 +94,7 @@ public class UnitOfWork(ApplicationDBContext context, ICacheService cacheService
     {
         get
         {
-            if (_reviewRepository == null)
+            if (_reviewRepository is null)
             {
                 _reviewRepository = new ReviewRepository(_context, _cacheService);
             }
@@ -104,15 +102,15 @@ public class UnitOfWork(ApplicationDBContext context, ICacheService cacheService
         }
     }
 
-    public IReviewerRepository ReviewerRepository
+    public IGymRepository GymRepository
     {
         get
         {
-            if (_reviewerRepository == null)
+            if (_gymRepository is null)
             {
-                _reviewerRepository = new ReviewerRepository(_context, _cacheService);
+                _gymRepository = new GymRepository(_context, _cacheService);
             }
-            return _reviewerRepository;
+            return _gymRepository;
         }
     }
 

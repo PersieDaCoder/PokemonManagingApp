@@ -1,8 +1,10 @@
 ﻿using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCases.UseCase_Pokemons;
+using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PokemonManagingApp.Web.Endpoints.Pokemons;
@@ -15,6 +17,7 @@ public class DisablePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.With
     private readonly IMediator _mediator = mediator;
 
     [HttpDelete]
+    [Authorize(Roles = "Admin")]
     [Route("api/Pokemons/{Id:Guid}/disable")]
     [SwaggerOperation(
         Summary = "Disable selected Pokemon",
@@ -27,10 +30,7 @@ public class DisablePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.With
         {
             Id = request.Id
         }, cancellationToken).Result);
-        if (!result.IsSuccess)
-        {
-            return result.Errors.Any(err => err.Contains("not found")) ? NotFound(result) : BadRequest(result);
-        }
+        if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
         return NoContent();
     }
 }

@@ -1,6 +1,7 @@
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Reviews.Queries.GetAllReviews;
@@ -11,6 +12,7 @@ public class GetAllReviewsEndpoint(IMediator mediator) : EndpointBaseAsync.Witho
 {
     private readonly IMediator _mediator = mediator;
     [HttpGet]
+    [Authorize]
     [Route("/api/Reviews")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
     [SwaggerOperation(

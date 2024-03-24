@@ -22,8 +22,7 @@ public class OwnerRepository(ApplicationDBContext context, ICacheService cacheSe
             .Where(o => o.Status)
             .ToListAsync(cancellationToken);
         // set owners to cache
-        var expireTime = TimeSpan.FromMinutes(2);
-        _cacheService.SetData(key, owners, expireTime);
+        _cacheService.SetData(key, owners);
         return owners;
     }
 
@@ -42,8 +41,7 @@ public class OwnerRepository(ApplicationDBContext context, ICacheService cacheSe
             .FirstOrDefaultAsync(o => o.Id.Equals(id), cancellationToken);
         if (owner is null) return null!;
         // set owner to cache
-        var expireTime = TimeSpan.FromMinutes(2);
-        _cacheService.SetData(key, owner, expireTime);
+        _cacheService.SetData(key, owner);
         return owner;
     }
 }

@@ -20,8 +20,7 @@ public class ReviewRepository(ApplicationDBContext context, ICacheService cacheS
       .Where(r => r.Status)
       .ToListAsync(cancellationToken);
     // set reviews to cache
-    var expireTime = TimeSpan.FromMinutes(2);
-    _cacheService.SetData(key, reviews, expireTime);
+    _cacheService.SetData(key, reviews);
     return reviews;
   }
 
@@ -40,8 +39,7 @@ public class ReviewRepository(ApplicationDBContext context, ICacheService cacheS
       .SingleOrDefaultAsync(cancellationToken);
     if (review is null) return null!;
     // set review to cache
-    var expireTime = TimeSpan.FromMinutes(2);
-    _cacheService.SetData(key, review, expireTime);
+    _cacheService.SetData(key, review);
     return review;
   }
 }

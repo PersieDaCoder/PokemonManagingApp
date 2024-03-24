@@ -2,8 +2,10 @@ using System.ComponentModel.DataAnnotations;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCases.UseCase_Countries.Commands.DisableCountry;
+using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PokemonManagingApp.Web.Endpoints.Countries;
@@ -17,6 +19,7 @@ public class DisableCountryEndpoint(IMediator mediator) : EndpointBaseAsync.With
 {
     private readonly IMediator _mediator = mediator;
     [HttpDelete]
+    [Authorize(Roles = "Admin")]
     [Route("api/Countries/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
     [SwaggerOperation(
@@ -29,11 +32,7 @@ public class DisableCountryEndpoint(IMediator mediator) : EndpointBaseAsync.With
         {
             Id = request.Id
         });
-        if (!result.IsSuccess)
-        {
-            if (result.Errors.Any(err => err.ToLower().Contains("not found"))) return NotFound(result);
-            return BadRequest(result.Errors);
-        }
+        if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
         return NoContent();
     }
 }

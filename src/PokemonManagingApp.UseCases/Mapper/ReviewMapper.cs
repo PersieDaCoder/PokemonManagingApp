@@ -62,6 +62,7 @@ public static class ReviewMapper
                                     Id = category.Id,
                                     Name = category.Name,
                                     Status = category.Status,
+                                    CreatedAt = category.CreatedAt,
                                 }),
                         }),
                 }),
@@ -79,6 +80,7 @@ public static class ReviewMapper
                         Id = c.Id,
                         Name = c.Name,
                         Status = c.Status,
+                        CreatedAt = c.CreatedAt,
                     }),
                 Owners = review.Pokemon.PokemonOwners is null ? [] :
                     review.Pokemon.PokemonOwners
@@ -119,6 +121,7 @@ public static class ReviewMapper
                                             Id = category.Id,
                                             Name = category.Name,
                                             Status = category.Status,
+                                            CreatedAt = category.CreatedAt,
                                         }),
                                 }),
                             Gym = owner.Gym is null ? null! : new GymDTO
@@ -133,6 +136,7 @@ public static class ReviewMapper
                                 Id = owner.Country.Id,
                                 Name = owner.Country.Name,
                                 Status = owner.Country.Status,
+                                CreatedAt = owner.Country.CreatedAt,
                             }
                         }).ToList(),
             },

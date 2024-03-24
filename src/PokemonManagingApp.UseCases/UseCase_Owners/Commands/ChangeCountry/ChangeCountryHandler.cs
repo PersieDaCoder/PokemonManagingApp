@@ -20,7 +20,9 @@ public class ChangeCountryHandler(IUnitOfWork unitOfWork) : IRequestHandler<Chan
             .GetEntityByConditionAsync(country => country.Id.Equals(request.CountryId), false);
         if (checkingCountry is null) return Result.NotFound("Country is not found");
         // Change country
-        checkingOwner.CountryId = request.CountryId;
+        {
+            checkingOwner.CountryId = request.CountryId;
+        }
         await _unitOfWork.SaveChangesAsync();
         return Result.SuccessWithMessage("Country is changed successfully");
     }

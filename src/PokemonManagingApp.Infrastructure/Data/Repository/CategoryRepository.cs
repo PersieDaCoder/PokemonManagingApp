@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
 using PokemonManagingApp.Core.Interfaces.Caching;
 using PokemonManagingApp.Core.Interfaces.Data.Repositories;
 using PokemonManagingApp.Core.Models;
@@ -21,8 +20,7 @@ public class CategoryRepository(ApplicationDBContext context, ICacheService cach
         .Where(c => c.Status)
         .ToListAsync(cancellationToken);
     // set categories to cache
-    var expirationTime = TimeSpan.FromMinutes(2);
-    _cacheService.SetData(key, categories, expirationTime);
+    _cacheService.SetData(key, categories);
     return categories;
   }
 
@@ -41,8 +39,7 @@ public class CategoryRepository(ApplicationDBContext context, ICacheService cach
       .SingleOrDefaultAsync(cancellationToken);
     if (category is null) return null!;
     // set category to cache
-    var expirationTime = TimeSpan.FromMinutes(2);
-    _cacheService.SetData(key, category, expirationTime);
+    _cacheService.SetData(key, category);
     return category;
   }
 }

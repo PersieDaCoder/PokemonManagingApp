@@ -1,9 +1,11 @@
 ﻿using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Categories;
+using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PokemonManagingApp.Web.Endpoints.Categories;
@@ -13,6 +15,7 @@ public class GetAllCategoriesEndpoint(IMediator mediator) : EndpointBaseAsync.Wi
   private readonly IMediator _mediator = mediator;
 
   [HttpGet]
+  [Authorize]
   [Route("api/Categories")]
   [SwaggerOperation(
     Summary = "Get All Categories",
@@ -21,8 +24,9 @@ public class GetAllCategoriesEndpoint(IMediator mediator) : EndpointBaseAsync.Wi
   [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
   public override async Task<ActionResult<Result>> HandleAsync(CancellationToken cancellationToken = default)
   {
-    Result<IEnumerable<CategoryDTO>> getAllCategoriesResult =
+    Result<IEnumerable<CategoryDTO>> result =
         await _mediator.Send(new GetAllCategoriesQuery(), cancellationToken);
-    return getAllCategoriesResult.IsSuccess ? Ok(getAllCategoriesResult) : NotFound(getAllCategoriesResult);
+    if(!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
+    return Ok(result);
   }
 }

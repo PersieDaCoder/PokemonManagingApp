@@ -25,8 +25,7 @@ public class CountryRepository(ApplicationDBContext context, ICacheService cache
         .Where(c => c.Status)
         .ToListAsync(cancellationToken);
     // set countries to cache
-    var expirationTime = TimeSpan.FromMinutes(2);
-    _cacheService.SetData(key, countries, expirationTime);
+    _cacheService.SetData(key, countries);
     return countries;
   }
 
@@ -44,8 +43,7 @@ public class CountryRepository(ApplicationDBContext context, ICacheService cache
       .SingleOrDefaultAsync(cancellationToken);
     if (country is null) return null!;
     // set country to cache
-    var expirationTime = TimeSpan.FromMinutes(2);
-    _cacheService.SetData(key, country, expirationTime);
+    _cacheService.SetData(key, country);
     return country;
   }
 }

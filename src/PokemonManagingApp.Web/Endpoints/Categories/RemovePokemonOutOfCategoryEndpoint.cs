@@ -2,8 +2,10 @@ using System.ComponentModel.DataAnnotations;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCases.UseCase_Categories.Commands.RemovePokemonOutOfCategory;
+using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PokemonManagingApp.Web.Endpoints.Categories;
@@ -20,6 +22,7 @@ public class RemovePokemonOutOfCategoryEndpoint(IMediator mediator) : EndpointBa
     private readonly IMediator _mediator = mediator;
 
     [HttpDelete]
+    [Authorize]
     [Route("api/Categories/{CategoryId:guid}/Pokemons/{PokemonId:guid}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
     [SwaggerOperation(
@@ -33,12 +36,7 @@ public class RemovePokemonOutOfCategoryEndpoint(IMediator mediator) : EndpointBa
             CategoryId = request.CategoryId,
             PokemonId = request.PokemonId
         }, cancellationToken);
-        if (!result.IsSuccess)
-        {
-            if (result.Errors.Any(err => err.Contains("not found", StringComparison.OrdinalIgnoreCase)))
-                return NotFound(result);
-            return BadRequest(result);
-        }
+        if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
         return NoContent();
     }
 }

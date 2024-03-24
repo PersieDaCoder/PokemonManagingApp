@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCases.UseCase_Reviews.Commands.DisableReview;
 using Swashbuckle.AspNetCore.Annotations;
@@ -22,6 +23,7 @@ public class DisableReviewEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
     private readonly IMediator _mediator = mediator;
 
     [HttpDelete]
+    [Authorize]
     [Route("api/Reviews/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
     [SwaggerOperation(

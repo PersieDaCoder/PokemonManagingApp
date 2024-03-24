@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Reviews.Commands.CreateReview;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -27,6 +29,7 @@ public class CreateReviewEndpoint(IMediator mediator) : EndpointBaseAsync.WithRe
     private readonly IMediator _mediator = mediator;
 
     [HttpPost]
+    [Authorize]
     [Route("api/Reviews")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
     [SwaggerOperation(
@@ -35,11 +38,11 @@ public class CreateReviewEndpoint(IMediator mediator) : EndpointBaseAsync.WithRe
     )]
     public override async Task<ActionResult> HandleAsync(CreateReviewRequest request, CancellationToken cancellationToken = default)
     {
-        Result result = await _mediator.Send(new CreateReviewCommand
+        Result<ReviewDTO> result = await _mediator.Send(new CreateReviewCommand
         {
             Text = request.Text,
             Title = request.Title,
-            PokemonId = request.PokemonId
+            PokemonId = request.PokemonId,
         });
         if (!result.IsSuccess) return BadRequest(result.Errors);
         return Created("", result);

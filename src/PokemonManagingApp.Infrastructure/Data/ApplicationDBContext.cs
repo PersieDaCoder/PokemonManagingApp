@@ -12,7 +12,6 @@ public class ApplicationDBContext : DbContext
     public DbSet<PokemonOwner> PokemonOwners => Set<PokemonOwner>();
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Owner> Owners => Set<Owner>();
-    public DbSet<Reviewer> Reviewers => Set<Reviewer>();
     public DbSet<Review> Reviews => Set<Review>();
     public DbSet<Gym> Gyms => Set<Gym>();
     public DbSet<OwnerReview> OwnerReviews => Set<OwnerReview>();
@@ -30,7 +29,8 @@ public class ApplicationDBContext : DbContext
         modelBuilder.HasDefaultSchema("PokemonDB");
         {
             modelBuilder.Entity<Owner>().HasData(
-                new Owner{
+                new Owner
+                {
                     CreatedAt = new DateTime(1996, 1, 1),
                     Email = "thinhdpham2510@gmail.com",
                     Password = "Ph@mDucThinh25102003",
@@ -108,6 +108,22 @@ public class ApplicationDBContext : DbContext
                 {
                     Id = Guid.Parse("f3b3b3b4-1b3b-4b3b-8b3b-1b3b3b3b3b3b"),
                     Name = "Pewter City Gym"
+                });
+            modelBuilder.Entity<PokemonCategory>().HasData(
+                new PokemonCategory
+                {
+                    PokemonId = Guid.Parse("c0387583-aead-4460-a86b-0bf82c2bd518"),
+                    CategoryId = Guid.Parse("8c684719-e0cb-4b00-9d42-f6fe961900f8")
+                },
+                new PokemonCategory
+                {
+                    PokemonId = Guid.Parse("099c7edc-4e2c-4e6d-bc04-141c1549399a"),
+                    CategoryId = Guid.Parse("a8ab46d3-27cd-4c68-bec2-f73471d653f8")
+                },
+                new PokemonCategory
+                {
+                    PokemonId = Guid.Parse("799a8b34-c056-41fe-8ac2-ef4d906ad1dd"),
+                    CategoryId = Guid.Parse("361a29e0-ec56-411a-8753-4521f9088da3")
                 });
         }
     }
