@@ -1,0 +1,5 @@
+# Remove DB Migrations things
+Migrations/
+# Ignore all obj folders
+obj/
+bin/

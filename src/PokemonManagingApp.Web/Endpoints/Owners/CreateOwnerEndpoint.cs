@@ -15,9 +15,12 @@ namespace PokemonManagingApp.Web.Endpoints.Owners;
 
 public record CreateOwnerRequest
 {
-    public string Name { get; set; } = null!;
-    public string Gym { get; set; } = null!;
-    public Guid CountryId { get; set; }
+    public string Email {get;init;} = null!;
+    public string Password { get; init; } = null!;
+    public string PhoneNumber { get; set; } = null!;
+    public string UserName { get; init; } = null!;
+    public string Gym { get; init; } = null!;
+    public Guid CountryId { get; init; }
 }
 public class CreateOwnerEndpoint(IMediator mediator) : EndpointBaseAsync.WithRequest<CreateOwnerRequest>.WithActionResult
 {
@@ -36,9 +39,12 @@ public class CreateOwnerEndpoint(IMediator mediator) : EndpointBaseAsync.WithReq
     {
         Result<OwnerDTO> result = await _mediator.Send(new CreateOwnerCommand
         {
-            Name = request.Name,
             CountryId = request.CountryId,
-            Gym = request.Gym,
+            UserName = request.UserName,
+            Gmail = request.Email,
+            Password = request.Password,
+            PhoneNumber = request.PhoneNumber,
+            Gym = request.Gym
         }, cancellationToken);
         if (!result.IsSuccess) return BadRequest(result);
         return Created("", result);

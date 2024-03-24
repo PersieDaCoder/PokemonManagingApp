@@ -16,7 +16,7 @@ public static class CountryMapper
                   country.Owners.Select(owner => owner == null ? null! : new OwnerDTO
                   {
                       Id = owner.Id,
-                      Name = owner.Name,
+                      UserName = owner.UserName ?? string.Empty,
                       Status = owner.Status,
                       CountryId = owner.CountryId,
                       Gym = owner.Gym,
@@ -44,7 +44,7 @@ public static class CountryMapper
                                   .Select(owner => owner == null ? null! : new OwnerDTO
                                   {
                                       Id = owner.Id,
-                                      Name = owner.Name,
+                                      UserName = owner.UserName ?? string.Empty,
                                       Status = owner.Status,
                                       CountryId = owner.CountryId,
                                       Gym = owner.Gym,

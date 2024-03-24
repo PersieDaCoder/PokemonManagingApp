@@ -11,6 +11,6 @@ namespace PokemonManagingApp.UseCases.UseCase_Owners.Commands.AddPokemonToCollec
 
 public record AddPokemonCommand : IRequest<Result<PokemonDTO>>
 {
-    public string OwnerId { get; init; } = null!;
+    public Guid OwnerId { get; init; }
     public Guid PokemonId { get; init; }
 }

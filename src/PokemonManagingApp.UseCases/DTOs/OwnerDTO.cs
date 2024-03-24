@@ -8,10 +8,12 @@ namespace PokemonManagingApp.UseCase.DTOs;
 
 public record OwnerDTO
 {
-    public required string Id { get; init; }
-    public required Guid CountryId { get; init; }
-    public required string Name { get; init; }
-    public required string Gym { get; init; }
+    public Guid Id { get; init; }
+    public Guid CountryId { get; init; }
+    public string UserName { get; init; } = null!;
+    public string Email { get; init; } = null!;
+    public string Password { get; init; } = null!;
+    public string Gym { get; init; } = null!;
     public bool Status { get; init; }
     public CountryDTO? Country{ get; init;}
     public IEnumerable<PokemonDTO> Pokemons { get; set; } = new List<PokemonDTO>();

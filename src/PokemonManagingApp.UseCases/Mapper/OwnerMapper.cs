@@ -9,10 +9,12 @@ public static class OwnerMapper
       => new OwnerDTO
       {
           Id = owner.Id,
-          Name = owner.Name,
+          UserName = owner.UserName ?? string.Empty,
           CountryId = owner.CountryId,
           Gym = owner.Gym,
           Status = owner.Status,
+          Email = owner.Email,
+          Password = owner.Password,
           Country = owner.Country is null ? null! : new CountryDTO
           {
               Id = owner.Country.Id,
@@ -45,24 +47,6 @@ public static class OwnerMapper
                                     Name = p.Name,
                                     BirthDate = p.BirthDate,
                                     Status = p.Status,
-                                    Owners = p.PokemonOwners is null ? [] :
-                                    p.PokemonOwners
-                                        .Where(pokemonOwner => pokemonOwner.PokemonId == p.Id)
-                                        .Select(pokemonOwner => pokemonOwner.Owner)
-                                        .Select(owner => owner == null ? null! : new OwnerDTO
-                                        {
-                                            Id = owner.Id,
-                                            Name = owner.Name,
-                                            CountryId = owner.CountryId,
-                                            Gym = owner.Gym,
-                                            Status = owner.Status,
-                                            Country = owner.Country is null ? null! : new CountryDTO
-                                            {
-                                                Id = owner.Country.Id,
-                                                Name = owner.Country.Name,
-                                                Status = owner.Country.Status
-                                            }
-                                        }).ToList(),
                                     Reviews = p.Reviews is null ? [] :
                                         p.Reviews.Select(review => new ReviewDTO
                                         {

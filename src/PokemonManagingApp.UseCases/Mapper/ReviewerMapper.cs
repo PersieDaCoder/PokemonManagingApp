@@ -44,7 +44,7 @@ public static class ReviewerMapper
                         .Select(o => o == null ? null! : new OwnerDTO
                         {
                             Id = o.Id,
-                            Name = o.Name,
+                            UserName = o.UserName ?? string.Empty,
                             CountryId = o.CountryId,
                             Gym = o.Gym,
                             Status = o.Status,

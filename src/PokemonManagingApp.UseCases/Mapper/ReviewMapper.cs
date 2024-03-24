@@ -40,7 +40,7 @@ public static class ReviewMapper
                         {
                             Id = owner.Id,
                             Gym = owner.Gym,
-                            Name = owner.Name,
+                            UserName = owner.UserName ?? string.Empty,
                             CountryId = owner.CountryId,
                             Status = owner.Status,
                             Country = owner.Country is null ? null! : new CountryDTO

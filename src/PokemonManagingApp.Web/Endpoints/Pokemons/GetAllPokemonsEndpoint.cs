@@ -1,5 +1,6 @@
 using Ardalis.ApiEndpoints;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCase.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Pokemons;
@@ -10,6 +11,7 @@ public class GetAllPokemonsEndpoint(IMediator mediator) : EndpointBaseAsync.With
 {
   private readonly IMediator _mediator = mediator;
   [HttpGet]
+  [Authorize]
   [Route("/api/Pokemons")]
   [SwaggerOperation(
         Summary = "Get All Pokemons",

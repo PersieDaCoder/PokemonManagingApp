@@ -20,7 +20,7 @@ public class UpdateOwnerHandler(IUnitOfWork unitOfWork) : IRequestHandler<Update
         if (checkingOwner is null) return Result.NotFound("Owner is not found");
         if (checkingCountry is null) return Result.NotFound("Country is not found");
         {
-            checkingOwner.Name = request.Name;
+            checkingOwner.UserName = request.Name;
             checkingOwner.Gym = request.Gym;
             checkingOwner.CountryId = request.CountryId;
         }
