@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PokemonManagingApp.UseCases.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Owners.Queries.GetOwnerById;
@@ -19,6 +20,7 @@ public class GetOwnerByIdEndpoint(IMediator mediator) : EndpointBaseAsync.WithRe
 {
     private readonly IMediator _mediator = mediator;
     [HttpGet]
+    [Authorize]
     [Route("/api/Owners/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
     [SwaggerOperation(
