@@ -36,9 +36,8 @@ public static class CountryMapper
                           Status = owner.Gym.Status,
                           CreatedAt = owner.Gym.CreatedAt,
                       },
-                      Reviews = owner.OwnerReviews is null ? [] :
-                      owner.OwnerReviews.Select(ownerReview => ownerReview == null ? null! : ownerReview.Review)
-                      .Select(review => review == null ? null! : new ReviewDTO
+                      Reviews = owner.Reviews is null ? [] :
+                      owner.Reviews.Select(review => review == null ? null! : new ReviewDTO
                       {
                           Id = review.Id,
                           Title = review.Title,

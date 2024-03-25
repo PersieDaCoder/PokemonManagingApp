@@ -14,7 +14,7 @@ namespace PokemonManagingApp.Web.Endpoints.Categories;
 public record CreateCategoryRequest
 {
   [Required(ErrorMessage = "Category Name is required")]
-  [FromRoute] public string Name { get; init; } = null!;
+  [FromBody] public string Name { get; init; } = null!;
 }
 public class CreateCategoryEndpoint(IMediator mediator) : EndpointBaseAsync.WithRequest<CreateCategoryRequest>.WithActionResult
 {

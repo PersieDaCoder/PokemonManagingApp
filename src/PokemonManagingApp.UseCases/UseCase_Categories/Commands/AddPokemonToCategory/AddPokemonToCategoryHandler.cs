@@ -18,7 +18,7 @@ public class AddPokemonToCategoryHandler(IUnitOfWork unitOfWork) : IRequestHandl
         if (category is null) return Result<PokemonDTO>.NotFound("Category is not found");
         if (pokemon.PokemonCategories.Any(pokemonCategory => pokemonCategory.CategoryId.Equals(request.CategoryId)
         && pokemonCategory.PokemonId.Equals(request.PokemonId))) return Result<PokemonDTO>.Error("Pokemon is already in the category");
-        pokemon.PokemonCategories.Add(new PokemonCategory
+        _unitOfWork.PokemonCategoryRepository.Add(new PokemonCategory
         {
             CategoryId = request.CategoryId,
             PokemonId = request.PokemonId,

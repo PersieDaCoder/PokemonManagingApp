@@ -9,7 +9,7 @@ public class Pokemon
     public Guid Id { get; set; } = Guid.NewGuid();
     [MaxLength(50)]
     public required string Name { get; set; }
-    public required DateTime BirthDate { get; set; }
+    public required DateTime BirthDate { get; set; } = DateTime.UtcNow;
     public bool Status { get; set; } = true;
     // Properties
     public ICollection<Review> Reviews { get; set; } = new List<Review>();

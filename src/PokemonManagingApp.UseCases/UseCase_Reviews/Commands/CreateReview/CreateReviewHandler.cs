@@ -20,6 +20,7 @@ public class CreateReviewHandler(IUnitOfWork unitOfWork) : IRequestHandler<Creat
             Title = request.Title,
             Text = request.Text,
             PokemonId = request.PokemonId,
+            OwnerId = request.OwnerId,
         };
         _unitOfWork.ReviewRepository.Add(review);
         await _unitOfWork.SaveChangesAsync();

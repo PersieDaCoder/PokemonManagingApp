@@ -11,9 +11,9 @@ public class PokemonOwner
     [Key]
     [ForeignKey(nameof(Owner))]
     public required Guid OwnerId { get; set; }
-    public DateTime CreatedAt { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public bool Status { get; set; } = true;
 
-    public Pokemon? Pokemon { get; set; }
-    public Owner? Owner { get; set; }
+    public Pokemon Pokemon { get; set; } = null!;
+    public Owner Owner { get; set; } = null!;
 }

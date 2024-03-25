@@ -4,7 +4,7 @@ using PokemonManagingApp.UseCases.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Categories.Queries.GetPokemonsByCategoryId;
 
-public class GetPokemonByCategoryIdQuery : IRequest<Result<IEnumerable<PokemonDTO>>>
+public record GetPokemonByCategoryIdQuery : IRequest<Result<IEnumerable<PokemonDTO>>>
 {
-    public Guid CategoryId { get; set; }
+    public Guid CategoryId { get; init; }
 }

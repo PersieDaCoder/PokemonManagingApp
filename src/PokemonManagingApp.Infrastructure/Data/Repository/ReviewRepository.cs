@@ -7,7 +7,7 @@ namespace PokemonManagingApp.Infrastructure.Data.Repository;
 
 public class ReviewRepository(ApplicationDBContext context, ICacheService cacheService) : BaseRepository<Review>(context, cacheService), IReviewRepository
 {
-  public async Task<IEnumerable<Review>> GetAllReviewsAsync(CancellationToken cancellationToken = default)
+  public async Task<IEnumerable<Review>> GetReviewsAsync(CancellationToken cancellationToken = default)
   {
     // get reviews from cache
     string key = "reviews-all";
@@ -17,6 +17,26 @@ public class ReviewRepository(ApplicationDBContext context, ICacheService cacheS
     IEnumerable<Review> reviews = await _context
       .Reviews.AsNoTracking()
       .Include(r => r.Pokemon).ThenInclude(p => p == null ? null! : p.PokemonCategories).ThenInclude(pc => pc.Category)
+      .Include(r => r.Owner).ThenInclude(o => o == null ? null! : o.PokemonOwners).ThenInclude(po => po.Pokemon)
+      .Where(r => r.Status)
+      .ToListAsync(cancellationToken);
+    // set reviews to cache
+    _cacheService.SetData(key, reviews);
+    return reviews;
+  }
+
+  public async Task<IEnumerable<Review>> GetReviewsByOwnerIdAsync(Guid ownerId, CancellationToken cancellationToken = default)
+  {
+    string key = $"reviews-owner-{ownerId}";
+    // get reviews from cache
+    IEnumerable<Review>? cachedReviews = _cacheService.GetData<IEnumerable<Review>>(key);
+    if (cachedReviews is not null) return cachedReviews;
+    // get reviews from database
+    IEnumerable<Review> reviews = await _context
+      .Reviews.AsNoTracking()
+      .Include(r => r.Pokemon).ThenInclude(p => p == null ? null! : p.PokemonCategories).ThenInclude(pc => pc.Category)
+      .Include(r => r.Owner).ThenInclude(o => o == null ? null! : o.PokemonOwners).ThenInclude(po => po.Pokemon)
+      .Where(r => r.OwnerId.Equals(ownerId))
       .Where(r => r.Status)
       .ToListAsync(cancellationToken);
     // set reviews to cache
@@ -34,6 +54,7 @@ public class ReviewRepository(ApplicationDBContext context, ICacheService cacheS
     Review? review = await _context
       .Reviews.AsNoTracking()
       .Include(r => r.Pokemon).ThenInclude(p => p == null ? null! : p.PokemonCategories).ThenInclude(pc => pc.Category)
+      .Include(r => r.Owner).ThenInclude(o => o == null ? null! : o.PokemonOwners).ThenInclude(po => po.Pokemon)
       .Where(r => r.Id.Equals(id))
       .Where(r => r.Status)
       .SingleOrDefaultAsync(cancellationToken);
@@ -41,5 +62,24 @@ public class ReviewRepository(ApplicationDBContext context, ICacheService cacheS
     // set review to cache
     _cacheService.SetData(key, review);
     return review;
+  }
+
+  public async Task<IEnumerable<Review>> GetReviewsByPokemonIdAsync(Guid pokemonId, CancellationToken cancellationToken = default)
+  {
+    string key = $"reviews-pokemon-{pokemonId}";
+    // get reviews from cache
+    IEnumerable<Review>? cachedReviews = _cacheService.GetData<IEnumerable<Review>>(key);
+    if (cachedReviews is not null) return cachedReviews;
+    // get reviews from database
+    IEnumerable<Review> reviews = await _context
+      .Reviews.AsNoTracking()
+      .Include(r => r.Pokemon).ThenInclude(p => p == null ? null! : p.PokemonCategories).ThenInclude(pc => pc.Category)
+      .Include(r => r.Owner).ThenInclude(o => o == null ? null! : o.PokemonOwners).ThenInclude(po => po.Pokemon)
+      .Where(r => r.PokemonId.Equals(pokemonId))
+      .Where(r => r.Status)
+      .ToListAsync(cancellationToken);
+    // set reviews to cache
+    _cacheService.SetData(key, reviews);
+    return reviews;
   }
 }

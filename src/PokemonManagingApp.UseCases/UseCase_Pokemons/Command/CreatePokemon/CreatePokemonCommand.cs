@@ -8,4 +8,5 @@ public record CreatePokemonCommand : IRequest<Result<PokemonDTO>>
 {
     public required string Name { get; set; }
     public required DateTime BirthDate { get; set; }
+    public required Guid CategoryId { get; set; }
 }

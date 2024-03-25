@@ -17,10 +17,12 @@ public class Review
   [MaxLength(50)]
   public string Text { get; set; } = string.Empty;
   public required Guid PokemonId { get; set; }
+  public required Guid OwnerId { get; set; }
   public bool Status { get; set; } = true;
   public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
   // Navigation properties
   [ForeignKey(nameof(PokemonId))]
-  public Pokemon? Pokemon { get; set; }
-  public ICollection<OwnerReview> OwnerReviews { get; set; } = new List<OwnerReview>();
+  public Pokemon Pokemon { get; set; } = null!;
+  [ForeignKey(nameof(OwnerId))]
+  public Owner Owner { get; set; } = null!;
 }

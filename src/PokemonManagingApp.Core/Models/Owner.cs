@@ -27,5 +27,5 @@ public class Owner
     [ForeignKey(nameof(GymId))]
     public Gym Gym { get; set; } = null!;
     public ICollection<PokemonOwner> PokemonOwners { get; set; } = new List<PokemonOwner>();
-    public ICollection<OwnerReview> OwnerReviews { get; set; } = new List<OwnerReview>();
+    public ICollection<Review> Reviews { get; set; } = new List<Review>();
 }

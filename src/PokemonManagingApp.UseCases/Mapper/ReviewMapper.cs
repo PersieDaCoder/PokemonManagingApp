@@ -15,23 +15,22 @@ public static class ReviewMapper
             Status = review.Status,
             Title = review.Title,
             CreatedAt = review.CreatedAt,
-            Owners = review.OwnerReviews is null ? [] : review.OwnerReviews.Select(ownerReview => ownerReview == null ? null! : ownerReview.Owner)
-                .Select(owner => new OwnerDTO
+            Owner = review.Owner is null ? null! : new OwnerDTO
+            {
+                Id = review.Owner.Id,
+                UserName = review.Owner.UserName ?? string.Empty,
+                Status = review.Owner.Status,
+                Country = review.Owner.Country is null ? null! : new CountryDTO
                 {
-                    Id = owner.Id,
-                    UserName = owner.UserName ?? string.Empty,
-                    Status = owner.Status,
-                    Country = owner.Country is null ? null! : new CountryDTO
-                    {
-                        Id = owner.Country.Id,
-                        Name = owner.Country.Name,
-                        Status = owner.Country.Status,
-                        CreatedAt = owner.Country.CreatedAt,
-                    },
-                    CreatedAt = owner.CreatedAt,
-                    Email = owner.Email,
-                    Role = owner.Role.ConvertIntToString(),
-                    Reviews = owner.OwnerReviews is null ? [] : owner.OwnerReviews.Select(ownerReview => ownerReview == null ? null! : ownerReview.Review)
+                    Id = review.Owner.Country.Id,
+                    Name = review.Owner.Country.Name,
+                    Status = review.Owner.Country.Status,
+                    CreatedAt = review.Owner.Country.CreatedAt,
+                },
+                CreatedAt = review.Owner.CreatedAt,
+                Email = review.Owner.Email,
+                Role = review.Owner.Role.ConvertIntToString(),
+                Reviews = review.Owner.Reviews is null ? [] : review.Owner.Reviews
                         .Select(review => new ReviewDTO
                         {
                             Id = review.Id,
@@ -40,14 +39,14 @@ public static class ReviewMapper
                             Status = review.Status,
                             CreatedAt = review.CreatedAt,
                         }).ToList(),
-                    Gym = owner.Gym is null ? null! : new GymDTO
-                    {
-                        Id = owner.Gym.Id,
-                        Name = owner.Gym.Name,
-                        Status = owner.Gym.Status,
-                        CreatedAt = owner.Gym.CreatedAt,
-                    },
-                    Pokemons = owner.PokemonOwners is null ? [] : owner.PokemonOwners
+                Gym = review.Owner.Gym is null ? null! : new GymDTO
+                {
+                    Id = review.Owner.Gym.Id,
+                    Name = review.Owner.Gym.Name,
+                    Status = review.Owner.Gym.Status,
+                    CreatedAt = review.Owner.Gym.CreatedAt,
+                },
+                Pokemons = review.Owner.PokemonOwners is null ? [] : review.Owner.PokemonOwners
                         .Select(po => po.Pokemon)
                         .Select(pokemon => pokemon == null ? null! : new PokemonDTO
                         {
@@ -65,7 +64,7 @@ public static class ReviewMapper
                                     CreatedAt = category.CreatedAt,
                                 }),
                         }),
-                }),
+            },
             Pokemon = review.Pokemon is null ? null! : new PokemonDTO
             {
                 Id = review.Pokemon.Id,
@@ -94,16 +93,31 @@ public static class ReviewMapper
                             CreatedAt = owner.CreatedAt,
                             Email = owner.Email,
                             Role = owner.Role.ConvertIntToString(),
-                            Reviews = owner.OwnerReviews is null ? [] :
-                                owner.OwnerReviews.Select(ownerReview => ownerReview == null ? null! : ownerReview.Review)
-                                .Select(review => review == null ? null! : new ReviewDTO
+                            Reviews = owner.Reviews is null ? [] : owner.Reviews.Select(review => new ReviewDTO
+                            {
+                                Id = review.Id,
+                                Title = review.Title,
+                                Text = review.Text,
+                                Status = review.Status,
+                                CreatedAt = review.CreatedAt,
+                                Pokemon = review.Pokemon is null ? null! : new PokemonDTO
                                 {
-                                    Id = review.Id,
-                                    Title = review.Title,
-                                    Text = review.Text,
-                                    Status = review.Status,
-                                    CreatedAt = review.CreatedAt,
-                                }).ToList(),
+                                    Id = review.Pokemon.Id,
+                                    Name = review.Pokemon.Name,
+                                    BirthDate = review.Pokemon.BirthDate,
+                                    Status = review.Pokemon.Status,
+                                    Categories = review.Pokemon.PokemonCategories is null ? [] :
+                                        review.Pokemon.PokemonCategories
+                                        .Select(pc => pc.Category)
+                                        .Select(c => c == null ? null! : new CategoryDTO
+                                        {
+                                            Id = c.Id,
+                                            Name = c.Name,
+                                            Status = c.Status,
+                                            CreatedAt = c.CreatedAt,
+                                        }),
+                                },
+                            }).ToList(),
                             Pokemons = owner.PokemonOwners is null ? [] :
                                 owner.PokemonOwners
                                 .Select(po => po.Pokemon)

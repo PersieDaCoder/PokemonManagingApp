@@ -9,6 +9,6 @@ public record ReviewDTO
     public string Text { get; init; } = null!;
     public bool Status { get; init; }
     public DateTime CreatedAt { get; init; }
-    public PokemonDTO? Pokemon { get; set; }
-    public IEnumerable<OwnerDTO> Owners {get; init;} = new List<OwnerDTO>();
+    public PokemonDTO? Pokemon { get; set; } = null!;
+    public OwnerDTO? Owner {get; init;} = null!;
 }

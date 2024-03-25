@@ -4,6 +4,9 @@ namespace PokemonManagingApp.Core.Interfaces.Data.Repositories;
 
 public interface IReviewRepository : IBaseRepository<Review>
 {
-  public Task<IEnumerable<Review>> GetAllReviewsAsync(CancellationToken cancellationToken = default);
-  public Task<Review> GetReviewByIdAsync(Guid id, CancellationToken cancellationToken = default);
+  // No Tracking Methods
+  Task<IEnumerable<Review>> GetReviewsAsync(CancellationToken cancellationToken = default);
+  Task<IEnumerable<Review>> GetReviewsByOwnerIdAsync(Guid ownerId, CancellationToken cancellationToken = default);
+  Task<IEnumerable<Review>> GetReviewsByPokemonIdAsync(Guid pokemonId, CancellationToken cancellationToken = default);
+  Task<Review> GetReviewByIdAsync(Guid id, CancellationToken cancellationToken = default);
 }

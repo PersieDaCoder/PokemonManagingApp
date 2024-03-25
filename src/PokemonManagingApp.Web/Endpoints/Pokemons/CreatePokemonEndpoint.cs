@@ -15,6 +15,7 @@ public record CreatePokemonRequest
 {
     [FromBody] public required string Name { get; init; }
     [FromBody] public required DateTime BirthDate { get; init; }
+    [FromBody] public required Guid CategoryId { get; init; }
 }
 public class CreatePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.WithRequest<CreatePokemonRequest>.WithActionResult<Result<PokemonDTO>>
 {
@@ -32,7 +33,8 @@ public class CreatePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
         Result<PokemonDTO> result = await _mediator.Send(new CreatePokemonCommand
         {
             Name = request.Name,
-            BirthDate = request.BirthDate
+            BirthDate = request.BirthDate,
+            CategoryId = request.CategoryId
         }, cancellationToken);
         if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
         return Created("", result);

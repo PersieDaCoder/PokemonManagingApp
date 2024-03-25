@@ -1,20 +1,22 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using PokemonManagingApp.Core.Models;
 using PokemonManagingApp.Infrastructure;
 using PokemonManagingApp.Infrastructure.Data;
 using PokemonManagingApp.UseCases;
-using PokemonManagingApp.Web.Middleware;
 using PokemonManagingApp.Web.Middleware.ExceptionHandler;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+// Add other dependency injection to the program.
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddUseCases();
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddAuthorizationBuilder();
@@ -26,6 +28,7 @@ builder.Services.AddProblemDetails();
 var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
 var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
 
+builder.Services.AddSwaggerGen();
 builder.Services.AddAuthentication(option =>
 {
   option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -74,9 +77,6 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// Add other dependency injection to the program.
-builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddUseCases();
 
 var app = builder.Build();
 

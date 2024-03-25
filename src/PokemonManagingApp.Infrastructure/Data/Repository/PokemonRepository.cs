@@ -57,7 +57,8 @@ public class PokemonRepository(ApplicationDBContext context, ICacheService cache
       .Pokemons
       .AsNoTracking()
       .Include(p => p.PokemonCategories).ThenInclude(pc => pc.Category)
-      .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner)
+      .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner).ThenInclude(owner => owner == null ? null! : owner.Gym)
+      .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner).ThenInclude(owner => owner == null ? null! : owner.Country)
       .Include(p => p.Reviews)
       .Where(p => p.PokemonCategories.Any(pc => pc.CategoryId.Equals(categoryId) && pc.Status))
       .Where(p => p.Status)
@@ -79,7 +80,8 @@ public class PokemonRepository(ApplicationDBContext context, ICacheService cache
       .Pokemons
       .AsNoTracking()
       .Include(p => p.PokemonCategories).ThenInclude(pc => pc.Category)
-      .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner)
+      .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner).ThenInclude(owner => owner == null ? null! : owner.Gym)
+      .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner).ThenInclude(owner => owner == null ? null! : owner.Country)
       .Include(p => p.Reviews)
       .Where(p => p.PokemonOwners.Any(po => po.OwnerId.Equals(userId) && po.Status))
       .Where(p => p.Status)

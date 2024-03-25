@@ -14,10 +14,10 @@ namespace PokemonManagingApp.Web.Endpoints.Reviews;
 
 public record CreateReviewRequest
 {
-    [Required(ErrorMessage = "Text is required")]
-    public string Text { get; set; } = null!;
     [Required(ErrorMessage = "Title is required")]
     public string Title { get; set; } = null!;
+    [Required(ErrorMessage = "Text is required")]
+    public string Text { get; set; } = null!;
     [Required(ErrorMessage = "PokemonId is required")]
     public Guid PokemonId { get; set; }
 }
@@ -42,6 +42,7 @@ public class CreateReviewEndpoint(IMediator mediator) : EndpointBaseAsync.WithRe
             Text = request.Text,
             Title = request.Title,
             PokemonId = request.PokemonId,
+            OwnerId = currentOwnerId
         });
         if (!result.IsSuccess) return BadRequest(result.Errors);
         return Created("", result);

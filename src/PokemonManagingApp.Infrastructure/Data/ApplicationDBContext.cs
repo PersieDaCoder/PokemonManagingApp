@@ -1,6 +1,7 @@
 using PokemonManagingApp.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using PokemonManagingApp.UseCases.Enums;
+using Microsoft.Extensions.Configuration;
 
 namespace PokemonManagingApp.Infrastructure.Data;
 
@@ -14,8 +15,6 @@ public class ApplicationDBContext : DbContext
     public DbSet<Owner> Owners => Set<Owner>();
     public DbSet<Review> Reviews => Set<Review>();
     public DbSet<Gym> Gyms => Set<Gym>();
-    public DbSet<OwnerReview> OwnerReviews => Set<OwnerReview>();
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
@@ -25,13 +24,11 @@ public class ApplicationDBContext : DbContext
     {
         modelBuilder.Entity<PokemonCategory>().HasKey(pc => new { pc.PokemonId, pc.CategoryId });
         modelBuilder.Entity<PokemonOwner>().HasKey(po => new { po.PokemonId, po.OwnerId });
-        modelBuilder.Entity<OwnerReview>().HasKey(or => new { or.OwnerId, or.ReviewId });
         modelBuilder.HasDefaultSchema("PokemonDB");
         {
             modelBuilder.Entity<Owner>().HasData(
                 new Owner
                 {
-                    CreatedAt = new DateTime(1996, 1, 1),
                     Email = "thinhdpham2510@gmail.com",
                     Password = "Ph@mDucThinh25102003",
                     GymId = Guid.Parse("f1b3b3b4-1b3b-4b3b-8b3b-1b3b3b3b3b3b"),
@@ -41,7 +38,6 @@ public class ApplicationDBContext : DbContext
                 },
                 new Owner
                 {
-                    CreatedAt = new DateTime(1996, 1, 1),
                     Email = "thinhmusicion@gmail.com",
                     Password = "Ph@mDucThinh25102003",
                     GymId = Guid.Parse("F2B3B3B4-1B3B-4B3B-8B3B-1B3B3B3B3B3B"),
