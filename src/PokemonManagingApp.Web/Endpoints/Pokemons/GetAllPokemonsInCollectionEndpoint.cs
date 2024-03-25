@@ -10,7 +10,7 @@ using PokemonManagingApp.UseCases.UseCase_Owners.Queries.GetAllPokemonsInCollect
 using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace PokemonManagingApp.Web.Endpoints.Owners;
+namespace PokemonManagingApp.Web.Endpoints.Pokemons;
 
 public class GetAllPokemonsInCollectionEndpoint(IMediator mediator) : EndpointBaseAsync.WithoutRequest.WithActionResult
 {
@@ -21,7 +21,7 @@ public class GetAllPokemonsInCollectionEndpoint(IMediator mediator) : EndpointBa
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
     [SwaggerOperation(
         Summary = "Get all pokemons in collection",
-        Tags = ["Owners"]
+        Tags = ["Pokemons"]
     )]
     public override async Task<ActionResult> HandleAsync(CancellationToken cancellationToken = default)
     {

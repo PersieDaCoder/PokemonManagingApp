@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
@@ -38,6 +36,7 @@ public class CreateReviewEndpoint(IMediator mediator) : EndpointBaseAsync.WithRe
     )]
     public override async Task<ActionResult> HandleAsync(CreateReviewRequest request, CancellationToken cancellationToken = default)
     {
+        Guid currentOwnerId = Guid.Parse(HttpContext.User.FindFirstValue(JwtRegisteredClaimNames.Sid) ?? throw new ValidationException("Token is not valid"));
         Result<ReviewDTO> result = await _mediator.Send(new CreateReviewCommand
         {
             Text = request.Text,

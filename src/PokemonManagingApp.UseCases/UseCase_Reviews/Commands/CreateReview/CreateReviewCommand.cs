@@ -1,16 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Ardalis.Result;
 using MediatR;
 using PokemonManagingApp.UseCases.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Reviews.Commands.CreateReview;
 
-public class CreateReviewCommand : IRequest<Result<ReviewDTO>>
+public record CreateReviewCommand : IRequest<Result<ReviewDTO>>
 {
-    public string Title { get; set; } = null!;
-    public string Text { get; set; } = null!;
-    public Guid PokemonId { get; set; }
+    public string Title { get; init; } = null!;
+    public string Text { get; init; } = null!;
+    public Guid OwnerId { get; init; }
+    public Guid PokemonId { get; init; }
 }

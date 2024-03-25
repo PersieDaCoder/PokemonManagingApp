@@ -7,6 +7,8 @@ using PokemonManagingApp.Core.Models;
 using PokemonManagingApp.Infrastructure;
 using PokemonManagingApp.Infrastructure.Data;
 using PokemonManagingApp.UseCases;
+using PokemonManagingApp.Web.Middleware;
+using PokemonManagingApp.Web.Middleware.ExceptionHandler;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddAuthorizationBuilder();
+
+builder.Services.AddExceptionHandler<ValidationExceptionMiddleware>();
+builder.Services.AddExceptionHandler<ExceptionMiddleware>();
+builder.Services.AddProblemDetails();
 
 var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
 var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
@@ -86,6 +92,7 @@ app.MapControllers();
 
 app.UseRouting();
 app.UseHttpsRedirection();
+app.UseExceptionHandler();
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -46,6 +46,28 @@ public class PokemonRepository(ApplicationDBContext context, ICacheService cache
     return pokemon;
   }
 
+  public async Task<IEnumerable<Pokemon>> GetPokemonsByCategoryIdAsync(Guid categoryId, CancellationToken cancellationToken = default)
+  {
+    string key = $"pokemons-category-{categoryId}";
+    // get pokemons from cache
+    IEnumerable<Pokemon>? cachedPokemons = _cacheService.GetData<IEnumerable<Pokemon>>(key);
+    if (cachedPokemons is not null) return cachedPokemons;
+    // get pokemons from database
+    IEnumerable<Pokemon> pokemons = await _context
+      .Pokemons
+      .AsNoTracking()
+      .Include(p => p.PokemonCategories).ThenInclude(pc => pc.Category)
+      .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner)
+      .Include(p => p.Reviews)
+      .Where(p => p.PokemonCategories.Any(pc => pc.CategoryId.Equals(categoryId) && pc.Status))
+      .Where(p => p.Status)
+
+      .ToListAsync(cancellationToken);
+    // set pokemons to cache
+    _cacheService.SetData(key, pokemons);
+    return pokemons;
+  }
+
   public async Task<IEnumerable<Pokemon>> GetPokemonsByOwnerIdAsync(Guid userId, CancellationToken cancellationToken = default)
   {
     string key = $"pokemons-collection-{userId}";
@@ -59,7 +81,8 @@ public class PokemonRepository(ApplicationDBContext context, ICacheService cache
       .Include(p => p.PokemonCategories).ThenInclude(pc => pc.Category)
       .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner)
       .Include(p => p.Reviews)
-      .Where(p => p.PokemonOwners.Any(po => po.OwnerId.Equals(userId)))
+      .Where(p => p.PokemonOwners.Any(po => po.OwnerId.Equals(userId) && po.Status))
+      .Where(p => p.Status)
       .ToListAsync(cancellationToken);
     // set pokemons to cache
     _cacheService.SetData(key, pokemons);

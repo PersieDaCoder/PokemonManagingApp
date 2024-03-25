@@ -38,6 +38,16 @@ public class ApplicationDBContext : DbContext
                     CountryId = Guid.Parse("4c29abc4-6a42-41b1-ac20-7c97f9d28868"),
                     UserName = "PersieDaGamer",
                     Role = (int)RoleEnum.Admin,
+                },
+                new Owner
+                {
+                    CreatedAt = new DateTime(1996, 1, 1),
+                    Email = "thinhmusicion@gmail.com",
+                    Password = "Ph@mDucThinh25102003",
+                    GymId = Guid.Parse("F2B3B3B4-1B3B-4B3B-8B3B-1B3B3B3B3B3B"),
+                    CountryId = Guid.Parse("D181555A-73EC-4DD5-9C77-3DB18671EFBB"),
+                    UserName = "PersieDaGamer",
+                    Role = (int)RoleEnum.User,
                 }
             );
             modelBuilder.Entity<Pokemon>().HasData(
