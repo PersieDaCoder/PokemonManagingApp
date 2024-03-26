@@ -19,17 +19,17 @@ public class GetPokemonByCategoryIdEndpoint(IMediator mediator) : EndpointBaseAs
 {
     private readonly IMediator _mediator = mediator;
 
-[HttpGet]
-[Route("api/Categories/{CategoryId}/Pokemons")]
-[ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
-[SwaggerOperation(
-    Summary = "Get pokemons by category id",
-    Tags = ["Pokemons"]
-)]
+    [HttpGet]
+    [Route("api/Categories/{CategoryId}/Pokemons")]
+    [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
+    [SwaggerOperation(
+        Summary = "Get pokemons by category id",
+        Tags = ["Pokemons"]
+    )]
     public override async Task<ActionResult> HandleAsync(GetPokemonByCategoryIdRequest request, CancellationToken cancellationToken = default)
     {
-        Result<IEnumerable<PokemonDTO>> result = await _mediator.Send(new GetPokemonByCategoryIdQuery { CategoryId = request.CategoryId },cancellationToken);
-        if(!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
+        Result<IEnumerable<PokemonDTO>> result = await _mediator.Send(new GetPokemonByCategoryIdQuery { CategoryId = request.CategoryId }, cancellationToken);
+        if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
         return Ok(result);
     }
 }

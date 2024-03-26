@@ -1,5 +1,3 @@
-using Ardalis.Specification;
-
 namespace PokemonManagingApp.Core.Interfaces.Caching;
 
 public interface ICacheService

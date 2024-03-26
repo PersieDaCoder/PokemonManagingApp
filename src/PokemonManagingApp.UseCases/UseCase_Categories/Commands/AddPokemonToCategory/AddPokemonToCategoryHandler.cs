@@ -12,10 +12,13 @@ public class AddPokemonToCategoryHandler(IUnitOfWork unitOfWork) : IRequestHandl
 
     public async Task<Result<PokemonDTO>> Handle(AddPokemonToCategoryCommand request, CancellationToken cancellationToken)
     {
+        // Check if the pokemon and category exist
         Pokemon? pokemon = await _unitOfWork.PokemonRepository.GetEntityByConditionAsync(p => p.Id.Equals(request.PokemonId), false);
         if (pokemon is null) return Result<PokemonDTO>.NotFound("Pokemon is not found");
+        // Check if the category exist
         Category? category = await _unitOfWork.CategoryRepository.GetEntityByConditionAsync(c => c.Id.Equals(request.CategoryId), false);
         if (category is null) return Result<PokemonDTO>.NotFound("Category is not found");
+        // Check if the pokemon is already in the category
         if (pokemon.PokemonCategories.Any(pokemonCategory => pokemonCategory.CategoryId.Equals(request.CategoryId)
         && pokemonCategory.PokemonId.Equals(request.PokemonId))) return Result<PokemonDTO>.Error("Pokemon is already in the category");
         _unitOfWork.PokemonCategoryRepository.Add(new PokemonCategory
@@ -23,6 +26,7 @@ public class AddPokemonToCategoryHandler(IUnitOfWork unitOfWork) : IRequestHandl
             CategoryId = request.CategoryId,
             PokemonId = request.PokemonId,
         });
+        // Save changes
         await _unitOfWork.SaveChangesAsync();
         return Result<PokemonDTO>.Success(pokemon.MapToDTO());
     }
