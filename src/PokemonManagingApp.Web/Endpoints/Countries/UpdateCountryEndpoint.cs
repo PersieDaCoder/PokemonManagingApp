@@ -30,7 +30,7 @@ public class UpdateCountryEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
     [Route("/api/Countries/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
     [SwaggerOperation(
-          Summary = "Get a Country by Id",
+          Summary = "Update Country",
           Tags = ["Countries"]
       )]
     public override async Task<ActionResult> HandleAsync(UpdateCountryRequest request, CancellationToken cancellationToken = default)
