@@ -17,7 +17,7 @@ public class DisableOwnerHandler(IUnitOfWork unitOfWork) : IRequestHandler<Disab
     {
         Owner? checkingOwner = await _unitOfWork.OwnerRepository.GetEntityByConditionAsync(o => o.Id.Equals(request.Id), true);
         if (checkingOwner is null) return Result.NotFound();
-        checkingOwner.Status = false;
+        checkingOwner.Delete();
         await _unitOfWork.SaveChangesAsync();
         return Result.Success();
     }

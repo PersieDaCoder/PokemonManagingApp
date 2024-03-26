@@ -17,9 +17,10 @@ public class OwnerRepository(ApplicationDBContext context, ICacheService cacheSe
         // get owners from database
         IEnumerable<Owner> owners = await _context
             .Owners.AsNoTracking()
-            .Include(o => o.PokemonOwners).ThenInclude(po => po.Pokemon)
-            .Include(o => o.Country)
-            .Where(o => o.Status)
+            .Include(owner => owner.PokemonOwners).ThenInclude(pokemonOwner => pokemonOwner.Pokemon)
+            .Include(owner => owner.Country)
+            .Include(owner => owner.Gym)
+            .Where(owner => !owner.IsDeleted)
             .ToListAsync(cancellationToken);
         // set owners to cache
         _cacheService.SetData(key, owners);
@@ -36,8 +37,10 @@ public class OwnerRepository(ApplicationDBContext context, ICacheService cacheSe
         Owner? owner = await _context
             .Owners
             .AsNoTracking()
-            .Include(o => o.PokemonOwners).ThenInclude(po => po.Pokemon)
-            .Include(o => o.Country)
+            .Include(owner => owner.PokemonOwners).ThenInclude(pokemonOwner => pokemonOwner.Pokemon)
+            .Include(owner => owner.Country)
+            .Include(owner => owner.Gym)
+            .Where(owner => !owner.IsDeleted)
             .FirstOrDefaultAsync(o => o.Id.Equals(id), cancellationToken);
         if (owner is null) return null!;
         // set owner to cache

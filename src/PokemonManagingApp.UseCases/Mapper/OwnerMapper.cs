@@ -11,7 +11,7 @@ public static class OwnerMapper
       {
           Id = owner.Id,
           UserName = owner.UserName ?? string.Empty,
-          Status = owner.Status,
+          IsDeleted = owner.IsDeleted,
           Email = owner.Email,
           CreatedAt = owner.CreatedAt,
           Role = owner.Role.ConvertIntToString(),
@@ -19,7 +19,7 @@ public static class OwnerMapper
           {
               Id = owner.Gym.Id,
               Name = owner.Gym.Name,
-              Status = owner.Gym.Status,
+              IsDeleted = owner.Gym.IsDeleted,
               CreatedAt = owner.Gym.CreatedAt,
           },
           Reviews = owner.Reviews is null ? [] : owner.Reviews.Select(review => new ReviewDTO
@@ -27,14 +27,14 @@ public static class OwnerMapper
               Id = review.Id,
               Title = review.Title,
               Text = review.Text,
-              Status = review.Status,
+              IsDeleted = review.IsDeleted,
               CreatedAt = review.CreatedAt,
               Pokemon = review.Pokemon is null ? null! : new PokemonDTO
               {
                   Id = review.Pokemon.Id,
                   Name = review.Pokemon.Name,
                   BirthDate = review.Pokemon.BirthDate,
-                  Status = review.Pokemon.Status,
+                  IsDeleted = review.Pokemon.IsDeleted,
                   Categories = review.Pokemon.PokemonCategories is null ? [] :
                       review.Pokemon.PokemonCategories
                       .Select(pc => pc.Category)
@@ -42,7 +42,7 @@ public static class OwnerMapper
                       {
                           Id = c.Id,
                           Name = c.Name,
-                          Status = c.Status,
+                          IsDeleted = c.IsDeleted,
                           CreatedAt = c.CreatedAt,
                       }),
               },
@@ -51,7 +51,7 @@ public static class OwnerMapper
           {
               Id = owner.Country.Id,
               Name = owner.Country.Name,
-              Status = owner.Country.Status
+              IsDeleted = owner.Country.IsDeleted
           },
           Pokemons = owner.PokemonOwners is null ? [] :
               owner.PokemonOwners
@@ -61,7 +61,7 @@ public static class OwnerMapper
                   Id = p.Id,
                   Name = p.Name,
                   BirthDate = p.BirthDate,
-                  Status = p.Status,
+                  IsDeleted = p.IsDeleted,
                   Categories = p.PokemonCategories is null ? [] :
                         p.PokemonCategories
                         .Select(pc => pc.Category)
@@ -69,7 +69,7 @@ public static class OwnerMapper
                         {
                             Id = c.Id,
                             Name = c.Name,
-                            Status = c.Status,
+                            IsDeleted = c.IsDeleted,
                             CreatedAt = c.CreatedAt,
                             Pokemons = c.PokemonCategories is null ? [] :
                                 c.PokemonCategories
@@ -79,14 +79,14 @@ public static class OwnerMapper
                                     Id = p.Id,
                                     Name = p.Name,
                                     BirthDate = p.BirthDate,
-                                    Status = p.Status,
+                                    IsDeleted = p.IsDeleted,
                                     Reviews = p.Reviews is null ? [] :
                                         p.Reviews.Select(review => new ReviewDTO
                                         {
                                             Id = review.Id,
                                             Title = review.Title,
                                             Text = review.Text,
-                                            Status = review.Status,
+                                            IsDeleted = review.IsDeleted,
                                         }).ToList(),
                                 }),
                         }),
@@ -96,14 +96,14 @@ public static class OwnerMapper
                             Id = review.Id,
                             Title = review.Title,
                             Text = review.Text,
-                            Status = review.Status,
+                            IsDeleted = review.IsDeleted,
                             CreatedAt = review.CreatedAt,
                             Pokemon = review.Pokemon is null ? null! : new PokemonDTO
                             {
                                 Id = review.Pokemon.Id,
                                 Name = review.Pokemon.Name,
                                 BirthDate = review.Pokemon.BirthDate,
-                                Status = review.Pokemon.Status,
+                                IsDeleted = review.Pokemon.IsDeleted,
                                 Categories = review.Pokemon.PokemonCategories is null ? [] :
                                     review.Pokemon.PokemonCategories
                                     .Select(pc => pc.Category)
@@ -111,7 +111,7 @@ public static class OwnerMapper
                                     {
                                         Id = c.Id,
                                         Name = c.Name,
-                                        Status = c.Status,
+                                        IsDeleted = c.IsDeleted,
                                         CreatedAt = c.CreatedAt,
                                     }),
                             },

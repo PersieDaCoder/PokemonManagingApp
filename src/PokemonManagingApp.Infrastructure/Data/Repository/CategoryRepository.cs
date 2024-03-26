@@ -17,7 +17,7 @@ public class CategoryRepository(ApplicationDBContext context, ICacheService cach
     IEnumerable<Category> categories = await _context
         .Categories.AsNoTracking()
         .Include(c => c.PokemonCategories).ThenInclude(pc => pc.Pokemon)
-        .Where(c => c.Status)
+        .Where(c => !c.IsDeleted)
         .ToListAsync(cancellationToken);
     // set categories to cache
     _cacheService.SetData(key, categories);
@@ -34,7 +34,7 @@ public class CategoryRepository(ApplicationDBContext context, ICacheService cach
     Category? category = await _context
       .Categories.AsNoTracking()
       .Include(c => c.PokemonCategories).ThenInclude(pc => pc.Pokemon)
-      .Where(c => c.Status)
+       .Where(c => !c.IsDeleted)
       .Where(c => c.Id.Equals(id))
       .SingleOrDefaultAsync(cancellationToken);
     if (category is null) return null!;

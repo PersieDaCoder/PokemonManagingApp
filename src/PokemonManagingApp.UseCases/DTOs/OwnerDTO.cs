@@ -6,7 +6,7 @@ public record OwnerDTO
     public string Email { get; init; } = null!;
     public string UserName { get; init; } = null!;
     public string Role { get; init; } = null!;
-    public bool Status { get; init; }
+    public bool IsDeleted { get; init; }
     public DateTime CreatedAt { get; init; }
 
     public GymDTO? Gym { get; init; }

@@ -60,8 +60,8 @@ public class PokemonRepository(ApplicationDBContext context, ICacheService cache
       .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner).ThenInclude(owner => owner == null ? null! : owner.Gym)
       .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner).ThenInclude(owner => owner == null ? null! : owner.Country)
       .Include(p => p.Reviews)
-      .Where(p => p.PokemonCategories.Any(pc => pc.CategoryId.Equals(categoryId) && pc.Status))
-      .Where(p => p.Status)
+      .Where(p => p.PokemonCategories.Any(pc => pc.CategoryId.Equals(categoryId) && !pc.IsDeleted))
+      .Where(p => !p.IsDeleted)
 
       .ToListAsync(cancellationToken);
     // set pokemons to cache
@@ -83,8 +83,8 @@ public class PokemonRepository(ApplicationDBContext context, ICacheService cache
       .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner).ThenInclude(owner => owner == null ? null! : owner.Gym)
       .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner).ThenInclude(owner => owner == null ? null! : owner.Country)
       .Include(p => p.Reviews)
-      .Where(p => p.PokemonOwners.Any(po => po.OwnerId.Equals(userId) && po.Status))
-      .Where(p => p.Status)
+      .Where(p => p.PokemonOwners.Any(po => po.OwnerId.Equals(userId) && !po.IsDeleted))
+      .Where(p => !p.IsDeleted)
       .ToListAsync(cancellationToken);
     // set pokemons to cache
     _cacheService.SetData(key, pokemons);

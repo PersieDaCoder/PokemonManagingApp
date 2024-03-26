@@ -12,14 +12,14 @@ public static class CountryMapper
         {
             Id = country.Id,
             Name = country.Name,
-            Status = country.Status,
+            IsDeleted = country.IsDeleted,
             CreatedAt = country.CreatedAt,
             Owners = country.Owners is null ? [] :
                   country.Owners.Select(owner => owner == null ? null! : new OwnerDTO
                   {
                       Id = owner.Id,
                       UserName = owner.UserName ?? string.Empty,
-                      Status = owner.Status,
+                      IsDeleted = owner.IsDeleted,
                       CreatedAt = owner.CreatedAt,
                       Email = owner.Email,
                       Role = owner.Role.ConvertIntToString(),
@@ -27,13 +27,13 @@ public static class CountryMapper
                       {
                           Id = owner.Country.Id,
                           Name = owner.Country.Name,
-                          Status = owner.Country.Status
+                          IsDeleted = owner.Country.IsDeleted
                       },
                       Gym = owner.Gym is null ? null! : new GymDTO
                       {
                           Id = owner.Gym.Id,
                           Name = owner.Gym.Name,
-                          Status = owner.Gym.Status,
+                          IsDeleted = owner.Gym.IsDeleted,
                           CreatedAt = owner.Gym.CreatedAt,
                       },
                       Reviews = owner.Reviews is null ? [] :
@@ -42,7 +42,7 @@ public static class CountryMapper
                           Id = review.Id,
                           Title = review.Title,
                           Text = review.Text,
-                          Status = review.Status,
+                          IsDeleted = review.IsDeleted,
                           CreatedAt = review.CreatedAt,
                       }).ToList(),
                       Pokemons = owner.PokemonOwners is null ? [] :
@@ -52,7 +52,7 @@ public static class CountryMapper
                             {
                                 Id = pokemon.Id,
                                 Name = pokemon.Name,
-                                Status = pokemon.Status,
+                                IsDeleted = pokemon.IsDeleted,
                                 BirthDate = pokemon.BirthDate,
                                 Categories = pokemon.PokemonCategories is null ? [] :
                                   pokemon.PokemonCategories
@@ -61,7 +61,7 @@ public static class CountryMapper
                                   {
                                       Id = category.Id,
                                       Name = category.Name,
-                                      Status = category.Status,
+                                      IsDeleted = category.IsDeleted,
                                       CreatedAt = category.CreatedAt,
                                   }).ToList(),
                                 Reviews = pokemon.Reviews is null ? [] :
@@ -70,7 +70,7 @@ public static class CountryMapper
                                       Id = review.Id,
                                       Title = review.Title,
                                       Text = review.Text,
-                                      Status = review.Status,
+                                      IsDeleted = review.IsDeleted,
                                       CreatedAt = review.CreatedAt,
                                   }).ToList(),
                             }),

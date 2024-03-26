@@ -21,8 +21,8 @@ public class CountryRepository(ApplicationDBContext context, ICacheService cache
     // get countries from db
     IEnumerable<Country> countries = await _context
         .Countries.AsNoTracking()
-        .Include(c => c.Owners).ThenInclude(o => o.PokemonOwners).ThenInclude(po => po.Pokemon)
-        .Where(c => c.Status)
+        .Include(country => country.Owners).ThenInclude(owner => owner.PokemonOwners).ThenInclude(pokemonOwner => pokemonOwner.Pokemon)
+        .Where(pokemon => !pokemon.IsDeleted)
         .ToListAsync(cancellationToken);
     // set countries to cache
     _cacheService.SetData(key, countries);
@@ -39,7 +39,7 @@ public class CountryRepository(ApplicationDBContext context, ICacheService cache
     Country? country = await _context
       .Countries.AsNoTracking()
       .Include(c => c.Owners).ThenInclude(o => o.PokemonOwners).ThenInclude(po => po.Pokemon)
-      .Where(c => c.Status)
+      .Where(c => !c.IsDeleted)
       .SingleOrDefaultAsync(cancellationToken);
     if (country is null) return null!;
     // set country to cache

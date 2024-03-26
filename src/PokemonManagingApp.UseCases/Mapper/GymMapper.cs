@@ -12,7 +12,7 @@ public static class GymMapper
             Id = gym.Id,
             Name = gym.Name,
             CreatedAt = gym.CreatedAt,
-            Status = gym.Status,
+            IsDeleted = gym.IsDeleted,
         };
     }
 }

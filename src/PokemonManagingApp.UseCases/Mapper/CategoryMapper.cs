@@ -12,7 +12,7 @@ public static class CategoryMapper
         {
             Id = category.Id,
             Name = category.Name,
-            Status = category.Status,
+            IsDeleted = category.IsDeleted,
             CreatedAt = category.CreatedAt,
             Pokemons = category.PokemonCategories is null ? [] :
                 category.PokemonCategories
@@ -22,7 +22,7 @@ public static class CategoryMapper
                         Id = p.Id,
                         Name = p.Name,
                         BirthDate = p.BirthDate,
-                        Status = p.Status,
+                        IsDeleted = p.IsDeleted,
                         Owners = p.PokemonOwners is null ? [] :
                         p.PokemonOwners
                             .Where(pokemonOwner => pokemonOwner.PokemonId == p.Id)
@@ -31,7 +31,7 @@ public static class CategoryMapper
                             {
                                 Id = owner.Id,
                                 UserName = owner.UserName ?? string.Empty,
-                                Status = owner.Status,
+                                IsDeleted = owner.IsDeleted,
                                 CreatedAt = owner.CreatedAt,
                                 Email = owner.Email,
                                 Role = owner.Role.ConvertIntToString(),
@@ -39,20 +39,20 @@ public static class CategoryMapper
                                 {
                                     Id = owner.Gym.Id,
                                     Name = owner.Gym.Name,
-                                    Status = owner.Gym.Status,
+                                    IsDeleted = owner.Gym.IsDeleted,
                                     CreatedAt = owner.Gym.CreatedAt,
                                 },
                                 Country = owner.Country is null ? null! : new CountryDTO
                                 {
                                     Id = owner.Country.Id,
                                     Name = owner.Country.Name,
-                                    Status = owner.Country.Status,
+                                    IsDeleted = owner.Country.IsDeleted,
                                     CreatedAt = owner.Country.CreatedAt,
                                     Owners = owner.Country.Owners is null ? [] : owner.Country.Owners.Select(owner => owner == null ? null! : new OwnerDTO
                                     {
                                         Id = owner.Id,
                                         UserName = owner.UserName,
-                                        Status = owner.Status,
+                                        IsDeleted = owner.IsDeleted,
                                         CreatedAt = owner.CreatedAt,
                                         Email = owner.Email,
                                         Role = owner.Role.ConvertIntToString(),
@@ -60,7 +60,7 @@ public static class CategoryMapper
                                         {
                                             Id = owner.Gym.Id,
                                             Name = owner.Gym.Name,
-                                            Status = owner.Gym.Status,
+                                            IsDeleted = owner.Gym.IsDeleted,
                                             CreatedAt = owner.Gym.CreatedAt,
                                         },
                                         Reviews = owner.Reviews is null ? [] : owner.Reviews.Select(review => review == null ? null! : new ReviewDTO
@@ -68,7 +68,7 @@ public static class CategoryMapper
                                             Id = review.Id,
                                             Title = review.Title,
                                             Text = review.Text,
-                                            Status = review.Status,
+                                            IsDeleted = review.IsDeleted,
                                             CreatedAt = review.CreatedAt,
                                         }).ToList(),
                                     })
@@ -80,7 +80,7 @@ public static class CategoryMapper
                                 Id = review.Id,
                                 Title = review.Title,
                                 Text = review.Text,
-                                Status = review.Status,
+                                IsDeleted = review.IsDeleted,
                                 CreatedAt = review.CreatedAt,
                             }).ToList(),
                     }).ToList(),

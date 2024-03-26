@@ -18,7 +18,7 @@ public class ReviewRepository(ApplicationDBContext context, ICacheService cacheS
       .Reviews.AsNoTracking()
       .Include(r => r.Pokemon).ThenInclude(p => p == null ? null! : p.PokemonCategories).ThenInclude(pc => pc.Category)
       .Include(r => r.Owner).ThenInclude(o => o == null ? null! : o.PokemonOwners).ThenInclude(po => po.Pokemon)
-      .Where(r => r.Status)
+      .Where(r => !r.IsDeleted)
       .ToListAsync(cancellationToken);
     // set reviews to cache
     _cacheService.SetData(key, reviews);
@@ -37,7 +37,7 @@ public class ReviewRepository(ApplicationDBContext context, ICacheService cacheS
       .Include(r => r.Pokemon).ThenInclude(p => p == null ? null! : p.PokemonCategories).ThenInclude(pc => pc.Category)
       .Include(r => r.Owner).ThenInclude(o => o == null ? null! : o.PokemonOwners).ThenInclude(po => po.Pokemon)
       .Where(r => r.OwnerId.Equals(ownerId))
-      .Where(r => r.Status)
+      .Where(r => !r.IsDeleted)
       .ToListAsync(cancellationToken);
     // set reviews to cache
     _cacheService.SetData(key, reviews);
@@ -56,7 +56,7 @@ public class ReviewRepository(ApplicationDBContext context, ICacheService cacheS
       .Include(r => r.Pokemon).ThenInclude(p => p == null ? null! : p.PokemonCategories).ThenInclude(pc => pc.Category)
       .Include(r => r.Owner).ThenInclude(o => o == null ? null! : o.PokemonOwners).ThenInclude(po => po.Pokemon)
       .Where(r => r.Id.Equals(id))
-      .Where(r => r.Status)
+      .Where(r => !r.IsDeleted)
       .SingleOrDefaultAsync(cancellationToken);
     if (review is null) return null!;
     // set review to cache
@@ -76,7 +76,7 @@ public class ReviewRepository(ApplicationDBContext context, ICacheService cacheS
       .Include(r => r.Pokemon).ThenInclude(p => p == null ? null! : p.PokemonCategories).ThenInclude(pc => pc.Category)
       .Include(r => r.Owner).ThenInclude(o => o == null ? null! : o.PokemonOwners).ThenInclude(po => po.Pokemon)
       .Where(r => r.PokemonId.Equals(pokemonId))
-      .Where(r => r.Status)
+      .Where(r => !r.IsDeleted)
       .ToListAsync(cancellationToken);
     // set reviews to cache
     _cacheService.SetData(key, reviews);

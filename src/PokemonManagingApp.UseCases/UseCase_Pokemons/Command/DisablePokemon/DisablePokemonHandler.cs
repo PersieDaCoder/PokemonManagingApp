@@ -10,13 +10,13 @@ public class DisablePokemonHandler(IUnitOfWork unitOfWork) : IRequestHandler<Dis
 
   public async Task<Result> Handle(DisablePokemonCommand request, CancellationToken cancellationToken)
   {
-    Core.Models.Pokemon? pokemon = await _unitOfWork.PokemonRepository.GetEntityByConditionAsync(p => p.Id == request.Id,true);
+    Core.Models.Pokemon? pokemon = await _unitOfWork.PokemonRepository.GetEntityByConditionAsync(p => p.Id == request.Id, true);
     if (pokemon is null)
     {
       return Result.NotFound("pokemon not found");
     }
     // Change the status of the pokemon to false
-    pokemon.Status = false;
+    pokemon.Delete();
 
     await _unitOfWork.SaveChangesAsync();
     return Result.Success();

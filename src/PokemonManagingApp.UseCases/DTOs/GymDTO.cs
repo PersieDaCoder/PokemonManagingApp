@@ -5,5 +5,5 @@ public record GymDTO
     public Guid Id { get; init; }
     public string Name { get; init; } = null!;
     public DateTime CreatedAt { get; init; }
-    public bool Status { get; init; }
+    public bool IsDeleted { get; init; }
 }

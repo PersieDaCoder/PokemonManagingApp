@@ -17,7 +17,7 @@ public class DisableReviewHandler(IUnitOfWork unitOfWork) : IRequestHandler<Disa
     {
         Review? checkingReview = await _unitOfWork.ReviewRepository.GetEntityByConditionAsync(r => r.Id.Equals(request.Id), true);
         if (checkingReview is null) return Result.NotFound("Review is not found");
-        checkingReview.Status = false;
+        checkingReview.Delete();
         await _unitOfWork.SaveChangesAsync();
         return Result.Success();
     }

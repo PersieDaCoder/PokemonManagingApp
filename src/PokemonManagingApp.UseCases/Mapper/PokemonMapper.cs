@@ -14,7 +14,7 @@ public static class PokemonMapper
             Id = pokemon.Id,
             Name = pokemon.Name,
             BirthDate = pokemon.BirthDate,
-            Status = pokemon.Status,
+            IsDeleted = pokemon.IsDeleted,
             Categories = pokemon.PokemonCategories is null ? [] :
                 pokemon.PokemonCategories
                 .Select(pc => pc.Category)
@@ -22,7 +22,7 @@ public static class PokemonMapper
                 {
                     Id = c.Id,
                     Name = c.Name,
-                    Status = c.Status,
+                    IsDeleted = c.IsDeleted,
                     CreatedAt = c.CreatedAt,
                 }),
             Owners = pokemon.PokemonOwners is null ? [] :
@@ -33,12 +33,12 @@ public static class PokemonMapper
                     {
                         Id = owner.Id,
                         UserName = owner.UserName ?? string.Empty,
-                        Status = owner.Status,
+                        IsDeleted = owner.IsDeleted,
                         Country = owner.Country is null ? null! : new CountryDTO
                         {
                             Id = owner.Country.Id,
                             Name = owner.Country.Name,
-                            Status = owner.Country.Status,
+                            IsDeleted = owner.Country.IsDeleted,
                             CreatedAt = owner.Country.CreatedAt,
                         },
                         CreatedAt = owner.CreatedAt,
@@ -48,7 +48,7 @@ public static class PokemonMapper
                         {
                             Id = owner.Gym.Id,
                             Name = owner.Gym.Name,
-                            Status = owner.Gym.Status,
+                            IsDeleted = owner.Gym.IsDeleted,
                             CreatedAt = owner.Gym.CreatedAt,
                         },
                         Reviews = owner.Reviews is null ? [] :
@@ -57,7 +57,7 @@ public static class PokemonMapper
                                 Id = review.Id,
                                 Title = review.Title,
                                 Text = review.Text,
-                                Status = review.Status,
+                                IsDeleted = review.IsDeleted,
                                 CreatedAt = review.CreatedAt,
                             }).ToList(),
                     }).ToList(),
@@ -67,14 +67,14 @@ public static class PokemonMapper
                     Id = review.Id,
                     Title = review.Title,
                     Text = review.Text,
-                    Status = review.Status,
+                    IsDeleted = review.IsDeleted,
                     CreatedAt = review.CreatedAt,
                     Pokemon = review.Pokemon is null ? null! : new PokemonDTO
                     {
                         Id = review.Pokemon.Id,
                         Name = review.Pokemon.Name,
                         BirthDate = review.Pokemon.BirthDate,
-                        Status = review.Pokemon.Status,
+                        IsDeleted = review.Pokemon.IsDeleted,
                         Categories = review.Pokemon.PokemonCategories is null ? [] :
                             review.Pokemon.PokemonCategories
                             .Select(pc => pc.Category)
@@ -82,7 +82,7 @@ public static class PokemonMapper
                             {
                                 Id = c.Id,
                                 Name = c.Name,
-                                Status = c.Status,
+                                IsDeleted = c.IsDeleted,
                                 CreatedAt = c.CreatedAt,
                             }),
                     },

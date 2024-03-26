@@ -18,7 +18,9 @@ public class GymRepository(ApplicationDBContext context, ICacheService cacheServ
         Gym? cachedGym = _cacheService.GetData<Gym>(key);
         if (cachedGym is not null) return cachedGym;
         //if not found in cache, get gym from database
-        Gym? gym = await _dbSet.AsNoTracking().SingleOrDefaultAsync(g => g.Id.Equals(id), cancellationToken);
+        Gym? gym = await _dbSet.AsNoTracking()
+        .Where(gym => !gym.IsDeleted)
+        .SingleOrDefaultAsync(g => g.Id.Equals(id), cancellationToken);
         if (gym is null) return null;
         //set gym to cache
         _cacheService.SetData<Gym>(key, gym);
@@ -32,7 +34,9 @@ public class GymRepository(ApplicationDBContext context, ICacheService cacheServ
         IEnumerable<Gym>? cachedGyms = _cacheService.GetData<IEnumerable<Gym>>(key);
         if (cachedGyms is not null) return cachedGyms;
         //if not found in cache, get gyms from database
-        IEnumerable<Gym> gyms = await _dbSet.AsNoTracking().ToListAsync();
+        IEnumerable<Gym> gyms = await _dbSet.AsNoTracking()
+        .Where(gym => !gym.IsDeleted)
+        .ToListAsync();
         //set gyms to cache
         _cacheService.SetData<IEnumerable<Gym>>(key, gyms);
         return gyms;
