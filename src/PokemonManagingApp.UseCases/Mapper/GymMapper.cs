@@ -13,6 +13,7 @@ public static class GymMapper
             Name = gym.Name,
             CreatedAt = gym.CreatedAt,
             IsDeleted = gym.IsDeleted,
+            DeletedAt = gym.DeletedAt,
         };
     }
 }

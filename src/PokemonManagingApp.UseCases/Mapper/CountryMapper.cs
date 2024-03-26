@@ -14,6 +14,7 @@ public static class CountryMapper
             Name = country.Name,
             IsDeleted = country.IsDeleted,
             CreatedAt = country.CreatedAt,
+            DeletedAt = country.DeletedAt,
             Owners = country.Owners is null ? [] :
                   country.Owners.Select(owner => owner == null ? null! : new OwnerDTO
                   {
@@ -22,12 +23,15 @@ public static class CountryMapper
                       IsDeleted = owner.IsDeleted,
                       CreatedAt = owner.CreatedAt,
                       Email = owner.Email,
+                      DeletedAt = owner.DeletedAt,
                       Role = owner.Role.ConvertIntToString(),
                       Country = owner.Country is null ? null! : new CountryDTO
                       {
                           Id = owner.Country.Id,
                           Name = owner.Country.Name,
-                          IsDeleted = owner.Country.IsDeleted
+                          IsDeleted = owner.Country.IsDeleted,
+                          CreatedAt = owner.Country.CreatedAt,
+                          DeletedAt = owner.Country.DeletedAt,
                       },
                       Gym = owner.Gym is null ? null! : new GymDTO
                       {
@@ -35,6 +39,7 @@ public static class CountryMapper
                           Name = owner.Gym.Name,
                           IsDeleted = owner.Gym.IsDeleted,
                           CreatedAt = owner.Gym.CreatedAt,
+                          DeletedAt = owner.Gym.DeletedAt,
                       },
                       Reviews = owner.Reviews is null ? [] :
                       owner.Reviews.Select(review => review == null ? null! : new ReviewDTO
@@ -44,6 +49,7 @@ public static class CountryMapper
                           Text = review.Text,
                           IsDeleted = review.IsDeleted,
                           CreatedAt = review.CreatedAt,
+                          DeletedAt = review.DeletedAt,
                       }).ToList(),
                       Pokemons = owner.PokemonOwners is null ? [] :
                             owner.PokemonOwners
@@ -63,6 +69,7 @@ public static class CountryMapper
                                       Name = category.Name,
                                       IsDeleted = category.IsDeleted,
                                       CreatedAt = category.CreatedAt,
+                                      DeletedAt = category.DeletedAt,
                                   }).ToList(),
                                 Reviews = pokemon.Reviews is null ? [] :
                                   pokemon.Reviews.Select(review => review == null ? null! : new ReviewDTO
@@ -72,6 +79,7 @@ public static class CountryMapper
                                       Text = review.Text,
                                       IsDeleted = review.IsDeleted,
                                       CreatedAt = review.CreatedAt,
+                                      DeletedAt = review.DeletedAt,
                                   }).ToList(),
                             }),
                   })
