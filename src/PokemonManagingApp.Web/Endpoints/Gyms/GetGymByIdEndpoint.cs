@@ -25,7 +25,7 @@ public class GetGymByIdEndpoint(IMediator mediator) : EndpointBaseAsync.WithRequ
     [Route("api/Gyms/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
     [SwaggerOperation(
-            Summary = "Get all gyms",
+            Summary = "Get Gym by Id",
             Tags = ["Gyms"]
         )]
     public override async Task<ActionResult> HandleAsync(GetGymByIdRequest request, CancellationToken cancellationToken = default)
