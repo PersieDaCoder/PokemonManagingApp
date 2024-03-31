@@ -1,5 +1,5 @@
 using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.Core.DTOs;
 
 namespace PokemonManagingApp.UseCases.Mapper;
 

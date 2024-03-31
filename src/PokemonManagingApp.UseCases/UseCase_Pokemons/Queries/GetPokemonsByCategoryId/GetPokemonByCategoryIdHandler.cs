@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.IdentityModel.Tokens;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.Core.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Categories.Queries.GetPokemonsByCategoryId;
 
@@ -13,8 +13,8 @@ public class GetPokemonByCategoryIdHandler(IUnitOfWork unitOfWork) : IRequestHan
 
     public async Task<Result<IEnumerable<PokemonDTO>>> Handle(GetPokemonByCategoryIdQuery request, CancellationToken cancellationToken)
     {
-        IEnumerable<Pokemon> pokemons = await _unitOfWork.PokemonRepository.GetPokemonsByCategoryIdAsync(request.CategoryId);
+        IEnumerable<PokemonDTO> pokemons = await _unitOfWork.PokemonRepository.GetPokemonsByCategoryIdAsync(request.CategoryId);
         if(pokemons.IsNullOrEmpty()) return Result<IEnumerable<PokemonDTO>>.NotFound("Pokemon is not found in this category");
-        return Result<IEnumerable<PokemonDTO>>.Success(pokemons.Select(p => p.MapToDTO()));
+        return Result<IEnumerable<PokemonDTO>>.Success(pokemons);
     }
 }

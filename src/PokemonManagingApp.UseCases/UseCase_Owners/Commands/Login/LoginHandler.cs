@@ -6,7 +6,7 @@ using Ardalis.Result;
 using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data.Repositories;
 using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.Core.DTOs;
 using PokemonManagingApp.UseCases.Mapper;
 
 namespace PokemonManagingApp.UseCases.UseCase_Owners.Commands.Login;

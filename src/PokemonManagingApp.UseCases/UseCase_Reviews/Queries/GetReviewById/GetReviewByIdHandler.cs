@@ -1,9 +1,7 @@
 using Ardalis.Result;
 using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data;
-using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCases.DTOs;
-using PokemonManagingApp.UseCases.Mapper;
+using PokemonManagingApp.Core.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Reviews.Queries.GetReviewById;
 
@@ -13,9 +11,8 @@ public class GetReviewByIdHandler(IUnitOfWork unitOfWork) : IRequestHandler<GetR
 
     public async Task<Result<ReviewDTO>> Handle(GetReviewByIdQuery request, CancellationToken cancellationToken)
     {
-        Review? review = await _unitOfWork.ReviewRepository.GetReviewByIdAsync(request.Id, cancellationToken);
+        ReviewDTO? review = await _unitOfWork.ReviewRepository.GetReviewByIdAsync(request.Id, cancellationToken);
         if (review is null) return Result<ReviewDTO>.NotFound();
-        ReviewDTO reviewDTO = ReviewMapper.MapToDTO(review);
-        return Result<ReviewDTO>.Success(reviewDTO);
+        return Result<ReviewDTO>.Success(review);
     }
 }

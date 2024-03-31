@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PokemonManagingApp.UseCases.DTOs;
+namespace PokemonManagingApp.Core.DTOs;
 
 public class BaseEntityDTO
 {

@@ -2,7 +2,7 @@ using Ardalis.Result;
 using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.Core.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Owners.Commands.AddPokemonToCollection;
 
@@ -13,11 +13,11 @@ public class AddPokemonToCollectionHandler(IUnitOfWork unitOfWork) : IRequestHan
     public async Task<Result<PokemonDTO>> Handle(AddPokemonToCollectionCommand request, CancellationToken cancellationToken)
     {
         Owner? checkingOwner = await _unitOfWork.OwnerRepository.GetEntityByConditionAsync(o => o.Id.Equals(request.OwnerId), false);
-        if (checkingOwner is null) return Result<PokemonDTO>.NotFound("Owner is not found");
+        if (checkingOwner is null) return Result.NotFound("Owner is not found");
         Pokemon? checkingPokemon = await _unitOfWork.PokemonRepository.GetEntityByConditionAsync(p => p.Id == request.PokemonId, false);
-        if (checkingPokemon is null) return Result<PokemonDTO>.NotFound("Pokemon is not found");
+        if (checkingPokemon is null) return Result.NotFound("Pokemon is not found");
         PokemonOwner? checkingPokemonOwner = await _unitOfWork.PokemonOwnerRepository.GetEntityByConditionAsync(po => po.OwnerId == request.OwnerId && po.PokemonId == request.PokemonId, false);
-        if (checkingPokemonOwner is not null) return Result<PokemonDTO>.Error("Pokemon is already owned by this owner");
+        if (checkingPokemonOwner is not null) return Result.Error("Pokemon is already owned by this owner");
         PokemonOwner newPokemonOwner = new PokemonOwner
         {
             OwnerId = request.OwnerId,

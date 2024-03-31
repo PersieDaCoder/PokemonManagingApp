@@ -2,7 +2,7 @@
 using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.Core.DTOs;
 using PokemonManagingApp.UseCases.Mapper;
 using PokemonManagingApp.UseCases.UseCase_Categories;
 
@@ -14,8 +14,8 @@ public class GetAllCategoriesHandler(IUnitOfWork unitOfWork) : IRequestHandler<G
 
     public async Task<Result<IEnumerable<CategoryDTO>>> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
     {
-        IEnumerable<Category> categories = await _unitOfWork.CategoryRepository.GetAllCategoriesAsync(cancellationToken);
-        if (!categories.Any()) return Result<IEnumerable<CategoryDTO>>.NotFound();
-        return Result<IEnumerable<CategoryDTO>>.Success(categories.Select(c => CategoryMapper.MapToDTO(c)));
+        IEnumerable<CategoryDTO> categories = await _unitOfWork.CategoryRepository.GetAllCategoriesAsync(cancellationToken);
+        if (!categories.Any()) return Result.NotFound("Categories is not found");
+        return Result.Success(categories);
     }
 }

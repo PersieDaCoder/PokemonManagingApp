@@ -1,4 +1,4 @@
-namespace PokemonManagingApp.UseCases.DTOs;
+namespace PokemonManagingApp.Core.DTOs;
 
 public class CountryDTO : BaseEntityDTO
 {

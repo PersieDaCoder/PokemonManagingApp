@@ -1,8 +1,8 @@
 using PokemonManagingApp.Core.Interfaces.Data;
 using MediatR;
-using PokemonManagingApp.Core.Models;
 using Ardalis.Result;
-using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.Core.DTOs;
+using Microsoft.IdentityModel.Tokens;
 
 namespace PokemonManagingApp.UseCases.UseCase_Pokemons;
 
@@ -12,8 +12,8 @@ public class GetAllPokemonsHandler(IUnitOfWork unitOfWork) : IRequestHandler<Get
 
     public async Task<Result<IEnumerable<PokemonDTO>>> Handle(GetAllPokemonsQuery request, CancellationToken cancellationToken)
     {
-        IEnumerable<Pokemon> pokemons = await _unitOfWork.PokemonRepository.GetAllPokemonsAsync(cancellationToken);
-        if (!pokemons.Any()) return Result<IEnumerable<PokemonDTO>>.NotFound();
-        return Result<IEnumerable<PokemonDTO>>.Success(pokemons.Select(p => PokemonMapper.MapToDTO(p)));
+        IEnumerable<PokemonDTO> pokemons = await _unitOfWork.PokemonRepository.GetAllPokemonsAsync(cancellationToken);
+        if (pokemons.IsNullOrEmpty()) return Result.NotFound("Pokemons is not found");
+        return Result.Success(pokemons);
     }
 }

@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.IdentityModel.Tokens;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.Core.DTOs;
 using PokemonManagingApp.UseCases.Mapper;
 
 namespace PokemonManagingApp.UseCases.UseCase_Owners.Queries.GetAllReviewsByOwnerId;
@@ -14,8 +14,8 @@ public class GetAllReviewsByOwnerIdHandler(IUnitOfWork unitOfWork) : IRequestHan
 
     public async Task<Result<IEnumerable<ReviewDTO>>> Handle(GetAllReviewByOwnerIdQuery request, CancellationToken cancellationToken)
     {
-        IEnumerable<Review> result = await _unitOfWork.ReviewRepository.GetReviewsByOwnerIdAsync(request.OwnerId);
+        IEnumerable<ReviewDTO> result = await _unitOfWork.ReviewRepository.GetReviewsByOwnerIdAsync(request.OwnerId);
         if(result.IsNullOrEmpty()) return Result.NotFound("Reviews is not found");
-        return Result.Success(result.Select(r => r.MapToDTO()));
+        return Result.Success(result);
     }
 }

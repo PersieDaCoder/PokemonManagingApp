@@ -2,8 +2,9 @@ using Ardalis.Result;
 using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.Core.DTOs;
 using PokemonManagingApp.UseCases.Mapper;
+using Microsoft.IdentityModel.Tokens;
 
 namespace PokemonManagingApp.UseCases.UseCase_Owners.Queries.GetAllOwners;
 
@@ -13,8 +14,8 @@ public class GetAllOwnersHandler(IUnitOfWork unitOfWork) : IRequestHandler<GetAl
 
   public async Task<Result<IEnumerable<OwnerDTO>>> Handle(GetAllOwnersQuery request, CancellationToken cancellationToken)
   {
-    IEnumerable<Owner> owners = await _unitOfWork.OwnerRepository.GetAllOwners(cancellationToken);
-    if (!owners.Any()) return Result<IEnumerable<OwnerDTO>>.NotFound();
-    return Result<IEnumerable<OwnerDTO>>.Success(owners.Select(o => o.MapToDTO()));
+    IEnumerable<OwnerDTO> owners = await _unitOfWork.OwnerRepository.GetAllOwners(cancellationToken);
+    if (owners.IsNullOrEmpty()) return Result.NotFound("Owners is not found");
+    return Result.Success(owners);
   }
 }

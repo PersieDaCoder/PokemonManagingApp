@@ -2,7 +2,7 @@ using Ardalis.Result;
 using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
-using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.Core.DTOs;
 using PokemonManagingApp.UseCases.Enums;
 using PokemonManagingApp.UseCases.Mapper;
 

@@ -5,7 +5,7 @@ using Ardalis.ApiEndpoints;
 using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.Core.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Owners.Queries.GetAllPokemonsInCollection;
 using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;

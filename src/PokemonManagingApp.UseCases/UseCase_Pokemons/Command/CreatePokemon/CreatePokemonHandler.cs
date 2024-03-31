@@ -2,7 +2,7 @@
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
 using MediatR;
-using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.Core.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Pokemons;
 
@@ -27,6 +27,6 @@ public class CreatePokemonHandler(IUnitOfWork context) : IRequestHandler<CreateP
         };
         _context.PokemonRepository.Add(pokemon);
         await _context.SaveChangesAsync();
-        return Result<PokemonDTO>.Success(pokemon.MapToDTO());
+        return Result.Success(pokemon.MapToDTO());
     }
 }

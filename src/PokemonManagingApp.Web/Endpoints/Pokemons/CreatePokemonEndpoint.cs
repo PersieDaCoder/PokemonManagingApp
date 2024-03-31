@@ -4,9 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using PokemonManagingApp.UseCases.UseCase_Pokemons;
-using PokemonManagingApp.UseCases.DTOs;
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
+using PokemonManagingApp.Core.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using PokemonManagingApp.Web.Helpers;
 

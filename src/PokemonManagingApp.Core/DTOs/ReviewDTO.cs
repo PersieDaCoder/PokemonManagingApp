@@ -1,6 +1,6 @@
 using PokemonManagingApp.Core.Models;
 
-namespace PokemonManagingApp.UseCases.DTOs;
+namespace PokemonManagingApp.Core.DTOs;
 
 public class ReviewDTO : BaseEntityDTO
 {

@@ -3,7 +3,7 @@ using Ardalis.Result;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.Core.DTOs;
 using PokemonManagingApp.UseCases.UseCase_Countries.Queries.GetCountryById;
 using PokemonManagingApp.Web.Helpers;
 using Swashbuckle.AspNetCore.Annotations;

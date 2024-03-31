@@ -1,6 +1,6 @@
 using Ardalis.Result;
 using MediatR;
-using PokemonManagingApp.UseCases.DTOs;
+using PokemonManagingApp.Core.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Countries.Queries.GetAllCountries;
 

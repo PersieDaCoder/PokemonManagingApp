@@ -21,4 +21,5 @@ public class Review : BaseEntity
   public Pokemon Pokemon { get; set; } = null!;
   [ForeignKey(nameof(OwnerId))]
   public Owner Owner { get; set; } = null!;
+
 }
