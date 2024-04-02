@@ -35,6 +35,6 @@ public class CreateCategoryEndpoint(IMediator mediator) : EndpointBaseAsync.With
       Name = request.Name
     });
     if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
-    return Created();
+    return StatusCode(201, result);
   }
 }

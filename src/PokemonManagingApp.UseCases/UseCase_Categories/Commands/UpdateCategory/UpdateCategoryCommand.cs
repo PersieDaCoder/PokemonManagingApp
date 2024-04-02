@@ -11,4 +11,5 @@ public record UpdateCategoryCommand : IRequest<Result>
 {
     public Guid Id { get; init; }
     public string Name { get; init;} = null!;
+    public List<Guid> PokemonIds { get; init; } = new();
 }
