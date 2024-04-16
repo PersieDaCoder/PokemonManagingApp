@@ -14,6 +14,7 @@ public static class GenerateCategories
         .RuleFor(category => category.Name, f => f.PickRandom(_pokemonTypes))
         .RuleFor(category => category.CreatedAt, f => f.Date.Past())
         .RuleFor(category => category.IsDeleted, f => f.Random.Bool())
+        .RuleFor(category => category.DeletedAt, (f, u) => u.IsDeleted ? f.Date.Past() : null!)
         .Generate(50).ToArray();
     }
 }

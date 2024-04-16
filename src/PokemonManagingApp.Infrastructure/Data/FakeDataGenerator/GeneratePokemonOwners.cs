@@ -14,6 +14,7 @@ public static class GeneratePokemonOwners
         .RuleFor(pokemonOwner => pokemonOwner.OwnerId, f => f.PickRandom(owners).Id)
         .RuleFor(pokemonOwner => pokemonOwner.CreatedAt, f => f.Date.Past())
         .RuleFor(pokemonOwner => pokemonOwner.IsDeleted, f => f.Random.Bool())
+        .RuleFor(pokemonOwner => pokemonOwner.DeletedAt, (f, u) => u.IsDeleted ? f.Date.Past() : null!)
         .Generate(50).ToArray();
     }
 }

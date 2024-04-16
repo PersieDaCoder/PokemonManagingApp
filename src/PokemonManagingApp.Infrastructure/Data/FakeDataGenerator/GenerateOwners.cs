@@ -16,9 +16,10 @@ public static class GenerateOwners
         .RuleFor(owner => owner.Password, f => f.Internet.Password())
         .RuleFor(owner => owner.CreatedAt, f => f.Date.Past())
         .RuleFor(owner => owner.Role, f => f.PickRandom(0,1,2))
-        .RuleFor(owner => owner.IsDeleted, f => f.Random.Bool())
         .RuleFor(owner => owner.CountryId, f => f.PickRandom(countries).Id)
         .RuleFor(owner => owner.GymId, f => f.PickRandom(gyms).Id)
+        .RuleFor(owner => owner.IsDeleted, f => f.Random.Bool())
+        .RuleFor(owner => owner.DeletedAt, (f, u) => u.IsDeleted ? f.Date.Past() : null!)
         .Generate(50).ToArray();
     }
 }

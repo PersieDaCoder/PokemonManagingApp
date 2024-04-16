@@ -13,6 +13,7 @@ public static class GenerateCountries
         .RuleFor(country => country.Name, f => f.Address.Country())
         .RuleFor(country => country.CreatedAt, f => f.Date.Past())
         .RuleFor(country => country.IsDeleted, f => f.Random.Bool())
+        .RuleFor(country => country.DeletedAt, (f,u) => u.IsDeleted ? f.Date.Past() : null!)
         .Generate(50).ToArray();
     }
 }

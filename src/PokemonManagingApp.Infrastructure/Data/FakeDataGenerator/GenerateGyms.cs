@@ -14,6 +14,7 @@ public static class GenerateGyms
         .RuleFor(gym => gym.Name, f => f.PickRandom(_pokemonGyms))
         .RuleFor(gym => gym.CreatedAt, f => f.Date.Past())
         .RuleFor(gym => gym.IsDeleted, f => f.Random.Bool())
+        .RuleFor(gym => gym.DeletedAt, (f, u) => u.IsDeleted ? f.Date.Past() : null!)
         .Generate(50).ToArray();
     }
 }
