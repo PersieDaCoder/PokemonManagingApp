@@ -60,6 +60,10 @@ public static class CountryMapper
                                 Name = pokemon.Name,
                                 IsDeleted = pokemon.IsDeleted,
                                 BirthDate = pokemon.BirthDate,
+                                Height = pokemon.Height,
+                                Weight = pokemon.Weight,
+                                Description = pokemon.Description,
+                                ImageUrl = pokemon.ImageUrl,
                                 Categories = pokemon.PokemonCategories is null ? [] :
                                   pokemon.PokemonCategories
                                   .Select(pc => pc.Category)

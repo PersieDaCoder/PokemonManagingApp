@@ -14,6 +14,10 @@ public record CreatePokemonRequest
     [FromBody] public required string Name { get; init; }
     [FromBody] public required DateTime BirthDate { get; init; }
     [FromBody] public required Guid CategoryId { get; init; }
+    [FromBody] public required string Description { get; init; }
+    [FromBody] public required string ImageUrl { get; init; }
+    [FromBody] public required int Height { get; init; }
+    [FromBody] public required int Weight { get; init; }
 }
 public class CreatePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.WithRequest<CreatePokemonRequest>.WithActionResult<Result<PokemonDTO>>
 {
@@ -32,9 +36,13 @@ public class CreatePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
         {
             Name = request.Name,
             BirthDate = request.BirthDate,
-            CategoryId = request.CategoryId
+            CategoryId = request.CategoryId,
+            Description = request.Description,
+            ImageUrl = request.ImageUrl,
+            Height = request.Height,
+            Weight = request.Weight
         }, cancellationToken);
         if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
-        return Created("", result);
+        return Created(result.SuccessMessage, result);
     }
 }

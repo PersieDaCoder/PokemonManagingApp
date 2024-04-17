@@ -54,6 +54,10 @@ public static class ReviewMapper
                             Name = pokemon.Name,
                             IsDeleted = pokemon.IsDeleted,
                             BirthDate = pokemon.BirthDate,
+                            Height = pokemon.Height,
+                            Weight = pokemon.Weight,
+                            Description = pokemon.Description,
+                            ImageUrl = pokemon.ImageUrl,
                             Categories = pokemon.PokemonCategories is null ? [] : pokemon.PokemonCategories
                                 .Select(pc => pc.Category)
                                 .Select(category => category == null ? null! : new CategoryDTO
@@ -71,6 +75,10 @@ public static class ReviewMapper
                 Name = review.Pokemon.Name,
                 BirthDate = review.Pokemon.BirthDate,
                 IsDeleted = review.Pokemon.IsDeleted,
+                Height = review.Pokemon.Height,
+                Weight = review.Pokemon.Weight,
+                Description = review.Pokemon.Description,
+                ImageUrl = review.Pokemon.ImageUrl,
                 Categories = review.Pokemon.PokemonCategories is null ? [] :
                     review.Pokemon.PokemonCategories
                     .Select(pc => pc.Category)
@@ -106,6 +114,10 @@ public static class ReviewMapper
                                     Name = review.Pokemon.Name,
                                     BirthDate = review.Pokemon.BirthDate,
                                     IsDeleted = review.Pokemon.IsDeleted,
+                                    Description = review.Pokemon.Description,
+                                    ImageUrl = review.Pokemon.ImageUrl,
+                                    Height = review.Pokemon.Height,
+                                    Weight = review.Pokemon.Weight,
                                     Categories = review.Pokemon.PokemonCategories is null ? [] :
                                         review.Pokemon.PokemonCategories
                                         .Select(pc => pc.Category)
@@ -127,6 +139,10 @@ public static class ReviewMapper
                                     Name = pokemon.Name,
                                     IsDeleted = pokemon.IsDeleted,
                                     BirthDate = pokemon.BirthDate,
+                                    Height = pokemon.Height,
+                                    Weight = pokemon.Weight,
+                                    Description = pokemon.Description,
+                                    ImageUrl = pokemon.ImageUrl,
                                     Categories = pokemon.PokemonCategories is null ? [] :
                                         pokemon.PokemonCategories
                                         .Select(pc => pc.Category)

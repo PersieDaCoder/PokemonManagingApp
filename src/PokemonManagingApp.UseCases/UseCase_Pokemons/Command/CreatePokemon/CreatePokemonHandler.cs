@@ -20,14 +20,18 @@ public class CreatePokemonHandler(IUnitOfWork context) : IRequestHandler<CreateP
             Id = pokemonId,
             Name = request.Name,
             BirthDate = request.BirthDate,
-        };
-        _context.PokemonRepository.Add(pokemon);
-        _context.PokemonCategoryRepository.Add(new PokemonCategory
+            Description = request.Description,
+            ImageUrl = request.ImageUrl,
+            Height = request.Height,
+            Weight = request.Weight,
+            PokemonCategories = [new PokemonCategory
         {
             PokemonId = pokemonId,
             CategoryId = request.CategoryId
-        });
+        }]
+        };
+        _context.PokemonRepository.Add(pokemon);
         await _context.SaveChangesAsync();
-        return Result.Success(pokemon.MapToDTO());
+        return Result.Success(pokemon.MapToDTO(), "Pokemon is created successfully");
     }
 }

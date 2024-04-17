@@ -15,6 +15,10 @@ public static class PokemonMapper
             Name = pokemon.Name,
             BirthDate = pokemon.BirthDate,
             IsDeleted = pokemon.IsDeleted,
+            Description = pokemon.Description,
+            ImageUrl = pokemon.ImageUrl,
+            Height = pokemon.Height,
+            Weight = pokemon.Weight,
             Categories = pokemon.PokemonCategories is null ? [] :
                 pokemon.PokemonCategories
                 .Select(pc => pc.Category)
@@ -75,6 +79,10 @@ public static class PokemonMapper
                         Name = review.Pokemon.Name,
                         BirthDate = review.Pokemon.BirthDate,
                         IsDeleted = review.Pokemon.IsDeleted,
+                        Description = review.Pokemon.Description,
+                        ImageUrl = review.Pokemon.ImageUrl,
+                        Height = review.Pokemon.Height,
+                        Weight = review.Pokemon.Weight,
                         Categories = review.Pokemon.PokemonCategories is null ? [] :
                             review.Pokemon.PokemonCategories
                             .Select(pc => pc.Category)

@@ -40,6 +40,10 @@ public static class OwnerMapper
                   IsDeleted = review.Pokemon.IsDeleted,
                   CreatedAt = review.Pokemon.CreatedAt,
                   DeletedAt = review.Pokemon.DeletedAt,
+                  Description = review.Pokemon.Description,
+                  ImageUrl = review.Pokemon.ImageUrl,
+                  Height = review.Pokemon.Height,
+                  Weight = review.Pokemon.Weight,
                   Categories = review.Pokemon.PokemonCategories is null ? [] :
                       review.Pokemon.PokemonCategories
                       .Select(pc => pc.Category)
@@ -61,6 +65,10 @@ public static class OwnerMapper
                                   IsDeleted = p.IsDeleted,
                                   CreatedAt = p.CreatedAt,
                                   DeletedAt = p.DeletedAt,
+                                  Description = p.Description,
+                                  ImageUrl = p.ImageUrl,
+                                  Height = p.Height,
+                                  Weight = p.Weight,
                                   Reviews = p.Reviews is null ? [] :
                                       p.Reviews.Select(review => new ReviewDTO
                                       {
@@ -94,6 +102,10 @@ public static class OwnerMapper
                   IsDeleted = p.IsDeleted,
                   CreatedAt = p.CreatedAt,
                   DeletedAt = p.DeletedAt,
+                  Description = p.Description,
+                  ImageUrl = p.ImageUrl,
+                  Height = p.Height,
+                  Weight = p.Weight,
                   Categories = p.PokemonCategories is null ? [] :
                         p.PokemonCategories
                         .Select(pc => pc.Category)
@@ -115,6 +127,10 @@ public static class OwnerMapper
                                     IsDeleted = p.IsDeleted,
                                     CreatedAt = p.CreatedAt,
                                     DeletedAt = p.DeletedAt,
+                                    Description = p.Description,
+                                    ImageUrl = p.ImageUrl,
+                                    Height = p.Height,
+                                    Weight = p.Weight,
                                     Reviews = p.Reviews is null ? [] :
                                         p.Reviews.Select(review => new ReviewDTO
                                         {
@@ -144,6 +160,10 @@ public static class OwnerMapper
                                 IsDeleted = review.Pokemon.IsDeleted,
                                 CreatedAt = review.Pokemon.CreatedAt,
                                 DeletedAt = review.Pokemon.DeletedAt,
+                                Description = review.Pokemon.Description,
+                                ImageUrl = review.Pokemon.ImageUrl,
+                                Height = review.Pokemon.Height,
+                                Weight = review.Pokemon.Weight,
                                 Categories = review.Pokemon.PokemonCategories is null ? [] :
                                     review.Pokemon.PokemonCategories
                                     .Select(pc => pc.Category)
@@ -165,6 +185,10 @@ public static class OwnerMapper
                                                 IsDeleted = p.IsDeleted,
                                                 CreatedAt = p.CreatedAt,
                                                 DeletedAt = p.DeletedAt,
+                                                Description = p.Description,
+                                                ImageUrl = p.ImageUrl,
+                                                Height = p.Height,
+                                                Weight = p.Weight,
                                                 Reviews = p.Reviews is null ? [] :
                                                     p.Reviews.Select(review => new ReviewDTO
                                                     {

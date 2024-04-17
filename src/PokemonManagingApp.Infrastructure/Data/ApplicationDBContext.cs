@@ -17,7 +17,7 @@ public class ApplicationDBContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseSqlServer("Server=(local);Database=PokemonDatabase;User Id=sa;Password=12345;TrustServerCertificate=True");
+        optionsBuilder.UseSqlServer("Server=DESKTOP-R0B6VPG\\SQLEXPRESS;Database=PokemonDatabase;User Id=sa;Password=12345;TrustServerCertificate=True");
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

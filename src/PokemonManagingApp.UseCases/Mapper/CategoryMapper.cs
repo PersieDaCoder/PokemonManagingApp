@@ -26,6 +26,10 @@ public static class CategoryMapper
                         IsDeleted = p.IsDeleted,
                         DeletedAt = p.DeletedAt,
                         CreatedAt = p.CreatedAt,
+                        Description = p.Description,
+                        ImageUrl = p.ImageUrl,
+                        Height = p.Height,
+                        Weight = p.Weight,
                         Owners = p.PokemonOwners is null ? [] :
                         p.PokemonOwners
                             .Where(pokemonOwner => pokemonOwner.PokemonId == p.Id)

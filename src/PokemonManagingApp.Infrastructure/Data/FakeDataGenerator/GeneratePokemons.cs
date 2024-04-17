@@ -15,6 +15,10 @@ public static class GeneratePokemons
         .RuleFor(pokemon => pokemon.CreatedAt, f => f.Date.Past())
         .RuleFor(pokemon => pokemon.BirthDate, f => f.Date.Past())
         .RuleFor(pokemon => pokemon.IsDeleted, f => f.Random.Bool())
+        .RuleFor(pokemon => pokemon.Description, f => f.Lorem.Sentence())
+        .RuleFor(pokemon => pokemon.ImageUrl, f => f.Image.PicsumUrl())
+        .RuleFor(pokemon => pokemon.Height, f => f.Random.Number(1, 100))
+        .RuleFor(pokemon => pokemon.Weight, f => f.Random.Number(1, 100))
         .RuleFor(pokemon => pokemon.DeletedAt, (f, u) => u.IsDeleted ? f.Date.Past() : null!)
         .Generate(50).ToArray();
     }

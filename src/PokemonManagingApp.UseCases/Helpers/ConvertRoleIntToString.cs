@@ -13,6 +13,7 @@ public static class ConvertRoleIntToString
         {
             1 => "Admin",
             2 => "User",
+            0 => "Guest",
             _ => throw new ArgumentException("Invalid role")
         };
     }

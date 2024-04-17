@@ -42,8 +42,9 @@ public class PokemonRepository(ApplicationDBContext context, ICacheService cache
       .Include(p => p.PokemonCategories).ThenInclude(pc => pc.Category)
       .Include(p => p.PokemonOwners).ThenInclude(po => po.Owner)
       .Include(p => p.Reviews)
+      .Where(pokemon => pokemon.Id.Equals(id))
       .Select(pokemon => pokemon.MapToDTO())
-      .FirstOrDefaultAsync(p => p.Id.Equals(id), cancellationToken);
+      .FirstOrDefaultAsync(cancellationToken);
     if (pokemon is null) return null!;
     // set pokemon to cache
     _cacheService.SetData(key, pokemon);
