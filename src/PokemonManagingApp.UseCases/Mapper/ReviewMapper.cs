@@ -19,7 +19,9 @@ public static class ReviewMapper
             {
                 Id = review.Owner.Id,
                 UserName = review.Owner.UserName ?? string.Empty,
+                ImageUrl = review.Owner.ImageUrl ?? string.Empty,
                 IsDeleted = review.Owner.IsDeleted,
+                DeletedAt = review.Owner.DeletedAt,
                 Country = review.Owner.Country is null ? null! : new CountryDTO
                 {
                     Id = review.Owner.Country.Id,

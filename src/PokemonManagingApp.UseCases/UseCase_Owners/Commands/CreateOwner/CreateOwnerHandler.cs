@@ -22,6 +22,7 @@ public class CreateOwnerHandler(IUnitOfWork unitOfWork) : IRequestHandler<Create
             Password = request.Password,
             CountryId = request.CountryId,
             UserName = request.UserName,
+            ImageUrl = request.ImageUrl,
             GymId = request.GymId,
             Role = (int)RoleEnum.User,
         };

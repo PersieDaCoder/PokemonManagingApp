@@ -25,10 +25,10 @@ public class ApplicationDBContext : DbContext
         Gym[] gyms = GenerateGyms.InitializeDataForGyms();
         Category[] categories = GenerateCategories.InitializeDataForCategories();
         Pokemon[] pokemons = GeneratePokemons.InitializeDataForPokemons();
-        Owner[] owners = GenerateOwners.InitializeDataForOwners(countries,gyms);
-        PokemonOwner[] pokemonOwners = GeneratePokemonOwners.InitiallizeDataForPokemonOwners(pokemons,owners);
-        PokemonCategory[] pokemonCategories = GeneratePokemonCategories.InitializeDataForPokemonCategories(pokemons,categories);
-        Review[] reviews = GenerateReviews.InitializeDataForReviews(pokemons,owners);
+        Owner[] owners = GenerateOwners.InitializeDataForOwners(countries, gyms);
+        PokemonOwner[] pokemonOwners = GeneratePokemonOwners.InitiallizeDataForPokemonOwners(pokemons, owners);
+        PokemonCategory[] pokemonCategories = GeneratePokemonCategories.InitializeDataForPokemonCategories(pokemons, categories);
+        Review[] reviews = GenerateReviews.InitializeDataForReviews(pokemons, owners);
         modelBuilder.HasDefaultSchema("PokemonDB");
         modelBuilder.Entity<Country>().HasData(countries);
         modelBuilder.Entity<Gym>().HasData(gyms);

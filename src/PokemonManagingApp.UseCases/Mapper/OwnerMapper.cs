@@ -15,6 +15,7 @@ public static class OwnerMapper
           Email = owner.Email,
           CreatedAt = owner.CreatedAt,
           DeletedAt = owner.DeletedAt,
+          ImageUrl = owner.ImageUrl,
           Role = owner.Role.ConvertIntToString(),
           Gym = owner.Gym is null ? null! : new GymDTO
           {

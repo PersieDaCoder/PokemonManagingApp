@@ -10,6 +10,7 @@ public class CreateOwnerCommand : IRequest<Result<OwnerDTO>>
   public string Gmail { get; init; } = null!;
   public string Password { get; init; } = null!;
   public string UserName { get; init; } = null!;
+  public string ImageUrl { get; init; } = null!;
   public Guid GymId { get; init; }
   public Guid CountryId { get; init; }
 }

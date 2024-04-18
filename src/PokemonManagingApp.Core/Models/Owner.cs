@@ -11,9 +11,9 @@ public class Owner : BaseEntity
     public required string Password { get; set; }
     [MaxLength(50)]
     public required string UserName { get; set; }
+    public required string ImageUrl { get; set; }
     [Required]
     public int Role { get; set; }
-    [MaxLength(50)]
     public Guid GymId { get; set; }
     public required Guid CountryId { get; set; }
     // Navigation properties

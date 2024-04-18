@@ -16,6 +16,7 @@ public record CreateOwnerRequest
     public string Password { get; init; } = null!;
     public string PhoneNumber { get; set; } = null!;
     public string UserName { get; init; } = null!;
+    public string ImageUrl { get; init; } = null!;
     public Guid GymId { get; init; }
     public Guid CountryId { get; init; }
 }
@@ -41,6 +42,7 @@ public class CreateOwnerEndpoint(IMediator mediator) : EndpointBaseAsync.WithReq
             UserName = request.UserName,
             Gmail = request.Email,
             Password = request.Password,
+            ImageUrl = request.ImageUrl,
             PhoneNumber = request.PhoneNumber,
             GymId = request.GymId
         }, cancellationToken);

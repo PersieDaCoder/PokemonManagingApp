@@ -15,6 +15,7 @@ public static class GenerateOwners
         .RuleFor(owner => owner.Email, f => f.Person.Email)
         .RuleFor(owner => owner.Password, f => f.Internet.Password())
         .RuleFor(owner => owner.CreatedAt, f => f.Date.Past())
+        .RuleFor(owner => owner.ImageUrl, f => f.Image.PicsumUrl(200, 200))
         .RuleFor(owner => owner.Role, f => f.PickRandom(0,1,2))
         .RuleFor(owner => owner.CountryId, f => f.PickRandom(countries).Id)
         .RuleFor(owner => owner.GymId, f => f.PickRandom(gyms).Id)

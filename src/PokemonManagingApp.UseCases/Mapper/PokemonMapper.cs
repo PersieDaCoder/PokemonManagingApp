@@ -38,6 +38,8 @@ public static class PokemonMapper
                         Id = owner.Id,
                         UserName = owner.UserName ?? string.Empty,
                         IsDeleted = owner.IsDeleted,
+                        DeletedAt = owner.DeletedAt,
+                        ImageUrl = owner.ImageUrl ?? string.Empty,
                         Country = owner.Country is null ? null! : new CountryDTO
                         {
                             Id = owner.Country.Id,

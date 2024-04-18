@@ -41,7 +41,7 @@ public class LoginEndpoint(IMediator mediator, IConfiguration configuration) : E
        new Claim(JwtRegisteredClaimNames.Sub, owner.UserName),
         new Claim(JwtRegisteredClaimNames.Email, owner.Email),
         new Claim(ClaimTypes.Role, owner.Role)
-        };
+    };
 
     JwtSecurityToken Sectoken = new JwtSecurityToken(
       issuer: _configuration["Jwt:Issuer"],
