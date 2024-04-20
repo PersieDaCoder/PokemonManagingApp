@@ -13,8 +13,8 @@ public class Pokemon : BaseEntity
     public required int Height { get; set; }
     public required int Weight { get; set; }
     // Properties
-    public ICollection<Review> Reviews { get; set; } = new List<Review>();
-    public ICollection<PokemonOwner> PokemonOwners { get; set; } = new List<PokemonOwner>();
-    public ICollection<PokemonCategory> PokemonCategories { get; set; } = new List<PokemonCategory>();
+    public ICollection<Review> Reviews { get; set; } = [];
+    public ICollection<PokemonOwner> PokemonOwners { get; set; } = [];
+    public ICollection<PokemonCategory> PokemonCategories { get; set; } = [];
 
 }

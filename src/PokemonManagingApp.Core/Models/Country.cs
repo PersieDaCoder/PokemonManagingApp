@@ -9,5 +9,5 @@ public class Country : BaseEntity
     [MaxLength(50)]
     public required string Name { get; set; }
     // Navigation properties
-    public ICollection<Owner> Owners { get; set; } = new List<Owner>();
+    public ICollection<Owner> Owners { get; set; } = [];
 }

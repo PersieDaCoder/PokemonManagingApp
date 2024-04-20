@@ -21,6 +21,6 @@ public class Owner : BaseEntity
     public Country Country { get; set; } = null!;
     [ForeignKey(nameof(GymId))]
     public Gym Gym { get; set; } = null!;
-    public ICollection<PokemonOwner> PokemonOwners { get; set; } = new List<PokemonOwner>();
-    public ICollection<Review> Reviews { get; set; } = new List<Review>();
+    public ICollection<PokemonOwner> PokemonOwners { get; set; } = [];
+    public ICollection<Review> Reviews { get; set; } = [];
 }

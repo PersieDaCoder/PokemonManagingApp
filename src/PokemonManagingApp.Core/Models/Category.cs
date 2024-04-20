@@ -8,5 +8,5 @@ public class Category : BaseEntity
     [MaxLength(50)]
     public required string Name { get; set; }
     // Navigation properties
-    public ICollection<PokemonCategory> PokemonCategories { get; set; } = new List<PokemonCategory>();
+    public ICollection<PokemonCategory> PokemonCategories { get; set; } = [];
 }
