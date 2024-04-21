@@ -1,0 +1,12 @@
+version: '3.3'
+
+services:
+  mssql:
+    container_name: sql-server
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Ph@mDucThinh25102003"
+      MSSQL_PID: "EXPRESS"
+    ports:
+      - 1433:1433
