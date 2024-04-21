@@ -4,7 +4,7 @@ using PokemonManagingApp.Infrastructure.Data.FakeDataGenerator;
 
 namespace PokemonManagingApp.Infrastructure.Data;
 
-public class ApplicationDBContext : DbContext
+public class ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : DbContext(options)
 {
     public DbSet<Pokemon> Pokemons => Set<Pokemon>();
     public DbSet<Country> Countries => Set<Country>();
@@ -14,11 +14,6 @@ public class ApplicationDBContext : DbContext
     public DbSet<Owner> Owners => Set<Owner>();
     public DbSet<Review> Reviews => Set<Review>();
     public DbSet<Gym> Gyms => Set<Gym>();
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseSqlServer("Server=DESKTOP-R0B6VPG\\SQLEXPRESS;Database=PokemonDatabase;User Id=sa;Password=12345;TrustServerCertificate=True");
-    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         Country[] countries = GenerateCountries.InitializeDataForCountry();

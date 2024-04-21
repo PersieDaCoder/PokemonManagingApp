@@ -12,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 // Add other dependency injection to the program.
+
+
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddUseCases();
 

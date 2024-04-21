@@ -15,7 +15,10 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         // Add DBContext
-        services.AddDbContext<ApplicationDBContext>();
+        services.AddDbContext<ApplicationDBContext>(options =>
+        {
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+        });
         // Add IMemoryCache
         services.AddMemoryCache();
 
