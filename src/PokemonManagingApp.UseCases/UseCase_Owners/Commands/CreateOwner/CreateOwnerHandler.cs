@@ -12,10 +12,13 @@ public class CreateOwnerHandler(IUnitOfWork unitOfWork) : IRequestHandler<Create
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-  public async Task<Result<OwnerDTO>> Handle(CreateOwnerCommand request, CancellationToken cancellationToken)
+    public async Task<Result<OwnerDTO>> Handle(CreateOwnerCommand request, CancellationToken cancellationToken)
     {
-        Country? checkingCountry = await _unitOfWork.CountryRepository.GetEntityByConditionAsync(c => c.Id.Equals(request.CountryId), false);
-        if (checkingCountry is null) return Result<OwnerDTO>.NotFound("Country is not found");
+        Country? checkingCountry =
+            await _unitOfWork.CountryRepository
+                .GetEntityByConditionAsync(c => c.Id.Equals(request.CountryId), false);
+        if (checkingCountry is null)
+            return Result<OwnerDTO>.NotFound("Country is not found");
         Owner addingOwner = new()
         {
             Email = request.Gmail,
@@ -28,6 +31,6 @@ public class CreateOwnerHandler(IUnitOfWork unitOfWork) : IRequestHandler<Create
         };
         _unitOfWork.OwnerRepository.Add(addingOwner);
         await _unitOfWork.SaveChangesAsync();
-        return Result<OwnerDTO>.Success(addingOwner.MapToDTO());
+        return Result.Success(addingOwner.MapToDTO(),"Owner is created successfully");
     }
 }

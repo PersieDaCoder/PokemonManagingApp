@@ -12,8 +12,11 @@ public class GetAllCategoryByIdHandler(IUnitOfWork unitOfWork) : IRequestHandler
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     public async Task<Result<CategoryDTO>> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
     {
-        CategoryDTO? category = await _unitOfWork.CategoryRepository.GetCategoryByIdAsync(request.Id, cancellationToken);
-        if (category is null) return Result.NotFound("Category is not found");
+        CategoryDTO? category =
+            await _unitOfWork.CategoryRepository
+                .GetCategoryByIdAsync(request.Id, cancellationToken);
+        if (category is null)
+            return Result.NotFound("Category is not found");
         return Result.Success(category);
     }
 }

@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Ardalis.Result;
 using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data;
@@ -15,10 +12,13 @@ public class DisableReviewHandler(IUnitOfWork unitOfWork) : IRequestHandler<Disa
 
     public async Task<Result> Handle(DisableReviewCommand request, CancellationToken cancellationToken)
     {
-        Review? checkingReview = await _unitOfWork.ReviewRepository.GetEntityByConditionAsync(r => r.Id.Equals(request.Id), true);
-        if (checkingReview is null) return Result.NotFound("Review is not found");
+        Review? checkingReview =
+            await _unitOfWork.ReviewRepository
+                .GetEntityByConditionAsync(r => r.Id.Equals(request.Id), true);
+        if (checkingReview is null)
+            return Result.NotFound("Review is not found");
         checkingReview.Delete();
         await _unitOfWork.SaveChangesAsync();
-        return Result.Success();
+        return Result.SuccessWithMessage("Review is disabled successfully");
     }
 }

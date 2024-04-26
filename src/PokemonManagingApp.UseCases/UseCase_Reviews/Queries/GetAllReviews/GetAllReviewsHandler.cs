@@ -13,8 +13,11 @@ public class GetAllReviewsHandler(IUnitOfWork unitOfWork) : IRequestHandler<GetA
 
     public async Task<Result<IEnumerable<ReviewDTO>>> Handle(GetAllReviewsQuery request, CancellationToken cancellationToken)
     {
-        IEnumerable<ReviewDTO> reviews = await _unitOfWork.ReviewRepository.GetReviewsAsync(cancellationToken);
-        if (reviews is null) return Result<IEnumerable<ReviewDTO>>.NotFound();
-        return Result<IEnumerable<ReviewDTO>>.Success(reviews);
+        IEnumerable<ReviewDTO> reviews =
+            await _unitOfWork.ReviewRepository
+                .GetReviewsAsync(cancellationToken);
+        if (reviews is null)
+            return Result.NotFound("Reviews is not found");
+        return Result.Success(reviews);
     }
 }

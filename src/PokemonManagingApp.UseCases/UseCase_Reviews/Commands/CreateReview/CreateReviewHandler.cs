@@ -13,8 +13,11 @@ public class CreateReviewHandler(IUnitOfWork unitOfWork) : IRequestHandler<Creat
 
     public async Task<Result<ReviewDTO>> Handle(CreateReviewCommand request, CancellationToken cancellationToken)
     {
-        Pokemon? checkingPokemon = await _unitOfWork.PokemonRepository.GetEntityByConditionAsync(p => p.Id.Equals(request.PokemonId), false);
-        if (checkingPokemon is null) return Result.NotFound("Pokemon is not found");
+        Pokemon? checkingPokemon =
+            await _unitOfWork.PokemonRepository
+                .GetEntityByConditionAsync(p => p.Id.Equals(request.PokemonId), false);
+        if (checkingPokemon is null)
+            return Result.NotFound("Pokemon is not found");
         Review review = new()
         {
             Title = request.Title,
@@ -24,6 +27,6 @@ public class CreateReviewHandler(IUnitOfWork unitOfWork) : IRequestHandler<Creat
         };
         _unitOfWork.ReviewRepository.Add(review);
         await _unitOfWork.SaveChangesAsync();
-        return Result.Success(review.MapToDTO());
+        return Result.Success(review.MapToDTO(),"Review is created successfully");
     }
 }

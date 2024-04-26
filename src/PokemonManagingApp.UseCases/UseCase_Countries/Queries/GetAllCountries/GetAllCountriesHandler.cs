@@ -2,6 +2,7 @@ using Ardalis.Result;
 using MediatR;
 using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.DTOs;
+using Microsoft.IdentityModel.Tokens;
 
 namespace PokemonManagingApp.UseCases.UseCase_Countries.Queries.GetAllCountries;
 
@@ -11,8 +12,11 @@ public class GetAllCountriesHandler(IUnitOfWork unitOfWork) : IRequestHandler<Ge
 
     public async Task<Result<IEnumerable<CountryDTO>>> Handle(GetAllCountriesQuery request, CancellationToken cancellationToken)
     {
-        IEnumerable<CountryDTO> countries = await _unitOfWork.CountryRepository.GetAllCountriesAsync(cancellationToken);
-        if (!countries.Any()) return Result<IEnumerable<CountryDTO>>.NotFound();
-        return Result<IEnumerable<CountryDTO>>.Success(countries);
+        // Get all countries
+        IEnumerable<CountryDTO> countries =
+            await _unitOfWork.CountryRepository.GetAllCountriesAsync(cancellationToken);
+        if (countries.IsNullOrEmpty())
+            return Result.NotFound("Countries is not found");
+        return Result.Success(countries);
     }
 }

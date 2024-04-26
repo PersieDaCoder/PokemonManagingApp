@@ -4,7 +4,7 @@ using PokemonManagingApp.Core.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Owners.Queries.GetAllReviewsByOwnerId;
 
-public class GetAllReviewByOwnerIdQuery : IRequest<Result<IEnumerable<ReviewDTO>>>
+public record GetAllReviewByOwnerIdQuery : IRequest<Result<IEnumerable<ReviewDTO>>>
 {
-    public Guid OwnerId { get; set; }
+    public Guid OwnerId { get; init; }
 }

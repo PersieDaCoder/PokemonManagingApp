@@ -13,15 +13,18 @@ public class RemovePokemonOutOfCategoryHandler(IUnitOfWork unitOfWork) : IReques
     {
         // check if the pokemon is in the database
         Pokemon? pokemon = await _unitOfWork.PokemonRepository.GetEntityByConditionAsync(p => p.Id.Equals(request.PokemonId), false);
-        if (pokemon is null) return Result.NotFound("Pokemon is not found");
+        if (pokemon is null)
+            return Result.NotFound("Pokemon is not found");
         // check if the category is in the database
         Category? category = await _unitOfWork.CategoryRepository.GetEntityByConditionAsync(c => c.Id.Equals(request.CategoryId), false);
-        if (category is null) return Result.NotFound("Category is not found");
+        if (category is null)
+            return Result.NotFound("Category is not found");
         // check if the pokemon is in the category
         PokemonCategory? pokemonCategory = await _unitOfWork.PokemonCategoryRepository.GetEntityByConditionAsync(pc => pc.PokemonId.Equals(request.PokemonId) && pc.CategoryId.Equals(request.CategoryId), false);
-        if (pokemonCategory is null) return Result.NotFound("Pokemon is not in this category");
+        if (pokemonCategory is null)
+            return Result.NotFound("Pokemon is not in this category");
         _unitOfWork.PokemonCategoryRepository.Remove(pokemonCategory);
         await _unitOfWork.SaveChangesAsync();
-        return Result.Success();
+        return Result.SuccessWithMessage("Pokemon is removed from the category successfully");
     }
 }

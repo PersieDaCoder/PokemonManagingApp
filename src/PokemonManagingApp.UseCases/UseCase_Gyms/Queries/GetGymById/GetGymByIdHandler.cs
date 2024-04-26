@@ -13,8 +13,12 @@ public class GetGymByIdHandler(IUnitOfWork unitOfWork) : IRequestHandler<GetGymB
 
     public async Task<Result<GymDTO>> Handle(GetGymByIdQuery request, CancellationToken cancellationToken)
     {
-        GymDTO? gym = await _unitOfWork.GymRepository.GetGymByIdAsync(request.Id, cancellationToken);
-        if (gym is null) return Result<GymDTO>.NotFound("Gym is not found.");
-        return Result<GymDTO>.Success(gym);
+        // Get the gym by id
+        GymDTO? gym =
+            await _unitOfWork.GymRepository.GetGymByIdAsync(request.Id, cancellationToken);
+        // Check if the gym is in the database
+        if (gym is null)
+            return Result.NotFound("Gym is not found.");
+        return Result.Success(gym);
     }
 }

@@ -13,8 +13,12 @@ public class GetCountryByIdHandler(IUnitOfWork unitOfWork) : IRequestHandler<Get
 
     public async Task<Result<CountryDTO>> Handle(GetCountryByIdQuery request, CancellationToken cancellationToken)
     {
-        CountryDTO? country = await _unitOfWork.CountryRepository.GetCountryByIdAsync(request.Id, cancellationToken);
-        if (country is null) return Result.NotFound();
+        // Get the country by id
+        CountryDTO? country =
+            await _unitOfWork.CountryRepository
+                .GetCountryByIdAsync(request.Id, cancellationToken);
+        if (country is null)
+            return Result.NotFound("Country is not found");
         return Result.Success(country);
     }
 }

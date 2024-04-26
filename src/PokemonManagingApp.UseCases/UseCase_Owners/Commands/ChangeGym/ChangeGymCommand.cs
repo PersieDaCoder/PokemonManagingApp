@@ -5,6 +5,6 @@ namespace PokemonManagingApp.UseCases.UseCase_Owners.Commands.ChangeGym;
 
 public class ChangeGymCommand : IRequest<Result>
 {
-    public Guid OwnerId { get; set; }
-    public Guid GymId { get; set; }
+    public Guid OwnerId { get; init; }
+    public Guid GymId { get; init; }
 }

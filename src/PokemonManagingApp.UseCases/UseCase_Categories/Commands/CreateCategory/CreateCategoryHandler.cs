@@ -19,6 +19,6 @@ public class CreateCategoryHandler(IUnitOfWork unitOfWork) : IRequestHandler<Cre
         };
         _unitOfWork.CategoryRepository.Add(addingCategory);
         await _unitOfWork.SaveChangesAsync();
-        return Result<CategoryDTO>.Success(CategoryMapper.MapToDTO(addingCategory));
+        return Result.Success(CategoryMapper.MapToDTO(addingCategory),"Category is created successfully");
     }
 }

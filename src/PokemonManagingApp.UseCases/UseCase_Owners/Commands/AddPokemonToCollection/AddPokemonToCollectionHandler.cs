@@ -12,12 +12,24 @@ public class AddPokemonToCollectionHandler(IUnitOfWork unitOfWork) : IRequestHan
 
     public async Task<Result<PokemonDTO>> Handle(AddPokemonToCollectionCommand request, CancellationToken cancellationToken)
     {
-        Owner? checkingOwner = await _unitOfWork.OwnerRepository.GetEntityByConditionAsync(o => o.Id.Equals(request.OwnerId), false);
-        if (checkingOwner is null) return Result.NotFound("Owner is not found");
-        Pokemon? checkingPokemon = await _unitOfWork.PokemonRepository.GetEntityByConditionAsync(p => p.Id == request.PokemonId, false);
-        if (checkingPokemon is null) return Result.NotFound("Pokemon is not found");
-        PokemonOwner? checkingPokemonOwner = await _unitOfWork.PokemonOwnerRepository.GetEntityByConditionAsync(po => po.OwnerId == request.OwnerId && po.PokemonId == request.PokemonId, false);
-        if (checkingPokemonOwner is not null) return Result.Error("Pokemon is already owned by this owner");
+        // Check if the owner exists
+        Owner? checkingOwner =
+            await _unitOfWork.OwnerRepository
+                .GetEntityByConditionAsync(o => o.Id.Equals(request.OwnerId), false);
+        if (checkingOwner is null)
+            return Result.NotFound("Owner is not found");
+        // Check if the pokemon exists
+        Pokemon? checkingPokemon =
+            await _unitOfWork.PokemonRepository
+                .GetEntityByConditionAsync(p => p.Id == request.PokemonId, false);
+        if (checkingPokemon is null)
+            return Result.NotFound("Pokemon is not found");
+        // Check if the pokemon is already owned by the owner
+        PokemonOwner? checkingPokemonOwner =
+            await _unitOfWork.PokemonOwnerRepository
+                .GetEntityByConditionAsync(po => po.OwnerId == request.OwnerId && po.PokemonId == request.PokemonId, false);
+        if (checkingPokemonOwner is not null)
+            return Result.Error("Pokemon is already owned by this owner");
         PokemonOwner newPokemonOwner = new PokemonOwner
         {
             OwnerId = request.OwnerId,
@@ -25,6 +37,6 @@ public class AddPokemonToCollectionHandler(IUnitOfWork unitOfWork) : IRequestHan
         };
         _unitOfWork.PokemonOwnerRepository.Add(newPokemonOwner);
         await _unitOfWork.SaveChangesAsync();
-        return Result<PokemonDTO>.Success(checkingPokemon.MapToDTO());
+        return Result.Success(checkingPokemon.MapToDTO(),"Pokemon is added to the collection successfully");
     }
 }

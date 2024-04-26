@@ -30,7 +30,7 @@ public class UpdatePokemonHandler(IUnitOfWork unitOfWork) : IRequestHandler<Upda
       pokemonCategory.CategoryId = request.CategoryId;
     }
     await _unitOfWork.SaveChangesAsync();
-    return Result.Success();
+    return Result.SuccessWithMessage("Pokemon is updated successfully");
   }
 
 }

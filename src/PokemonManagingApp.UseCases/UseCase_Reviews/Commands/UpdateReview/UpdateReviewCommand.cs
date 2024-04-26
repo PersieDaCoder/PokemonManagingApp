@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Ardalis.Result;
 using MediatR;
 
 namespace PokemonManagingApp.UseCases.UseCase_Reviews.Commands.UpdateReview;
 
-public class UpdateReviewCommand : IRequest<Result>
+public record UpdateReviewCommand : IRequest<Result>
 {
-    public Guid Id { get; set; }
-    public string Text { get; set; } = null!;
-    public string Title { get; set; } = null!;
-    public Guid PokemonId { get; set; }
+    public Guid Id { get; init; }
+    public string Text { get; init; } = null!;
+    public string Title { get; init; } = null!;
+    public Guid PokemonId { get; init; }
 }

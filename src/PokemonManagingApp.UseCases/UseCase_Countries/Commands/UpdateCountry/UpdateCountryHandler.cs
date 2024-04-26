@@ -15,12 +15,15 @@ public class UpdateCountryHandler(IUnitOfWork unitOfWork) : IRequestHandler<Upda
 
   public async Task<Result> Handle(UpdateCountryCommand request, CancellationToken cancellationToken)
   {
-    Country? country = await _unitOfWork.CountryRepository.GetEntityByConditionAsync(c => c.Id.Equals(request.Id), true);
-    if (country is null) return Result.Error("Country is not found");
-    {
-      country.Name = request.Name;
-    }
+    // Check if the country is in the database
+    Country? country =
+      await _unitOfWork.CountryRepository
+        .GetEntityByConditionAsync(c => c.Id.Equals(request.Id), true);
+    if (country is null)
+      return Result.Error("Country is not found");
+    // Update the country
+    country.Name = request.Name;
     await _unitOfWork.SaveChangesAsync();
-    return Result.Success();
+    return Result.SuccessWithMessage("Country is updated successfully");
   }
 }

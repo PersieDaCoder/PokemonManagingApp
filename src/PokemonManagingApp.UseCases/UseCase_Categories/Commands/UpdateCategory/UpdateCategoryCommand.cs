@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Ardalis.Result;
 using MediatR;
 
@@ -11,5 +7,5 @@ public record UpdateCategoryCommand : IRequest<Result>
 {
     public Guid Id { get; init; }
     public string Name { get; init;} = null!;
-    public List<Guid> PokemonIds { get; init; } = new();
+    public List<Guid> PokemonIds { get; init; } = [];
 }

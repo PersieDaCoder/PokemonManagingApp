@@ -12,8 +12,11 @@ public class CreatePokemonHandler(IUnitOfWork context) : IRequestHandler<CreateP
 
     public async Task<Result<PokemonDTO>> Handle(CreatePokemonCommand request, CancellationToken cancellationToken)
     {
-        Category? category = await _context.CategoryRepository.GetEntityByConditionAsync(c => c.Id.Equals(request.CategoryId), false);
-        if (category is null) return Result.NotFound("Category is not found");
+        Category? category =
+            await _context.CategoryRepository
+                .GetEntityByConditionAsync(c => c.Id.Equals(request.CategoryId), false);
+        if (category is null)
+            return Result.NotFound("Category is not found");
         Guid pokemonId = Guid.NewGuid();
         Pokemon pokemon = new()
         {

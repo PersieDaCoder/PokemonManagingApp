@@ -4,6 +4,7 @@ using PokemonManagingApp.Core.Interfaces.Data;
 using PokemonManagingApp.Core.Models;
 using PokemonManagingApp.Core.DTOs;
 using PokemonManagingApp.UseCases.Mapper;
+using Microsoft.IdentityModel.Tokens;
 
 namespace PokemonManagingApp.UseCases.UseCase_Gyms.Queries.GetAllGyms;
 
@@ -13,8 +14,11 @@ public class GetAllGymsHandler(IUnitOfWork unitOfWork) : IRequestHandler<GetAllG
 
     public async Task<Result<IEnumerable<GymDTO>>> Handle(GetAllGymsQuery request, CancellationToken cancellationToken)
     {
-        IEnumerable<GymDTO> gyms = await _unitOfWork.GymRepository.GetGymsAsync(cancellationToken);
-        if (!gyms.Any()) return Result<IEnumerable<GymDTO>>.NotFound("Gyms are not found.");
-        return Result<IEnumerable<GymDTO>>.Success(gyms);
+        IEnumerable<GymDTO> gyms =
+            await _unitOfWork.GymRepository
+                .GetGymsAsync(cancellationToken);
+        if (gyms.IsNullOrEmpty())
+            return Result.NotFound("Gyms are not found.");
+        return Result.Success(gyms);
     }
 }

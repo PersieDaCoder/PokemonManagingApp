@@ -4,7 +4,7 @@ using PokemonManagingApp.Core.DTOs;
 
 namespace PokemonManagingApp.UseCases.UseCase_Owners.Queries.GetAllPokemonsInCollection;
 
-public class GetAllPokemonsInCollectionQuery : IRequest<Result<IEnumerable<PokemonDTO>>>
+public record GetAllPokemonsInCollectionQuery : IRequest<Result<IEnumerable<PokemonDTO>>>
 {
-    public Guid OwnerId { get; set; }
+    public Guid OwnerId { get; init; }
 }

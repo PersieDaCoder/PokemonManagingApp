@@ -15,10 +15,14 @@ public class DisableCountryHandler(IUnitOfWork unitOfWork) : IRequestHandler<Dis
 
     public async Task<Result> Handle(DisableCountryCommand request, CancellationToken cancellationToken)
     {
-        Country? checkingCountry = await _unitOfWork.CountryRepository.GetEntityByConditionAsync(c => c.Id.Equals(request.Id), true);
-        if (checkingCountry is null) return Result.NotFound("Country is not found");
+        // Check if the country is in the database
+        Country? checkingCountry =
+            await _unitOfWork.CountryRepository
+                .GetEntityByConditionAsync(c => c.Id.Equals(request.Id), true);
+        if (checkingCountry is null)
+            return Result.NotFound("Country is not found");
         checkingCountry.Delete();
         await _unitOfWork.SaveChangesAsync();
-        return Result.Success();
+        return Result.SuccessWithMessage("Country is disabled successfully");
     }
 }

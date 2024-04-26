@@ -14,8 +14,11 @@ public class GetAllOwnersHandler(IUnitOfWork unitOfWork) : IRequestHandler<GetAl
 
   public async Task<Result<IEnumerable<OwnerDTO>>> Handle(GetAllOwnersQuery request, CancellationToken cancellationToken)
   {
-    IEnumerable<OwnerDTO> owners = await _unitOfWork.OwnerRepository.GetAllOwners(cancellationToken);
-    if (owners.IsNullOrEmpty()) return Result.NotFound("Owners is not found");
+    // Get all owners
+    IEnumerable<OwnerDTO> owners =
+      await _unitOfWork.OwnerRepository.GetAllOwners(cancellationToken);
+    if (owners.IsNullOrEmpty())
+      return Result.NotFound("Owners is not found");
     return Result.Success(owners);
   }
 }

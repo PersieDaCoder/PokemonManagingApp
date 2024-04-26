@@ -12,17 +12,19 @@ public class ChangeCountryHandler(IUnitOfWork unitOfWork) : IRequestHandler<Chan
     public async Task<Result> Handle(ChangeCountryCommand request, CancellationToken cancellationToken)
     {
         // Check owner
-        Owner? checkingOwner = await _unitOfWork.OwnerRepository
-            .GetEntityByConditionAsync(owner => owner.Id.Equals(request.OwnerId), true);
-        if (checkingOwner is null) return Result.NotFound("Owner is not found");
+        Owner? checkingOwner =
+            await _unitOfWork.OwnerRepository
+                .GetEntityByConditionAsync(owner => owner.Id.Equals(request.OwnerId), true);
+        if (checkingOwner is null)
+            return Result.NotFound("Owner is not found");
         // Check country
-        Country? checkingCountry = await _unitOfWork.CountryRepository
-            .GetEntityByConditionAsync(country => country.Id.Equals(request.CountryId), false);
-        if (checkingCountry is null) return Result.NotFound("Country is not found");
+        Country? checkingCountry =
+            await _unitOfWork.CountryRepository
+                .GetEntityByConditionAsync(country => country.Id.Equals(request.CountryId), false);
+        if (checkingCountry is null)
+            return Result.NotFound("Country is not found");
         // Change country
-        {
-            checkingOwner.CountryId = request.CountryId;
-        }
+        checkingOwner.CountryId = request.CountryId;
         await _unitOfWork.SaveChangesAsync();
         return Result.SuccessWithMessage("Country is changed successfully");
     }
