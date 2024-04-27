@@ -23,7 +23,7 @@ public class UpdateCountryEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
 
     [HttpPut]
     [Authorize(Roles = "Admin")]
-    [Route("/api/Countries/{Id}")]
+    [Route("/api/countries/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
     [SwaggerOperation(
           Summary = "Update Country",

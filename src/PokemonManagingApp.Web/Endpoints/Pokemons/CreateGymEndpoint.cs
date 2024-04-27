@@ -22,7 +22,7 @@ public class CreateGymEndpoint(IMediator mediator) : EndpointBaseAsync.WithReque
 
     [HttpPost]
     [Authorize(Roles = "Admin")]
-    [Route("api/Gyms")]
+    [Route("api/gyms")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
     [SwaggerOperation(
         Summary = "Create a new Gym",

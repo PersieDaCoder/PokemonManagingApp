@@ -20,7 +20,7 @@ public class DisableCountryEndpoint(IMediator mediator) : EndpointBaseAsync.With
     private readonly IMediator _mediator = mediator;
     [HttpDelete]
     [Authorize(Roles = "Admin")]
-    [Route("api/Countries/{Id}")]
+    [Route("api/countries/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
     [SwaggerOperation(
         Summary = "Disable a country",

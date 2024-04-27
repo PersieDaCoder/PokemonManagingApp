@@ -23,12 +23,10 @@ public class CreateCountryEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
 
     [HttpPost]
     [Authorize(Roles = "Admin")]
-    [Route("api/Countries")]
+    [Route("api/countries")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
     [SwaggerOperation(
         Summary = "Create a new country",
-        Description = "Create a new country",
-        OperationId = "Country.Create",
         Tags = ["Countries"]
     )]
     public override async Task<ActionResult> HandleAsync(CreateCountryRequest request, CancellationToken cancellationToken = default)

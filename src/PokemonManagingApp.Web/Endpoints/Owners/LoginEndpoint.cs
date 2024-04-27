@@ -19,7 +19,7 @@ public class LoginEndpoint(IMediator mediator, IConfiguration configuration) : E
   private readonly IConfiguration _configuration = configuration;
 
   [HttpPost]
-  [Route("/api/Owners/login")]
+  [Route("/api/owners/login")]
   [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
   [SwaggerOperation(
       Summary = "Login",

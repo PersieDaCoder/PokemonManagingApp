@@ -24,7 +24,7 @@ public class AddPokemonToCollectionEndpoint(IMediator mediator) : EndpointBaseAs
 
     [HttpPost]
     [Authorize]
-    [Route("api/Owners/Pokemons/{PokemonId:guid}")]
+    [Route("api/owners/pokemons/{PokemonId:guid}")]
     [SwaggerOperation(
           Summary = "Add a Pokemon to the collection of an owner",
           Tags = ["Owners"]

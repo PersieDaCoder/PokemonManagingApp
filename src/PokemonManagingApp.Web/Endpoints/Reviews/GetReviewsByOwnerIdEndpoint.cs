@@ -19,7 +19,7 @@ public class GetReviewsByOwnerIdEndpoint(IMediator mediator) : EndpointBaseAsync
 
     [HttpGet]
     [Authorize]
-    [Route("api/Reviews/GetReviewsByOwnerId")]
+    [Route("api/reviews")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
     [SwaggerOperation(
           Summary = "Get reviews by owner id",

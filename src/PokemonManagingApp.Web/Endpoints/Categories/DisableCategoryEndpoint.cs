@@ -19,10 +19,10 @@ public class DisableCategoryEndpoint(IMediator mediator) : EndpointBaseAsync.Wit
 
     [HttpDelete]
     [Authorize(Roles = "Admin")]
-    [Route("/api/Categories/{Id}")]
+    [Route("/api/categories/{Id}")]
     [SwaggerOperation(
         Summary = "Disable selected Category",
-        Tags = new[] { "Categories" }
+        Tags = ["Categories"]
     )]
     public override async Task<ActionResult> HandleAsync(DisableCategoryRequest request, CancellationToken cancellationToken = default)
     {

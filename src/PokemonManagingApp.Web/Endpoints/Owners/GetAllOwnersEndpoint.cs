@@ -16,7 +16,7 @@ public class GetAllOwnersEndpoint(IMediator mediator) : EndpointBaseAsync.Withou
 
   [HttpGet]
   [Authorize]
-  [Route("/api/Owners")]
+  [Route("/api/owners")]
   [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
   [SwaggerOperation(
       Summary = "Get all Owners",

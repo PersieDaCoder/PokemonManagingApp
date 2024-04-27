@@ -20,7 +20,7 @@ public class UpdateCategoryEndpoint(IMediator mediator) : EndpointBaseAsync.With
     private readonly IMediator _mediator = mediator;
 
     [HttpPut]
-    [Route("/api/Categories/{Id}")]
+    [Route("/api/categories/{Id}")]
     [Authorize(Roles = "Admin")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
     [SwaggerOperation(

@@ -16,7 +16,7 @@ public class GetAllCountriesEndpoint(IMediator mediator) : EndpointBaseAsync.Wit
 
     [HttpGet]
     [Authorize]
-    [Route("api/Countries")]
+    [Route("api/countries")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
     [SwaggerOperation(
         Summary = "Get all countries",

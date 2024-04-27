@@ -18,7 +18,7 @@ public class DisablePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.With
 
     [HttpDelete]
     [Authorize(Roles = "Admin")]
-    [Route("api/Pokemons/{Id:Guid}/disable")]
+    [Route("api/pokemons/{Id:Guid}/disable")]
     [SwaggerOperation(
         Summary = "Disable selected Pokemon",
         Tags = ["Pokemons"]

@@ -28,7 +28,7 @@ public class CreateReviewEndpoint(IMediator mediator) : EndpointBaseAsync.WithRe
 
     [HttpPost]
     [Authorize]
-    [Route("api/Reviews")]
+    [Route("api/reviews")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
     [SwaggerOperation(
         Summary = "Create a review",

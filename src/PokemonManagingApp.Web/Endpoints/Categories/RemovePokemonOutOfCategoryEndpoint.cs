@@ -23,11 +23,11 @@ public class RemovePokemonOutOfCategoryEndpoint(IMediator mediator) : EndpointBa
 
     [HttpDelete]
     [Authorize]
-    [Route("api/Categories/{CategoryId:guid}/Pokemons/{PokemonId:guid}")]
+    [Route("api/categories/{CategoryId:guid}/pokemons/{PokemonId:guid}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
     [SwaggerOperation(
         Summary = "Remove a Pokemon from a Category",
-        Tags = new[] { "Categories" }
+        Tags = ["Categories"]
     )]
     public override async Task<ActionResult> HandleAsync(RemovePokemonOutOfCategoryRequest request, CancellationToken cancellationToken = default)
     {

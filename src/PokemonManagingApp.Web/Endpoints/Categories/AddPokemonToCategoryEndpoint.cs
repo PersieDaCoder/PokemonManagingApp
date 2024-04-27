@@ -24,7 +24,7 @@ public class AddPokemonToCategoryEndpoint(IMediator mediator) : EndpointBaseAsyn
 
     [HttpPost]
     [Authorize(Roles = "Admin")]
-    [Route("api/Categories/{CategoryId:guid}/Pokemons/{PokemonId:guid}")]
+    [Route("api/categories/{CategoryId:guid}/pokemons/{PokemonId:guid}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
     [SwaggerOperation(
         Summary = "Add a Pokemon to a Category",

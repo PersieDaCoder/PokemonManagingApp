@@ -21,7 +21,7 @@ public class DisableOwnerEndpoint(IMediator mediator) : EndpointBaseAsync.WithRe
 
   [HttpDelete]
   [Authorize(Roles = "Admin")]
-  [Route("api/Owners/{Id}")]
+  [Route("api/owners/{Id}")]
   [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
   [SwaggerOperation(
     Summary = "Disable an Owner",

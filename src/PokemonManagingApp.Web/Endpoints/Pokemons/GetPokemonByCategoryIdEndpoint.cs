@@ -20,7 +20,7 @@ public class GetPokemonByCategoryIdEndpoint(IMediator mediator) : EndpointBaseAs
     private readonly IMediator _mediator = mediator;
 
     [HttpGet]
-    [Route("api/Categories/{CategoryId}/Pokemons")]
+    [Route("api/categories/{CategoryId}/pokemons")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
     [SwaggerOperation(
         Summary = "Get pokemons by category id",

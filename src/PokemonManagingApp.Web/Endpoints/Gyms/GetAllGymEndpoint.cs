@@ -16,7 +16,7 @@ public class GetAllGymEndpoint(IMediator mediator) : EndpointBaseAsync.WithoutRe
 
     [HttpGet]
     [Authorize]
-    [Route("api/Gyms")]
+    [Route("api/gyms")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
     [SwaggerOperation(
         Summary = "Get all gyms",

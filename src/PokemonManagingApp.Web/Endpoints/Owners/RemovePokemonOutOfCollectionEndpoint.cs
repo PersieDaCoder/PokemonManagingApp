@@ -23,7 +23,7 @@ public class RemovePokemonOutOfCollectionEndpoint(IMediator mediator) : Endpoint
 
     [HttpDelete]
     [Authorize]
-    [Route("api/Owners/Pokemons/{PokemonId:guid}")]
+    [Route("api/owners/pokemons/{PokemonId:guid}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
     [SwaggerOperation(
           Summary = "Remove a Pokemon from the collection of an owner",

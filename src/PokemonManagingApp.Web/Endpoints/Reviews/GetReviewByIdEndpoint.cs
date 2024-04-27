@@ -20,7 +20,7 @@ public class GetReviewByIdEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
     private readonly IMediator _mediator = mediator;
     [HttpGet]
     [Authorize]
-    [Route("/api/Reviews/{Id}")]
+    [Route("/api/reviews/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
     [SwaggerOperation(
         Summary = "Get Review by Id",

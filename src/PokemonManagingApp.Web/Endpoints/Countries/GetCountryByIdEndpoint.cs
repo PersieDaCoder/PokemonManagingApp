@@ -20,7 +20,7 @@ public class GetCountryByIdEndpoint(IMediator mediator) : EndpointBaseAsync.With
 
     [HttpGet]
     [Authorize]
-    [Route("api/Countries/{Id}")]
+    [Route("api/countries/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
     [SwaggerOperation(
         Summary = "Get a country by Id",

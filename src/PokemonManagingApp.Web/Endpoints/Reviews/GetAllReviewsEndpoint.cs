@@ -13,7 +13,7 @@ public class GetAllReviewsEndpoint(IMediator mediator) : EndpointBaseAsync.Witho
     private readonly IMediator _mediator = mediator;
     [HttpGet]
     [Authorize]
-    [Route("/api/Reviews")]
+    [Route("/api/reviews/currentOwner")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
     [SwaggerOperation(
         Summary = "Get all Reviews",

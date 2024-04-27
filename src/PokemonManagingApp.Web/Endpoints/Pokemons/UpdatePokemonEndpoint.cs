@@ -30,7 +30,7 @@ public class UpdatePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
         Summary = "Update selected Pokemon",
         Tags = ["Pokemons"]
     )]
-    [Route("/api/Pokemons/{Id:guid}")]
+    [Route("/api/pokemons/{Id:guid}")]
     public override async Task<ActionResult> HandleAsync(UpdatePokemonRequest request, CancellationToken cancellationToken = default)
     {
         Result result = await _mediator.Send(new UpdatePokemonCommand

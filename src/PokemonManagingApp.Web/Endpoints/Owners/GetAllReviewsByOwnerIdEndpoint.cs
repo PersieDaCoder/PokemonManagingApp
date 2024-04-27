@@ -17,14 +17,14 @@ public class GetAllReviewsByOwnerIdEndpoint(IMediator mediator) : EndpointBaseAs
 {
     private readonly IMediator _mediator = mediator;
 
-[HttpGet]
-[Authorize]
-[Route("api/Owners/Reviews")]
-[ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
-[SwaggerOperation(
-    Summary = "Get all reviews by owner id",
-    Tags = ["Owners"]
-)]
+    [HttpGet]
+    [Authorize]
+    [Route("api/owners/reviews")]
+    [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
+    [SwaggerOperation(
+        Summary = "Get all reviews by owner id",
+        Tags = ["Owners"]
+    )]
     public override async Task<ActionResult> HandleAsync(CancellationToken cancellationToken = default)
     {
         Guid currentUserId = Guid.Parse(HttpContext.User.FindFirstValue(JwtRegisteredClaimNames.Sid) ?? throw new ValidationException("JWT is not found"));
@@ -32,7 +32,7 @@ public class GetAllReviewsByOwnerIdEndpoint(IMediator mediator) : EndpointBaseAs
         {
             OwnerId = currentUserId
         }, cancellationToken);
-        if(!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
+        if (!result.IsSuccess) return result.IsNotFound() ? NotFound(result) : BadRequest(result);
         return Ok(result.Value);
     }
 }

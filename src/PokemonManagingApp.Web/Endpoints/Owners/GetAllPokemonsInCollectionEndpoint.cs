@@ -17,7 +17,7 @@ public class GetAllPokemonsInCollectionEndpoint(IMediator mediator) : EndpointBa
     private readonly IMediator _mediator = mediator;
 
     [HttpGet]
-    [Route("/api/Owners/Pokemons")]
+    [Route("/api/owners/pokemons")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
     [SwaggerOperation(
         Summary = "Get all pokemons in collection",

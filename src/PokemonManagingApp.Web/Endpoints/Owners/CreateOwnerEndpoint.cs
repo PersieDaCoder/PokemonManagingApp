@@ -26,7 +26,7 @@ public class CreateOwnerEndpoint(IMediator mediator) : EndpointBaseAsync.WithReq
 
     [HttpPost]
     [Authorize(Roles = "Admin")]
-    [Route("api/Owners")]
+    [Route("api/owners")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
     [SwaggerOperation(
         Summary = "Create a new owner",

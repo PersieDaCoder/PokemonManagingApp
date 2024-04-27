@@ -19,10 +19,10 @@ public class GetCategoryByIdEndpoint(IMediator mediator) : EndpointBaseAsync.Wit
     private readonly IMediator _mediator = mediator;
     [HttpGet]
     [Authorize]
-    [Route("api/Categories/{Id}")]
+    [Route("api/categories/{Id}")]
     [SwaggerOperation(
         Summary = "Get Category By Its Id",
-        Tags = new[] { "Categories" }
+        Tags = ["Categories"]
     )]
     public override async Task<ActionResult<Result<CategoryDTO>>> HandleAsync(GetCategoryByIdRequest request, CancellationToken cancellationToken = default)
     {

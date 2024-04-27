@@ -21,7 +21,7 @@ public class GetOwnerByIdEndpoint(IMediator mediator) : EndpointBaseAsync.WithRe
     private readonly IMediator _mediator = mediator;
     [HttpGet]
     [Authorize]
-    [Route("/api/Owners/{Id}")]
+    [Route("/api/owners/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
     [SwaggerOperation(
     Summary = "Get Owner by Id",

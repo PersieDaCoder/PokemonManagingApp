@@ -22,7 +22,7 @@ public class GetGymByIdEndpoint(IMediator mediator) : EndpointBaseAsync.WithRequ
 
     [HttpGet]
     [Authorize]
-    [Route("api/Gyms/{Id}")]
+    [Route("api/gyms/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
     [SwaggerOperation(
             Summary = "Get Gym by Id",

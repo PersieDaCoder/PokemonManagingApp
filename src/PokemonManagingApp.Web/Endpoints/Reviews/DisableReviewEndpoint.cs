@@ -20,7 +20,7 @@ public class DisableReviewEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
 
     [HttpDelete]
     [Authorize]
-    [Route("api/Reviews/{Id}")]
+    [Route("api/reviews/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Delete))]
     [SwaggerOperation(
           Summary = "Disable a review",

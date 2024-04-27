@@ -29,7 +29,7 @@ public class UpdateReviewEndpoint(IMediator mediator) : EndpointBaseAsync.WithRe
     private readonly IMediator _mediator = mediator;
     [HttpPut]
     [Authorize]
-    [Route("api/Reviews/{Id}")]
+    [Route("api/reviews/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
     [SwaggerOperation(
         Summary = "Update a review",

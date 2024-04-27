@@ -24,7 +24,7 @@ public class CreatePokemonEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
     private readonly IMediator _mediator = mediator;
     [HttpPost]
     [Authorize(Roles = "Admin")]
-    [Route("/api/Pokemons")]
+    [Route("/api/pokemons")]
     [SwaggerOperation(
         Summary = "Create a new Pokemon",
         Tags = ["Pokemons"]

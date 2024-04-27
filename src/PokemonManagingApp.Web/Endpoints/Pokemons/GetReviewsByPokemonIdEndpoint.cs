@@ -21,7 +21,7 @@ public class GetReviewsByPokemonId(IMediator mediator) : EndpointBaseAsync.WithR
   private readonly IMediator _mediator = mediator;
   [HttpGet]
   [Authorize]
-  [Route("api/Pokemons/{PokemonId}/Reviews")]
+  [Route("api/pokemons/{PokemonId}/reviews")]
   [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
   [SwaggerOperation(
     Summary = "Get Reviews by Pokemon Id",

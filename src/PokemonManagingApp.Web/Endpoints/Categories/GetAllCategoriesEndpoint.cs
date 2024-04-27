@@ -16,10 +16,10 @@ public class GetAllCategoriesEndpoint(IMediator mediator) : EndpointBaseAsync.Wi
 
   [HttpGet]
   [Authorize]
-  [Route("api/Categories")]
+  [Route("api/categories")]
   [SwaggerOperation(
     Summary = "Get All Categories",
-    Tags = new[] { "Categories" }
+    Tags =  ["Categories"]
   )]
   [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Get))]
   public override async Task<ActionResult<Result>> HandleAsync(CancellationToken cancellationToken = default)

@@ -22,7 +22,7 @@ public class CreateCategoryEndpoint(IMediator mediator) : EndpointBaseAsync.With
 
   [HttpPost]
   [Authorize(Roles = "Admin")]
-  [Route("/api/Categories")]
+  [Route("/api/categories")]
   [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Post))]
   [SwaggerOperation(
         Summary = "Create a new Category",

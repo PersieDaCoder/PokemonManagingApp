@@ -29,7 +29,7 @@ public class UpdateOwnerEndpoint(IMediator mediator) : EndpointBaseAsync.WithReq
 
     [HttpPut]
     [Authorize(Roles = "Admin")]
-    [Route("api/Owners/{Id}")]
+    [Route("api/owners/{Id}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
     [SwaggerOperation(
         Summary = "Update an owner",

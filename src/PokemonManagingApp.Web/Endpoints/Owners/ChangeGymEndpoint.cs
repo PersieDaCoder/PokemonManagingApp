@@ -15,7 +15,7 @@ namespace PokemonManagingApp.Web.Endpoints.Owners;
 public record ChangeGymRequest
 {
     [Required(ErrorMessage = "Gym Id is required")]
-    [FromBody] public Guid GymId { get; set; }
+    [FromRoute] public Guid GymId { get; set; }
 }
 public class ChangeGymEndpoint(IMediator mediator) : EndpointBaseAsync.WithRequest<ChangeGymRequest>.WithActionResult
 {
@@ -23,7 +23,7 @@ public class ChangeGymEndpoint(IMediator mediator) : EndpointBaseAsync.WithReque
 
     [HttpPut]
     [Authorize]
-    [Route("api/Owners/change-gym")]
+    [Route("api/owners/gyms/{GymId:guid}")]
     [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
     [SwaggerOperation(
         Summary = "Change Owner's Gym",

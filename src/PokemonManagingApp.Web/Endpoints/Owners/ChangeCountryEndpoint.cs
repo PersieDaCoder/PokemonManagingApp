@@ -24,7 +24,7 @@ public class ChangeCountryEndpoint(IMediator mediator) : EndpointBaseAsync.WithR
 
 [HttpPut]
 [Authorize]
-[Route("api/Owners/country/{CountryId:guid}")]
+[Route("api/owners/country/{CountryId:guid}")]
 [ApiConventionMethod(typeof(DefaultApiConventions), nameof(DefaultApiConventions.Put))]
 [SwaggerOperation(
     Summary = "Change country of owner",

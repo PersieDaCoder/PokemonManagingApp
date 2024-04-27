@@ -14,7 +14,7 @@ public class GetAllPokemonsEndpoint(IMediator mediator) : EndpointBaseAsync.With
   private readonly IMediator _mediator = mediator;
   [HttpGet]
   [Authorize]
-  [Route("/api/Pokemons")]
+  [Route("/api/pokemons")]
   [SwaggerOperation(
         Summary = "Get All Pokemons",
         Tags = ["Pokemons"]
