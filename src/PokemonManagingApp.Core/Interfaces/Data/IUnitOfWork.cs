@@ -16,5 +16,5 @@ public interface IUnitOfWork : IDisposable
   IPokemonRepository PokemonRepository { get; }
   IReviewRepository ReviewRepository { get; }
   IGymRepository GymRepository { get; }
-  Task SaveChangesAsync();
+  Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }

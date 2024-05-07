@@ -7,129 +7,129 @@ namespace PokemonManagingApp.Infrastructure.Data.Repository;
 
 public class UnitOfWork(ApplicationDBContext context, ICacheService cacheService) : IUnitOfWork
 {
-    private readonly ApplicationDBContext _context = context;
-    private readonly ICacheService _cacheService = cacheService;
-    private ICategoryRepository _categoryRepository = null!;
-    private ICountryRepository _countryRepository = null!;
-    private IOwnerRepository _ownerRepository = null!;
-    private IPokemonCategoryRepository _pokemonCategoryRepository = null!;
-    private IPokemonOwnerRepository _pokemonOwnerRepository = null!;
-    private IPokemonRepository _pokemonRepository = null!;
-    private IReviewRepository _reviewRepository = null!;
-    private IGymRepository _gymRepository = null!;
+  private readonly ApplicationDBContext _context = context;
+  private readonly ICacheService _cacheService = cacheService;
+  private ICategoryRepository _categoryRepository = null!;
+  private ICountryRepository _countryRepository = null!;
+  private IOwnerRepository _ownerRepository = null!;
+  private IPokemonCategoryRepository _pokemonCategoryRepository = null!;
+  private IPokemonOwnerRepository _pokemonOwnerRepository = null!;
+  private IPokemonRepository _pokemonRepository = null!;
+  private IReviewRepository _reviewRepository = null!;
+  private IGymRepository _gymRepository = null!;
 
-    public ICategoryRepository CategoryRepository
+  public ICategoryRepository CategoryRepository
+  {
+    get
     {
-        get
-        {
-            if (_categoryRepository is null)
-            {
-                _categoryRepository = new CategoryRepository(_context, _cacheService);
-            }
-            return _categoryRepository;
-        }
+      if (_categoryRepository is null)
+      {
+        _categoryRepository = new CategoryRepository(_context, _cacheService);
+      }
+      return _categoryRepository;
     }
+  }
 
-    public ICountryRepository CountryRepository
+  public ICountryRepository CountryRepository
+  {
+    get
     {
-        get
-        {
-            if (_countryRepository is null)
-            {
-                _countryRepository = new CountryRepository(_context, _cacheService);
-            }
-            return _countryRepository;
-        }
+      if (_countryRepository is null)
+      {
+        _countryRepository = new CountryRepository(_context, _cacheService);
+      }
+      return _countryRepository;
     }
+  }
 
-    public IOwnerRepository OwnerRepository
+  public IOwnerRepository OwnerRepository
+  {
+    get
     {
-        get
-        {
-            if (_ownerRepository is null)
-            {
-                _ownerRepository = new OwnerRepository(_context, _cacheService);
-            }
-            return _ownerRepository;
-        }
+      if (_ownerRepository is null)
+      {
+        _ownerRepository = new OwnerRepository(_context, _cacheService);
+      }
+      return _ownerRepository;
     }
+  }
 
-    public IPokemonCategoryRepository PokemonCategoryRepository
+  public IPokemonCategoryRepository PokemonCategoryRepository
+  {
+    get
     {
-        get
-        {
-            if (_pokemonCategoryRepository is null)
-            {
-                _pokemonCategoryRepository = new PokemonCategoryRepository(_context, _cacheService);
-            }
-            return _pokemonCategoryRepository;
-        }
+      if (_pokemonCategoryRepository is null)
+      {
+        _pokemonCategoryRepository = new PokemonCategoryRepository(_context, _cacheService);
+      }
+      return _pokemonCategoryRepository;
     }
+  }
 
-    public IPokemonOwnerRepository PokemonOwnerRepository
+  public IPokemonOwnerRepository PokemonOwnerRepository
+  {
+    get
     {
-        get
-        {
-            if (_pokemonOwnerRepository is null)
-            {
-                _pokemonOwnerRepository = new PokemonOwnerRepository(_context, _cacheService);
-            }
-            return _pokemonOwnerRepository;
-        }
+      if (_pokemonOwnerRepository is null)
+      {
+        _pokemonOwnerRepository = new PokemonOwnerRepository(_context, _cacheService);
+      }
+      return _pokemonOwnerRepository;
     }
+  }
 
-    public IPokemonRepository PokemonRepository
+  public IPokemonRepository PokemonRepository
+  {
+    get
     {
-        get
-        {
-            if (_pokemonRepository is null)
-            {
-                _pokemonRepository = new PokemonRepository(_context, _cacheService);
-            }
-            return _pokemonRepository;
-        }
+      if (_pokemonRepository is null)
+      {
+        _pokemonRepository = new PokemonRepository(_context, _cacheService);
+      }
+      return _pokemonRepository;
     }
+  }
 
-    public IReviewRepository ReviewRepository
+  public IReviewRepository ReviewRepository
+  {
+    get
     {
-        get
-        {
-            if (_reviewRepository is null)
-            {
-                _reviewRepository = new ReviewRepository(_context, _cacheService);
-            }
-            return _reviewRepository;
-        }
+      if (_reviewRepository is null)
+      {
+        _reviewRepository = new ReviewRepository(_context, _cacheService);
+      }
+      return _reviewRepository;
     }
+  }
 
-    public IGymRepository GymRepository
+  public IGymRepository GymRepository
+  {
+    get
     {
-        get
-        {
-            if (_gymRepository is null)
-            {
-                _gymRepository = new GymRepository(_context, _cacheService);
-            }
-            return _gymRepository;
-        }
+      if (_gymRepository is null)
+      {
+        _gymRepository = new GymRepository(_context, _cacheService);
+      }
+      return _gymRepository;
     }
+  }
 
-    public void Dispose()
-    {
-        Dispose(true);
-    }
+  public void Dispose()
+  {
+    Dispose(true);
+  }
 
-    public void Dispose(bool disposing)
+  public void Dispose(bool disposing)
+  {
+    if (disposing)
     {
-        if (disposing)
-        {
-            _context.Dispose();
-            GC.SuppressFinalize(this);
-        };
-    }
+      _context.Dispose();
+      GC.SuppressFinalize(this);
+    };
+  }
 
-    public async Task SaveChangesAsync()
-    {
-        await _context.SaveChangesAsync();
-    }
+  public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
+  {
+    await _context.SaveChangesAsync(cancellationToken);
+  }
 }
